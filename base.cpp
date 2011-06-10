@@ -1,5 +1,7 @@
 #include "base.hpp"
 
+#include <iostream>
+
 void intrusive_ptr_add_ref(ValueBase *v)
 {
 	++v->refcnt;
@@ -15,7 +17,7 @@ ValueBase::~ValueBase()
 {
 }
 
-const std::string &ValueBase::str() const throw (std::runtime_error)
+const std::string &ValueBase::str() const throw (std::exception)
 {
 	throw std::bad_cast();
 }

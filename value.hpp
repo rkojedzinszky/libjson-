@@ -19,16 +19,17 @@ class Value {
 	public:
 		Value();
 		Value(const Value &v);
-		Value(const std::string &s);
 		Value &operator=(const Value &v);
-		Value &operator=(const std::string &s);
 
 		// scalar
-		const std::string &str() const throw (std::runtime_error);
+		Value(const std::string &s);
+		Value &operator=(const std::string &s);
+		const std::string &str() const throw (std::exception);
 		bool isNull() const throw (std::bad_cast);
 
 		// array
 		Value &operator[](int idx) throw (std::bad_cast);
+		Value &array();
 
 		// hash
 		Value &operator[](const std::string &f) throw (std::bad_cast);
