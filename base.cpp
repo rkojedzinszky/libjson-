@@ -37,3 +37,7 @@ Value &ValueBase::operator[](const std::string &f) throw (std::bad_cast)
 	throw std::bad_cast();
 }
 
+size_t ValueBase::size() const throw (std::bad_cast)
+{
+	throw std::bad_cast();
+}

@@ -1,9 +1,7 @@
-#include "scalar.hpp"
-#include "array.hpp"
-#include "value.hpp"
 #include "base.hpp"
+#include "value.hpp"
 
-Value::Value() : value(new Scalar())
+Value::Value() : value(new IScalar())
 {
 }
 
@@ -14,14 +12,18 @@ Value::Value(const Value &v)
 
 Value &Value::operator=(const Value &v)
 {
-	Scalar *s = dynamic_cast<Scalar*>(v.value.get());
+	IScalar *s = dynamic_cast<IScalar*>(v.value.get());
 	if (s == NULL) {
 		value = v.value;
 	} else {
-		value = valueType(new Scalar(*s));
+		value = valueType(new IScalar(*s));
 	}
 
 	return *this;
+}
+
+Value::Value(IArray *a) : value(a)
+{
 }
 
 // scalar
@@ -32,7 +34,7 @@ Value::Value(const std::string &s)
 
 Value &Value::operator=(const std::string &s)
 {
-	value = valueType(new Scalar(s));
+	value = valueType(new IScalar(s));
 
 	return *this;
 }
@@ -53,15 +55,21 @@ Value &Value::operator[](int idx) throw (std::bad_cast)
 	return value->operator[](idx);
 }
 
-Value &Value::array()
-{
-	value = valueType(new Array());
-
-	return *this;
-}
-
 // hash
 Value &Value::operator[](const std::string &f) throw (std::bad_cast)
 {
 	return value->operator[](f);
 }
+
+// common to array & hash
+size_t Value::size() const throw (std::bad_cast)
+{
+	return value->size();
+}
+
+// instantiators
+Value Array()
+{
+	return Value(new IArray());
+}
+

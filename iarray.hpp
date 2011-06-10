@@ -1,14 +1,14 @@
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
+#ifndef IARRAY_HPP
+#define IARRAY_HPP
 
 #include <vector>
-#include "base.hpp"
 
-class Array : public ValueBase {
+class IArray : public ValueBase {
 	private:
 		std::vector<Value> value;
 	public:
 		Value &operator[](int idx) throw ();
+		size_t size() const throw();
 };
 
 #endif

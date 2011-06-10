@@ -8,13 +8,16 @@ class ValueBase;
 void intrusive_ptr_add_ref(ValueBase *v);
 void intrusive_ptr_release(ValueBase *v);
 
-class Scalar ;
-class Array ;
+class IScalar ;
+class IArray ;
 
 class Value {
 	private:
 		typedef boost::intrusive_ptr<ValueBase> valueType;
 		valueType value;
+
+	protected:
+		Value(IArray *a);
 
 	public:
 		Value();
@@ -29,10 +32,16 @@ class Value {
 
 		// array
 		Value &operator[](int idx) throw (std::bad_cast);
-		Value &array();
 
 		// hash
 		Value &operator[](const std::string &f) throw (std::bad_cast);
+
+		// common to array & hash
+		size_t size() const throw (std::bad_cast);
+
+		friend Value Array();
 };
+
+Value Array();
 
 #endif
