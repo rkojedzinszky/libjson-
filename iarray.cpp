@@ -1,4 +1,4 @@
-#include "base.hpp"
+#include <iarray.hpp>
 
 namespace JSON
 {
@@ -17,4 +17,4 @@ size_t IArray::size() const throw()
 	return value.size();
 }
 
-};
+}; // namespace JSON

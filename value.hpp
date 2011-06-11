@@ -6,10 +6,10 @@
 namespace JSON
 {
 
-class ValueBase;
+class IValue;
 
-void intrusive_ptr_add_ref(ValueBase *v);
-void intrusive_ptr_release(ValueBase *v);
+void intrusive_ptr_add_ref(IValue *v);
+void intrusive_ptr_release(IValue *v);
 
 class IScalar ;
 class IArray ;
@@ -17,7 +17,7 @@ class IArray ;
 class Value
 {
 private:
-	typedef boost::intrusive_ptr<ValueBase> valueType;
+	typedef boost::intrusive_ptr<IValue> valueType;
 	valueType value;
 
 protected:
@@ -47,6 +47,7 @@ public:
 };
 
 Value Array();
-};
+
+}; // namespace JSON
 
 #endif

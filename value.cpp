@@ -1,5 +1,4 @@
-#include "base.hpp"
-#include "value.hpp"
+#include <json.hpp>
 
 namespace JSON
 {
@@ -76,4 +75,4 @@ Value Array()
 	return Value(new IArray());
 }
 
-};
+}; // namespace JSON

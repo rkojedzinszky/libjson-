@@ -1,4 +1,4 @@
-#include "base.hpp"
+#include <iscalar.hpp>
 
 namespace JSON
 {
@@ -32,4 +32,4 @@ bool IScalar::isNull() const throw ()
 	return null;
 }
 
-};
+}; // namespace JSON

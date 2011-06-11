@@ -2,11 +2,13 @@
 #define IARRAY_HPP
 
 #include <vector>
+#include <value.hpp>
+#include <ivalue.hpp>
 
 namespace JSON
 {
 
-class IArray : public ValueBase
+class IArray : public IValue
 {
 private:
 	std::vector<Value> value;
@@ -15,6 +17,6 @@ public:
 	size_t size() const throw();
 };
 
-};
+}; // namespace JSON
 
 #endif

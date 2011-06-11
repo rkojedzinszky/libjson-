@@ -2,6 +2,7 @@
 #define IScalar_HPP
 
 #include <stdexcept>
+#include <ivalue.hpp>
 
 namespace JSON
 {
@@ -12,7 +13,7 @@ public:
 	nullValue();
 };
 
-class IScalar : public ValueBase
+class IScalar : public IValue
 {
 private:
 	bool null;
@@ -27,6 +28,6 @@ public:
 	bool isNull() const throw ();
 };
 
-};
+}; // namespace JSON
 
 #endif
