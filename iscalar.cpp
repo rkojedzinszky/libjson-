@@ -1,5 +1,8 @@
 #include "base.hpp"
 
+namespace JSON
+{
+
 nullValue::nullValue() : std::runtime_error("nullValue exception")
 {
 }
@@ -18,8 +21,9 @@ IScalar::IScalar(const IScalar &s) : null(s.null), value(s.value)
 
 const std::string &IScalar::str() const throw (nullValue)
 {
-	if (null)
+	if (null) {
 		throw nullValue();
+	}
 	return value;
 }
 
@@ -27,3 +31,5 @@ bool IScalar::isNull() const throw ()
 {
 	return null;
 }
+
+};

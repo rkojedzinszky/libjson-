@@ -1,6 +1,9 @@
 #include "base.hpp"
 #include "value.hpp"
 
+namespace JSON
+{
+
 Value::Value() : value(new IScalar())
 {
 }
@@ -12,7 +15,7 @@ Value::Value(const Value &v)
 
 Value &Value::operator=(const Value &v)
 {
-	IScalar *s = dynamic_cast<IScalar*>(v.value.get());
+	IScalar *s = dynamic_cast<IScalar *>(v.value.get());
 	if (s == NULL) {
 		value = v.value;
 	} else {
@@ -73,3 +76,4 @@ Value Array()
 	return Value(new IArray());
 }
 
+};

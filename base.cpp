@@ -1,6 +1,7 @@
 #include "base.hpp"
 
-#include <iostream>
+namespace JSON
+{
 
 void intrusive_ptr_add_ref(ValueBase *v)
 {
@@ -9,8 +10,9 @@ void intrusive_ptr_add_ref(ValueBase *v)
 
 void intrusive_ptr_release(ValueBase *v)
 {
-	if (--v->refcnt == 0)
+	if (--v->refcnt == 0) {
 		delete v;
+	}
 }
 
 ValueBase::~ValueBase()
@@ -41,3 +43,5 @@ size_t ValueBase::size() const throw (std::bad_cast)
 {
 	throw std::bad_cast();
 }
+
+};
