@@ -1,4 +1,7 @@
-#include <json.hpp>
+#include <value.hpp>
+#include <iscalar.hpp>
+#include <iarray.hpp>
+#include <ihash.hpp>
 
 namespace JSON
 {
