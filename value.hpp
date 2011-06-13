@@ -13,6 +13,7 @@ void intrusive_ptr_release(IValue *v);
 
 class IScalar ;
 class IArray ;
+class IHash ;
 
 class Value
 {
@@ -21,7 +22,7 @@ private:
 	valueType value;
 
 protected:
-	Value(IArray *a);
+	Value(IValue *v);
 
 public:
 	Value();
@@ -44,9 +45,11 @@ public:
 	size_t size() const throw (std::bad_cast);
 
 	friend Value Array();
+	friend Value Hash();
 };
 
 Value Array();
+Value Hash();
 
 }; // namespace JSON
 

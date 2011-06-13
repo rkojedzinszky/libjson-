@@ -24,7 +24,7 @@ Value &Value::operator=(const Value &v)
 	return *this;
 }
 
-Value::Value(IArray *a) : value(a)
+Value::Value(IValue *v) : value(v)
 {
 }
 
@@ -73,6 +73,11 @@ size_t Value::size() const throw (std::bad_cast)
 Value Array()
 {
 	return Value(new IArray());
+}
+
+Value Hash()
+{
+	return Value(new IHash());
 }
 
 }; // namespace JSON
