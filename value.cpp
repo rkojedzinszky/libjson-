@@ -1,12 +1,20 @@
 #include <value.hpp>
+
 #include <iscalar.hpp>
+#include <ibool.hpp>
+#include <iinteger.hpp>
+#include <istring.hpp>
 #include <iarray.hpp>
 #include <ihash.hpp>
 
 namespace JSON
 {
 
-Value::Value() : value(new IScalar())
+Value::Value(IValue *v) : value(v)
+{
+}
+
+Value::Value() : value(new IValue())
 {
 }
 
@@ -21,37 +29,80 @@ Value &Value::operator=(const Value &v)
 	if (s == NULL) {
 		value = v.value;
 	} else {
-		value = valueType(new IScalar(*s));
+		value = valueType(s->clone());
 	}
 
 	return *this;
 }
 
-Value::Value(IValue *v) : value(v)
+// scalars
+bool Value::isNull() const throw ()
 {
+	return value->isNull();
 }
 
-// scalar
+Value::operator bool() const throw (std::bad_cast)
+{
+	return value->operator bool();
+}
+
+// boolean
+Value::Value(bool v)
+{
+	operator=(v);
+}
+
+Value &Value::operator=(bool v)
+{
+	value = valueType(new IBool(v));
+
+	return *this;
+}
+
+// integer
+Value::Value(int v)
+{
+	operator=(v);
+}
+
+Value &Value::operator=(int v)
+{
+	value = valueType(new IInteger(v));
+
+	return *this;
+}
+
+Value::operator int() const throw(std::bad_cast)
+{
+	return value->operator int();
+}
+
+// string
 Value::Value(const std::string &s)
+{
+	operator=(s);
+}
+
+Value::Value(const char *s)
 {
 	operator=(s);
 }
 
 Value &Value::operator=(const std::string &s)
 {
-	value = valueType(new IScalar(s));
+	value = valueType(new IString(s));
 
 	return *this;
 }
 
-const std::string &Value::str() const throw (std::exception)
+Value &Value::operator=(const char *s)
 {
-	return value->str();
+	return operator=(std::string(s));
 }
 
-bool Value::isNull() const throw (std::bad_cast)
+Value::operator std::string() const throw (std::bad_cast)
 {
-	return value->isNull();
+	return value->operator std::string();
 }
 
 // array

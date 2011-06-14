@@ -1,31 +1,37 @@
-#ifndef IScalar_HPP
-#define IScalar_HPP
+#ifndef JSON_ISCALAR_HPP
+#define JSON_ISCALAR_HPP
 
-#include <stdexcept>
 #include <ivalue.hpp>
 
 namespace JSON
 {
 
-class nullValue : public std::runtime_error
-{
-public:
-	nullValue();
-};
-
 class IScalar : public IValue
 {
-private:
-	bool null;
-	std::string value;
-
 public:
-	IScalar();
-	IScalar(const std::string &s);
-	IScalar(const IScalar &s);
-
-	const std::string &str() const throw (nullValue);
+	// scalars
 	bool isNull() const throw ();
+
+	// boolean
+	virtual operator bool() const throw (std::bad_cast);
+
+	// int
+	virtual operator int() const throw (std::bad_cast);
+
+	// string
+	virtual operator std::string() const throw (std::bad_cast);
+
+	// array
+	Value &operator[](int idx) throw (std::bad_cast);
+
+	// hash
+	Value &operator[](const std::string &f) throw (std::bad_cast);
+
+	// common to array & hash
+	size_t size() const throw (std::bad_cast);
+
+	// clone
+	virtual IScalar *clone() const = 0;
 };
 
 }; // namespace JSON

@@ -6,14 +6,10 @@
 namespace JSON
 {
 
-class IValue;
+class IValue ;
 
 void intrusive_ptr_add_ref(IValue *v);
 void intrusive_ptr_release(IValue *v);
-
-class IScalar ;
-class IArray ;
-class IHash ;
 
 class Value
 {
@@ -29,11 +25,25 @@ public:
 	Value(const Value &v);
 	Value &operator=(const Value &v);
 
-	// scalar
+	// scalars
+	bool isNull() const throw ();
+
+	// boolean
+	Value(bool v);
+	Value &operator=(bool v);
+	operator bool() const throw (std::bad_cast);
+
+	// int
+	Value(int v);
+	Value &operator=(int v);
+	operator int() const throw (std::bad_cast);
+
+	// string
 	Value(const std::string &s);
+	Value(const char *s);
 	Value &operator=(const std::string &s);
-	const std::string &str() const throw (std::exception);
-	bool isNull() const throw (std::bad_cast);
+	Value &operator=(const char *s);
+	operator std::string() const throw (std::bad_cast);
 
 	// array
 	Value &operator[](int idx) throw (std::bad_cast);

@@ -19,12 +19,22 @@ IValue::~IValue()
 {
 }
 
-const std::string &IValue::str() const throw (std::exception)
+bool IValue::isNull() const throw ()
+{
+	return true;
+}
+
+IValue::operator bool() const throw (std::bad_cast)
+{
+	return false;
+}
+
+IValue::operator int() const throw (std::bad_cast)
 {
 	throw std::bad_cast();
 }
 
-bool IValue::isNull() const throw (std::bad_cast)
+IValue::operator std::string() const throw (std::bad_cast)
 {
 	throw std::bad_cast();
 }

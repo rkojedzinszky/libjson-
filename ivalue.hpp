@@ -1,5 +1,5 @@
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef JSON_IVALUE_HPP
+#define JSON_IVALUE_HPP
 
 #include <string>
 #include <typeinfo>
@@ -16,9 +16,17 @@ public:
 	IValue() : refcnt(0) { };
 	virtual ~IValue();
 
-	// scalar
-	virtual const std::string &str() const throw (std::exception);
-	virtual bool isNull() const throw (std::bad_cast);
+	// scalars
+	virtual bool isNull() const throw ();
+
+	// boolean
+	virtual operator bool() const throw (std::bad_cast);
+
+	// int
+	virtual operator int() const throw (std::bad_cast);
+
+	// string
+	virtual operator std::string() const throw (std::bad_cast);
 
 	// array
 	virtual Value &operator[](int idx) throw (std::bad_cast);
