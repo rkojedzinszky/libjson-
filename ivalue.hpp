@@ -38,6 +38,11 @@ public:
 	// common to array & hash
 	virtual size_t size() const throw (std::bad_cast);
 
+	// operators
+	virtual bool operator==(const IValue &r) const throw (std::bad_cast);
+	virtual bool operator<(const IValue &r) const throw (std::bad_cast);
+	virtual bool operator<=(const IValue &r) const throw (std::bad_cast);
+
 	// serialization
 	virtual void toStream(std::ostream &o) const;
 };

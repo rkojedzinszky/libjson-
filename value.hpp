@@ -56,6 +56,20 @@ public:
 	// common to array & hash
 	size_t size() const throw (std::bad_cast);
 
+	// operators
+	bool operator==(const Value &r) const throw (std::bad_cast);
+	bool operator!=(const Value &r) const throw (std::bad_cast) {
+		return !operator==(r);
+	}
+	bool operator<(const Value &r) const throw (std::bad_cast);
+	bool operator>(const Value &r) const throw (std::bad_cast) {
+		return r.operator<(*this);
+	}
+	bool operator<=(const Value &r) const throw (std::bad_cast);
+	bool operator>=(const Value &r) const throw (std::bad_cast) {
+		return r.operator<=(*this);
+	}
+
 	friend Value Array();
 	friend Value Hash();
 

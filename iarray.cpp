@@ -12,6 +12,11 @@ Value &IArray::operator[](int idx) throw ()
 	return value[idx];
 }
 
+size_t IArray::size() const throw()
+{
+	return value.size();
+}
+
 void IArray::toStream(std::ostream &o) const
 {
 	o << "[";
@@ -25,11 +30,6 @@ void IArray::toStream(std::ostream &o) const
 	}
 
 	o << "]";
-}
-
-size_t IArray::size() const throw()
-{
-	return value.size();
 }
 
 }; // namespace JSON

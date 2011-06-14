@@ -128,6 +128,21 @@ size_t Value::size() const throw (std::bad_cast)
 	return value->size();
 }
 
+bool Value::operator==(const Value &r) const throw (std::bad_cast)
+{
+	return value->operator==(*r.value);
+}
+
+bool Value::operator<(const Value &r) const throw (std::bad_cast)
+{
+	return value->operator<(*r.value);
+}
+
+bool Value::operator<=(const Value &r) const throw (std::bad_cast)
+{
+	return value->operator<=(*r.value);
+}
+
 void Value::toStream(std::ostream &o) const
 {
 	value->toStream(o);

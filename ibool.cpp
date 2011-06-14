@@ -12,6 +12,11 @@ IBool::operator bool() const throw ()
 	return value;
 }
 
+bool IBool::operator==(const IValue &r) const throw (std::bad_cast)
+{
+	return value == dynamic_cast<const IBool&>(r).value;
+}
+
 void IBool::toStream(std::ostream &o) const
 {
 	o << (value ? "true" : "false");

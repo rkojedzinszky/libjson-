@@ -15,6 +15,8 @@ public:
 	IBool(bool v = false);
 	operator bool() const throw ();
 
+	bool operator==(const IValue &r) const throw (std::bad_cast);
+
 	void toStream(std::ostream &o) const;
 
 	IScalar *clone() const;

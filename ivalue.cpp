@@ -54,6 +54,21 @@ size_t IValue::size() const throw (std::bad_cast)
 	throw std::bad_cast();
 }
 
+bool IValue::operator==(const IValue &r) const throw (std::bad_cast)
+{
+	throw std::bad_cast();
+}
+
+bool IValue::operator<(const IValue &r) const throw (std::bad_cast)
+{
+	throw std::bad_cast();
+}
+
+bool IValue::operator<=(const IValue &r) const throw (std::bad_cast)
+{
+	throw std::bad_cast();
+}
+
 void IValue::toStream(std::ostream &o) const
 {
 	o << "null";

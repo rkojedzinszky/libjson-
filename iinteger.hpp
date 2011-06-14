@@ -15,6 +15,10 @@ public:
 	IInteger(int v = 0);
 	operator int() const throw ();
 
+	bool operator==(const IValue &r) const throw (std::bad_cast);
+	bool operator<(const IValue &r) const throw (std::bad_cast);
+	bool operator<=(const IValue &r) const throw (std::bad_cast);
+
 	void toStream(std::ostream &o) const;
 
 	IScalar *clone() const;
