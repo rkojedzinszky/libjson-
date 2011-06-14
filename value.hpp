@@ -34,10 +34,12 @@ public:
 	Value &operator=(bool v);
 	operator bool() const;
 
-	// int
+	// numeric
+	Value(double v);
+	Value &operator=(double v);
 	Value(int v);
 	Value &operator=(int v);
-	operator int() const;
+	operator double() const;
 
 	// string
 	Value(const std::string &s);

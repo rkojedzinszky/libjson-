@@ -23,8 +23,8 @@ public:
 	// boolean
 	virtual operator bool() const;
 
-	// int
-	virtual operator int() const;
+	// numeric
+	virtual operator double() const;
 
 	// string
 	virtual operator const std::string&() const;

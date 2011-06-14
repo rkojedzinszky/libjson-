@@ -2,7 +2,7 @@
 
 #include <iscalar.hpp>
 #include <ibool.hpp>
-#include <iinteger.hpp>
+#include <inumeric.hpp>
 #include <istring.hpp>
 #include <iarray.hpp>
 #include <ihash.hpp>
@@ -59,22 +59,32 @@ Value &Value::operator=(bool v)
 	return *this;
 }
 
-// integer
-Value::Value(int v)
+// numeric
+Value::Value(double v)
 {
 	operator=(v);
 }
 
-Value &Value::operator=(int v)
+Value &Value::operator=(double v)
 {
-	value = valueType(new IInteger(v));
+	value = valueType(new INumeric(v));
 
 	return *this;
 }
 
-Value::operator int() const
+Value::Value(int v)
 {
-	return value->operator int();
+	operator=(static_cast<double>(v));
+}
+
+Value &Value::operator=(int v)
+{
+	return operator=(static_cast<double>(v));
+}
+
+Value::operator double() const
+{
+	return value->operator double();
 }
 
 // string

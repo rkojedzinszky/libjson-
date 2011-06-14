@@ -1,19 +1,19 @@
-#ifndef JSON_IINTEGER_HPP
-#define JSON_IINTEGER_HPP
+#ifndef JSON_INUMERIC_HPP
+#define JSON_INUMERIC_HPP
 
 #include <iscalar.hpp>
 
 namespace JSON
 {
 
-class IInteger : public IScalar
+class INumeric : public IScalar
 {
 private:
-	int value;
+	double value;
 
 public:
-	IInteger(int v = 0);
-	operator int() const;
+	INumeric(double v = 0);
+	operator double() const;
 
 	bool operator==(const IValue &r) const;
 	bool operator<(const IValue &r) const;

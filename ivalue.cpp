@@ -29,7 +29,7 @@ IValue::operator bool() const
 	return false;
 }
 
-IValue::operator int() const
+IValue::operator double() const
 {
 	throw std::bad_cast();
 }
