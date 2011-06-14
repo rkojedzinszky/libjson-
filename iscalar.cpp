@@ -3,12 +3,12 @@
 namespace JSON
 {
 
-bool IScalar::isNull() const throw ()
+bool IScalar::isNull() const
 {
 	return false;
 }
 
-size_t IScalar::size() const throw (std::bad_cast)
+size_t IScalar::size() const
 {
 	throw std::bad_cast();
 }

@@ -10,10 +10,10 @@ class IScalar : public IValue
 {
 public:
 	// scalars
-	bool isNull() const throw ();
+	bool isNull() const;
 
 	// common to array & hash
-	size_t size() const throw (std::bad_cast);
+	size_t size() const;
 
 	// serialization
 	virtual void toStream(std::ostream &o) const = 0;

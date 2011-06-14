@@ -7,22 +7,22 @@ IInteger::IInteger(int v) : value(v)
 {
 }
 
-IInteger::operator int() const throw ()
+IInteger::operator int() const
 {
 	return value;
 }
 
-bool IInteger::operator==(const IValue &r) const throw (std::bad_cast)
+bool IInteger::operator==(const IValue &r) const
 {
 	return value == dynamic_cast<const IInteger&>(r).value;
 }
 
-bool IInteger::operator<(const IValue &r) const throw (std::bad_cast)
+bool IInteger::operator<(const IValue &r) const
 {
 	return value < dynamic_cast<const IInteger&>(r).value;
 }
 
-bool IInteger::operator<=(const IValue &r) const throw (std::bad_cast)
+bool IInteger::operator<=(const IValue &r) const
 {
 	return value <= dynamic_cast<const IInteger&>(r).value;
 }

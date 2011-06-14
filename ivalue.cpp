@@ -19,52 +19,52 @@ IValue::~IValue()
 {
 }
 
-bool IValue::isNull() const throw ()
+bool IValue::isNull() const
 {
 	return true;
 }
 
-IValue::operator bool() const throw (std::bad_cast)
+IValue::operator bool() const
 {
 	return false;
 }
 
-IValue::operator int() const throw (std::bad_cast)
+IValue::operator int() const
 {
 	throw std::bad_cast();
 }
 
-IValue::operator const std::string&() const throw (std::bad_cast)
+IValue::operator const std::string&() const
 {
 	throw std::bad_cast();
 }
 
-Value &IValue::operator[](int idx) throw (std::bad_cast)
+Value &IValue::operator[](int idx)
 {
 	throw std::bad_cast();
 }
 
-Value &IValue::operator[](const std::string &f) throw (std::bad_cast)
+Value &IValue::operator[](const std::string &f)
 {
 	throw std::bad_cast();
 }
 
-size_t IValue::size() const throw (std::bad_cast)
+size_t IValue::size() const
 {
 	throw std::bad_cast();
 }
 
-bool IValue::operator==(const IValue &r) const throw (std::bad_cast)
+bool IValue::operator==(const IValue &r) const
 {
 	throw std::bad_cast();
 }
 
-bool IValue::operator<(const IValue &r) const throw (std::bad_cast)
+bool IValue::operator<(const IValue &r) const
 {
 	throw std::bad_cast();
 }
 
-bool IValue::operator<=(const IValue &r) const throw (std::bad_cast)
+bool IValue::operator<=(const IValue &r) const
 {
 	throw std::bad_cast();
 }

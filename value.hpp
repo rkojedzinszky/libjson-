@@ -27,46 +27,46 @@ public:
 	Value &operator=(const Value &v);
 
 	// scalars
-	bool isNull() const throw ();
+	bool isNull() const;
 
 	// boolean
 	Value(bool v);
 	Value &operator=(bool v);
-	operator bool() const throw (std::bad_cast);
+	operator bool() const;
 
 	// int
 	Value(int v);
 	Value &operator=(int v);
-	operator int() const throw (std::bad_cast);
+	operator int() const;
 
 	// string
 	Value(const std::string &s);
 	Value(const char *s);
 	Value &operator=(const std::string &s);
 	Value &operator=(const char *s);
-	operator const std::string&() const throw (std::bad_cast);
+	operator const std::string&() const;
 
 	// array
-	Value &operator[](int idx) throw (std::bad_cast);
+	Value &operator[](int idx);
 
 	// hash
-	Value &operator[](const std::string &f) throw (std::bad_cast);
-	Value &operator[](const char *f) throw (std::bad_cast);
+	Value &operator[](const std::string &f);
+	Value &operator[](const char *f);
 
 	// common to array & hash
-	size_t size() const throw (std::bad_cast);
+	size_t size() const;
 
 	// operators
-	bool operator==(const Value &r) const throw (std::bad_cast);
-	bool operator!=(const Value &r) const throw (std::bad_cast) {
+	bool operator==(const Value &r) const;
+	bool operator!=(const Value &r) const {
 		return !operator==(r);
 	}
-	bool operator<(const Value &r) const throw (std::bad_cast);
-	bool operator>(const Value &r) const throw (std::bad_cast) {
+	bool operator<(const Value &r) const;
+	bool operator>(const Value &r) const {
 		return r.operator<(*this);
 	}
-	bool operator<=(const Value &r) const throw (std::bad_cast);
-	bool operator>=(const Value &r) const throw (std::bad_cast) {
+	bool operator<=(const Value &r) const;
+	bool operator>=(const Value &r) const {
 		return r.operator<=(*this);
 	}
 

@@ -13,9 +13,9 @@ private:
 
 public:
 	IBool(bool v = false);
-	operator bool() const throw ();
+	operator bool() const;
 
-	bool operator==(const IValue &r) const throw (std::bad_cast);
+	bool operator==(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
 

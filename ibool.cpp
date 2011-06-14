@@ -7,12 +7,12 @@ IBool::IBool(bool v) : value(v)
 {
 }
 
-IBool::operator bool() const throw ()
+IBool::operator bool() const
 {
 	return value;
 }
 
-bool IBool::operator==(const IValue &r) const throw (std::bad_cast)
+bool IBool::operator==(const IValue &r) const
 {
 	return value == dynamic_cast<const IBool&>(r).value;
 }

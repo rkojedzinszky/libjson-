@@ -8,22 +8,22 @@ IString::IString(const std::string &s) : value(s)
 {
 }
 
-IString::operator const std::string&() const throw ()
+IString::operator const std::string&() const
 {
 	return value;
 }
 
-bool IString::operator==(const IValue &r) const throw (std::bad_cast)
+bool IString::operator==(const IValue &r) const
 {
 	return value == dynamic_cast<const IString&>(r).value;
 }
 
-bool IString::operator<(const IValue &r) const throw (std::bad_cast)
+bool IString::operator<(const IValue &r) const
 {
 	return value < dynamic_cast<const IString&>(r).value;
 }
 
-bool IString::operator<=(const IValue &r) const throw (std::bad_cast)
+bool IString::operator<=(const IValue &r) const
 {
 	return value <= dynamic_cast<const IString&>(r).value;
 }

@@ -36,12 +36,12 @@ Value &Value::operator=(const Value &v)
 }
 
 // scalars
-bool Value::isNull() const throw ()
+bool Value::isNull() const
 {
 	return value->isNull();
 }
 
-Value::operator bool() const throw (std::bad_cast)
+Value::operator bool() const
 {
 	return value->operator bool();
 }
@@ -72,7 +72,7 @@ Value &Value::operator=(int v)
 	return *this;
 }
 
-Value::operator int() const throw(std::bad_cast)
+Value::operator int() const
 {
 	return value->operator int();
 }
@@ -100,45 +100,45 @@ Value &Value::operator=(const char *s)
 	return operator=(std::string(s));
 }
 
-Value::operator const std::string&() const throw (std::bad_cast)
+Value::operator const std::string&() const
 {
 	return value->operator const std::string&();
 }
 
 // array
-Value &Value::operator[](int idx) throw (std::bad_cast)
+Value &Value::operator[](int idx)
 {
 	return value->operator[](idx);
 }
 
 // hash
-Value &Value::operator[](const std::string &f) throw (std::bad_cast)
+Value &Value::operator[](const std::string &f)
 {
 	return value->operator[](f);
 }
 
-Value &Value::operator[](const char *f) throw (std::bad_cast)
+Value &Value::operator[](const char *f)
 {
 	return operator[](std::string(f));
 }
 
 // common to array & hash
-size_t Value::size() const throw (std::bad_cast)
+size_t Value::size() const
 {
 	return value->size();
 }
 
-bool Value::operator==(const Value &r) const throw (std::bad_cast)
+bool Value::operator==(const Value &r) const
 {
 	return value->operator==(*r.value);
 }
 
-bool Value::operator<(const Value &r) const throw (std::bad_cast)
+bool Value::operator<(const Value &r) const
 {
 	return value->operator<(*r.value);
 }
 
-bool Value::operator<=(const Value &r) const throw (std::bad_cast)
+bool Value::operator<=(const Value &r) const
 {
 	return value->operator<=(*r.value);
 }

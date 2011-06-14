@@ -13,11 +13,11 @@ private:
 
 public:
 	IString(const std::string &s = "");
-	operator const std::string&() const throw ();
+	operator const std::string&() const;
 
-	bool operator==(const IValue &r) const throw (std::bad_cast);
-	bool operator<(const IValue &r) const throw (std::bad_cast);
-	bool operator<=(const IValue &r) const throw (std::bad_cast);
+	bool operator==(const IValue &r) const;
+	bool operator<(const IValue &r) const;
+	bool operator<=(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
 
