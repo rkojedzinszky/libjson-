@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include <ostream>
 
-#include <value.hpp>
+#include <json/value.hpp>
 
 namespace JSON
 {

@@ -1,5 +1,5 @@
-#include <ihash.hpp>
-#include <util.hpp>
+#include <json/ihash.hpp>
+#include <json/util.hpp>
 #include <sstream>
 
 namespace JSON

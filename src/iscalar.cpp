@@ -1,4 +1,4 @@
-#include <iscalar.hpp>
+#include <json/iscalar.hpp>
 
 namespace JSON
 {

@@ -1,0 +1,9 @@
+
+lib_LTLIBRARIES = libjson.la
+
+libjson_la_SOURCES = value.cpp ivalue.cpp ibool.cpp inumeric.cpp iscalar.cpp iarray.cpp ihash.cpp util.cpp
+
+libjson_la_LDFLAGS = -version-info 0:0:0
+
+AM_CPPFLAGS = -I$(top_srcdir)/include
+

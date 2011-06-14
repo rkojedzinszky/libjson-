@@ -1,7 +1,7 @@
 #ifndef JSON_ISTRING_HPP
 #define JSON_ISTRING_HPP
 
-#include <iscalar.hpp>
+#include <json/iscalar.hpp>
 
 namespace JSON
 {

@@ -1,11 +1,11 @@
-#include <value.hpp>
+#include <json/value.hpp>
 
-#include <iscalar.hpp>
-#include <ibool.hpp>
-#include <inumeric.hpp>
-#include <istring.hpp>
-#include <iarray.hpp>
-#include <ihash.hpp>
+#include <json/iscalar.hpp>
+#include <json/ibool.hpp>
+#include <json/inumeric.hpp>
+#include <json/istring.hpp>
+#include <json/iarray.hpp>
+#include <json/ihash.hpp>
 
 namespace JSON
 {

@@ -1,7 +1,7 @@
 #ifndef JSON_INUMERIC_HPP
 #define JSON_INUMERIC_HPP
 
-#include <iscalar.hpp>
+#include <json/iscalar.hpp>
 
 namespace JSON
 {
