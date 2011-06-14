@@ -117,6 +117,11 @@ Value &Value::operator[](const std::string &f) throw (std::bad_cast)
 	return value->operator[](f);
 }
 
+Value &Value::operator[](const char *f) throw (std::bad_cast)
+{
+	return operator[](std::string(f));
+}
+
 // common to array & hash
 size_t Value::size() const throw (std::bad_cast)
 {

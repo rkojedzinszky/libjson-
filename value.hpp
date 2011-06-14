@@ -50,6 +50,7 @@ public:
 
 	// hash
 	Value &operator[](const std::string &f) throw (std::bad_cast);
+	Value &operator[](const char *f) throw (std::bad_cast);
 
 	// common to array & hash
 	size_t size() const throw (std::bad_cast);
