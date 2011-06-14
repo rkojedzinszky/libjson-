@@ -12,23 +12,11 @@ public:
 	// scalars
 	bool isNull() const throw ();
 
-	// boolean
-	virtual operator bool() const throw (std::bad_cast);
-
-	// int
-	virtual operator int() const throw (std::bad_cast);
-
-	// string
-	virtual operator std::string() const throw (std::bad_cast);
-
-	// array
-	Value &operator[](int idx) throw (std::bad_cast);
-
-	// hash
-	Value &operator[](const std::string &f) throw (std::bad_cast);
-
 	// common to array & hash
 	size_t size() const throw (std::bad_cast);
+
+	// serialization
+	virtual void toStream(std::ostream &o) const = 0;
 
 	// clone
 	virtual IScalar *clone() const = 0;

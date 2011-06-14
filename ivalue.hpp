@@ -3,6 +3,7 @@
 
 #include <string>
 #include <typeinfo>
+#include <ostream>
 
 namespace JSON
 {
@@ -26,7 +27,7 @@ public:
 	virtual operator int() const throw (std::bad_cast);
 
 	// string
-	virtual operator std::string() const throw (std::bad_cast);
+	virtual operator const std::string&() const throw (std::bad_cast);
 
 	// array
 	virtual Value &operator[](int idx) throw (std::bad_cast);
@@ -36,6 +37,9 @@ public:
 
 	// common to array & hash
 	virtual size_t size() const throw (std::bad_cast);
+
+	// serialization
+	virtual void toStream(std::ostream &o) const;
 };
 
 }; // namespace JSON

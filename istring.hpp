@@ -13,7 +13,9 @@ private:
 
 public:
 	IString(const std::string &s = "");
-	operator std::string () const throw ();
+	operator const std::string&() const throw ();
+
+	void toStream(std::ostream &o) const;
 
 	IScalar *clone() const;
 };

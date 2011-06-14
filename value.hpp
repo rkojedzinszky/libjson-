@@ -2,6 +2,7 @@
 #define VALUE_HPP
 
 #include <boost/intrusive_ptr.hpp>
+#include <ostream>
 
 namespace JSON
 {
@@ -43,7 +44,7 @@ public:
 	Value(const char *s);
 	Value &operator=(const std::string &s);
 	Value &operator=(const char *s);
-	operator std::string() const throw (std::bad_cast);
+	operator const std::string&() const throw (std::bad_cast);
 
 	// array
 	Value &operator[](int idx) throw (std::bad_cast);
@@ -57,11 +58,20 @@ public:
 
 	friend Value Array();
 	friend Value Hash();
+
+	// serialization
+	void toStream(std::ostream &o) const;
 };
 
 Value Array();
 Value Hash();
 
 }; // namespace JSON
+
+static inline std::ostream &operator<<(std::ostream &o, JSON::Value &v)
+{
+	v.toStream(o);
+	return o;
+}
 
 #endif

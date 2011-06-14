@@ -16,6 +16,8 @@ private:
 public:
 	Value &operator[](const std::string &f) throw ();
 	size_t size() const throw ();
+
+	void toStream(std::ostream &o) const;
 };
 
 }; // namespace JSON

@@ -100,9 +100,9 @@ Value &Value::operator=(const char *s)
 	return operator=(std::string(s));
 }
 
-Value::operator std::string() const throw (std::bad_cast)
+Value::operator const std::string&() const throw (std::bad_cast)
 {
-	return value->operator std::string();
+	return value->operator const std::string&();
 }
 
 // array
@@ -126,6 +126,11 @@ Value &Value::operator[](const char *f) throw (std::bad_cast)
 size_t Value::size() const throw (std::bad_cast)
 {
 	return value->size();
+}
+
+void Value::toStream(std::ostream &o) const
+{
+	value->toStream(o);
 }
 
 // instantiators

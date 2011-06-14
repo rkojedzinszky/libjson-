@@ -15,6 +15,8 @@ private:
 public:
 	Value &operator[](int idx) throw ();
 	size_t size() const throw();
+
+	void toStream(std::ostream &o) const;
 };
 
 }; // namespace JSON

@@ -34,7 +34,7 @@ IValue::operator int() const throw (std::bad_cast)
 	throw std::bad_cast();
 }
 
-IValue::operator std::string() const throw (std::bad_cast)
+IValue::operator const std::string&() const throw (std::bad_cast)
 {
 	throw std::bad_cast();
 }
@@ -52,6 +52,11 @@ Value &IValue::operator[](const std::string &f) throw (std::bad_cast)
 size_t IValue::size() const throw (std::bad_cast)
 {
 	throw std::bad_cast();
+}
+
+void IValue::toStream(std::ostream &o) const
+{
+	o << "null";
 }
 
 }; // namespace JSON
