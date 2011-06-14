@@ -1,7 +1,7 @@
 #ifndef JSON_ISCALAR_HPP
 #define JSON_ISCALAR_HPP
 
-#include <ivalue.hpp>
+#include <json/ivalue.hpp>
 
 namespace JSON
 {

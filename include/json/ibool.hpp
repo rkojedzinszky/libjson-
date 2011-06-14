@@ -1,7 +1,7 @@
 #ifndef JSON_IBOOL_HPP
 #define JSON_IBOOL_HPP
 
-#include <iscalar.hpp>
+#include <json/iscalar.hpp>
 
 namespace JSON
 {

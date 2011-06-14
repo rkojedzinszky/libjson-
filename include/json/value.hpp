@@ -1,5 +1,5 @@
-#ifndef VALUE_HPP
-#define VALUE_HPP
+#ifndef JSON_VALUE_HPP
+#define JSON_VALUE_HPP
 
 #include <boost/intrusive_ptr.hpp>
 #include <ostream>

@@ -1,10 +1,10 @@
-#ifndef IHASH_HPP
-#define IHASH_HPP
+#ifndef JSON_IHASH_HPP
+#define JSON_IHASH_HPP
 
 #include <map>
-#include <value.hpp>
-#include <ivalue.hpp>
 #include <string>
+#include <json/value.hpp>
+#include <json/ivalue.hpp>
 
 namespace JSON
 {
