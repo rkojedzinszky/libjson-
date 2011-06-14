@@ -1,4 +1,6 @@
 #include <iarray.hpp>
+#include <ostream>
+#include <sstream>
 
 namespace JSON
 {
@@ -30,6 +32,38 @@ void IArray::toStream(std::ostream &o) const
 	}
 
 	o << "]";
+}
+
+void IArray::fromStream(std::istream &i)
+{
+	value.clear();
+	char c;
+
+	c = i.get();
+	if (c != '[') {
+		std::ostringstream o;
+		o << c;
+		throw ParserError(o.str());
+	}
+
+	for (;;) {
+		JSON::Value v;
+
+		v.fromStream(i);
+		value.push_back(v);
+
+		i >> std::ws;
+		if (i.peek() != ',')
+			break;
+		i.get();
+	}
+
+	c = i.get();
+	if (c != ']') {
+		std::ostringstream o;
+		o << c;
+		throw ParserError(o.str());
+	}
 }
 
 }; // namespace JSON

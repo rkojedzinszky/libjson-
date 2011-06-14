@@ -1,5 +1,6 @@
 #include <istring.hpp>
 #include <util.hpp>
+#include <iterator>
 
 namespace JSON
 {
@@ -31,6 +32,11 @@ bool IString::operator<=(const IValue &r) const
 void IString::toStream(std::ostream &o) const
 {
 	stringtojsonstream(value, o);
+}
+
+void IString::fromStream(std::istream &i)
+{
+	jsonstringtostring(value, i);
 }
 
 IScalar *IString::clone() const

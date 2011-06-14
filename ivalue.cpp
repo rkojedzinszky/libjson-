@@ -74,4 +74,11 @@ void IValue::toStream(std::ostream &o) const
 	o << "null";
 }
 
+void IValue::fromStream(std::istream &i)
+{
+	if (i.get() != 'n' || i.get() != 'u' || i.get() != 'l' || i.get() != 'l') {
+		throw ParserError("expecting null");
+	}
+}
+
 }; // namespace JSON

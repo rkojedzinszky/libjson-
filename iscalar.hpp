@@ -17,6 +17,7 @@ public:
 
 	// serialization
 	virtual void toStream(std::ostream &o) const = 0;
+	virtual void fromStream(std::istream &i) = 0;
 
 	// clone
 	virtual IScalar *clone() const = 0;

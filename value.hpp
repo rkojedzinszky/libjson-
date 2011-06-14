@@ -3,9 +3,16 @@
 
 #include <boost/intrusive_ptr.hpp>
 #include <ostream>
+#include <stdexcept>
 
 namespace JSON
 {
+
+class ParserError : public std::runtime_error {
+	public:
+		ParserError(const std::string &token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token) {
+		}
+};
 
 class IValue ;
 
@@ -77,6 +84,7 @@ public:
 
 	// serialization
 	void toStream(std::ostream &o) const;
+	Value &fromStream(std::istream &i);
 };
 
 Value Array();

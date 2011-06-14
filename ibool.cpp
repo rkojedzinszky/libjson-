@@ -19,7 +19,12 @@ bool IBool::operator==(const IValue &r) const
 
 void IBool::toStream(std::ostream &o) const
 {
-	o << (value ? "true" : "false");
+	o << std::boolalpha << value;
+}
+
+void IBool::fromStream(std::istream &i)
+{
+	i >> std::boolalpha >> value;
 }
 
 IScalar *IBool::clone() const

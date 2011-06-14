@@ -8,6 +8,7 @@ namespace JSON
 {
 
 void stringtojsonstream(const std::string &s, std::ostream &o);
+void jsonstringtostring(std::string &s, std::istream &i);
 
 };
 

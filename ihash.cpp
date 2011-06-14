@@ -1,5 +1,6 @@
 #include <ihash.hpp>
 #include <util.hpp>
+#include <sstream>
 
 namespace JSON
 {
@@ -29,6 +30,49 @@ void IHash::toStream(std::ostream &o) const
 	}
 
 	o << "}";
+}
+
+void IHash::fromStream(std::istream &i)
+{
+	hash.clear();
+	char c;
+
+	c = i.get();
+	if (c != '{') {
+		std::ostringstream o;
+		o << c;
+		throw ParserError(o.str());
+	}
+
+	for (;;) {
+		std::string k;
+		JSON::Value v;
+
+		i >> std::ws;
+		jsonstringtostring(k, i);
+		i >> std::ws >> c;
+		if (c != ':') {
+			std::ostringstream o;
+			o << c;
+			throw ParserError(o.str());
+		}
+
+		v.fromStream(i);
+		hash[k] = v;
+
+		i >> std::ws;
+
+		if (i.peek() != ',')
+			break;
+		i.get();
+	}
+
+	c = i.get();
+	if (c != '}') {
+		std::ostringstream o;
+		o << c;
+		throw ParserError(o.str());
+	}
 }
 
 }; // namespace JSON

@@ -17,6 +17,7 @@ public:
 	size_t size() const throw();
 
 	void toStream(std::ostream &o) const;
+	void fromStream(std::istream &i);
 };
 
 }; // namespace JSON

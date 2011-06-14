@@ -32,6 +32,11 @@ void INumeric::toStream(std::ostream &o) const
 	o << value;
 }
 
+void INumeric::fromStream(std::istream &i)
+{
+	i >> value;
+}
+
 IScalar *INumeric::clone() const
 {
 	return new INumeric(value);

@@ -5,6 +5,8 @@
 #include <typeinfo>
 #include <ostream>
 
+#include <value.hpp>
+
 namespace JSON
 {
 
@@ -45,6 +47,7 @@ public:
 
 	// serialization
 	virtual void toStream(std::ostream &o) const;
+	virtual void fromStream(std::istream &i);
 };
 
 }; // namespace JSON
