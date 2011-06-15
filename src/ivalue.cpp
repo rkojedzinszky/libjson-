@@ -4,10 +4,6 @@
 namespace JSON
 {
 
-IValue::~IValue()
-{
-}
-
 bool IValue::isNull() const
 {
 	return true;

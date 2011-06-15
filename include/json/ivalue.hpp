@@ -5,18 +5,16 @@
 #include <typeinfo>
 #include <ostream>
 
+#include <json/refcounted.hpp>
+
 namespace JSON
 {
 
 class Value;
 
-class IValue
+class IValue : public refcounted
 {
 public:
-	int refcnt;
-	IValue() : refcnt(0) { };
-	virtual ~IValue();
-
 	// scalars
 	virtual bool isNull() const;
 
@@ -53,18 +51,6 @@ public:
 	virtual void toStream(std::ostream &o) const;
 	virtual void fromStream(std::istream &i);
 };
-
-static inline void intrusive_ptr_add_ref(IValue *v)
-{
-	++v->refcnt;
-}
-
-static inline void intrusive_ptr_release(IValue *v)
-{
-	if (--v->refcnt == 0) {
-		delete v;
-	}
-}
 
 }; // namespace JSON
 
