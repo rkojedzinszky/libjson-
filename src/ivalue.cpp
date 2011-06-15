@@ -1,4 +1,5 @@
-#include <json/ivalue.hpp>
+#include <json/value.hpp>
+#include <sstream>
 
 namespace JSON
 {

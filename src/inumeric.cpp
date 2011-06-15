@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 #include <json/inumeric.hpp>
 
 namespace JSON
