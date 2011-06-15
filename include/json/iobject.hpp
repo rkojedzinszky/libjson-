@@ -1,5 +1,5 @@
-#ifndef JSON_IHASH_HPP
-#define JSON_IHASH_HPP
+#ifndef JSON_IOBJECT_HPP
+#define JSON_IOBJECT_HPP
 
 #include <map>
 #include <string>
@@ -10,10 +10,10 @@ namespace JSON
 
 class Value;
 
-class IHash : public IValue
+class IObject : public IValue
 {
 private:
-	std::map<std::string, Value> hash;
+	std::map<std::string, Value> object;
 
 public:
 	Value &operator[](const std::string &f) throw ();

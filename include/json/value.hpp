@@ -9,7 +9,7 @@
 #include <json/inumeric.hpp>
 #include <json/istring.hpp>
 #include <json/iarray.hpp>
-#include <json/ihash.hpp>
+#include <json/iobject.hpp>
 
 namespace JSON
 {
@@ -58,11 +58,11 @@ public:
 	// array
 	Value &operator[](int idx);
 
-	// hash
+	// object
 	Value &operator[](const std::string &f);
 	Value &operator[](const char *f);
 
-	// common to array & hash
+	// common to array & object
 	size_t size() const;
 
 	// operators
@@ -78,7 +78,7 @@ public:
 	Value &fromStream(std::istream &i);
 
 	friend Value Array();
-	friend Value Hash();
+	friend Value Object();
 };
 
 inline ParserError::ParserError(const std::string &token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token)
@@ -244,9 +244,9 @@ inline Value Array()
 	return Value(new IArray());
 }
 
-inline Value Hash()
+inline Value Object()
 {
-	return Value(new IHash());
+	return Value(new IObject());
 }
 
 }; // namespace JSON

@@ -22,7 +22,7 @@ Value &Value::fromStream(std::istream &i)
 		v = new IArray();
 		break;
 	case '{':
-		v = new IHash();
+		v = new IObject();
 		break;
 	case 't':
 	case 'f':

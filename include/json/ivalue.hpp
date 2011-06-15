@@ -32,10 +32,10 @@ public:
 	// array
 	virtual Value &operator[](int idx);
 
-	// hash
+	// object
 	virtual Value &operator[](const std::string &f);
 
-	// common to array & hash
+	// common to array & object
 	virtual size_t size() const;
 
 	// operators

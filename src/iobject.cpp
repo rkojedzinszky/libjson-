@@ -5,22 +5,22 @@
 namespace JSON
 {
 
-Value &IHash::operator[](const std::string &f) throw ()
+Value &IObject::operator[](const std::string &f) throw ()
 {
-	return hash[f];
+	return object[f];
 }
 
-size_t IHash::size() const throw ()
+size_t IObject::size() const throw ()
 {
-	return hash.size();
+	return object.size();
 }
 
-void IHash::toStream(std::ostream &o) const
+void IObject::toStream(std::ostream &o) const
 {
 	o << "{";
 
-	std::map<std::string, Value>::const_iterator I(hash.begin());
-	std::map<std::string, Value>::const_iterator E(hash.end());
+	std::map<std::string, Value>::const_iterator I(object.begin());
+	std::map<std::string, Value>::const_iterator E(object.end());
 
 	if (I != E) {
 		stringtojsonstream(I->first, o);
@@ -40,9 +40,9 @@ void IHash::toStream(std::ostream &o) const
 	o << "}";
 }
 
-void IHash::fromStream(std::istream &i)
+void IObject::fromStream(std::istream &i)
 {
-	hash.clear();
+	object.clear();
 	char c;
 
 	c = i.get();
@@ -66,7 +66,7 @@ void IHash::fromStream(std::istream &i)
 		}
 
 		v.fromStream(i);
-		hash[k] = v;
+		object[k] = v;
 
 		i >> std::ws;
 
