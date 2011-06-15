@@ -17,6 +17,8 @@ private:
 
 public:
 	Value &operator[](const std::string &f) throw ();
+	Value keys() const;
+	size_t erase(const std::string &f);
 	size_t size() const throw ();
 
 	void toStream(std::ostream &o) const;

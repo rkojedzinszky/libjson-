@@ -74,6 +74,16 @@ Value &IValue::operator[](const std::string &f)
 	throw std::bad_cast();
 }
 
+Value IValue::keys() const
+{
+	throw std::bad_cast();
+}
+
+size_t IValue::erase(const std::string &f)
+{
+	throw std::bad_cast();
+}
+
 size_t IValue::size() const
 {
 	throw std::bad_cast();

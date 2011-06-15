@@ -69,6 +69,9 @@ public:
 	// object
 	Value &operator[](const std::string &f);
 	Value &operator[](const char *f);
+	Value keys() const;
+	size_t erase(const std::string &f);
+	size_t erase(const char *f);
 
 	// common to array & object
 	size_t size() const;
@@ -249,6 +252,21 @@ inline Value &Value::operator[](const std::string &f)
 inline Value &Value::operator[](const char *f)
 {
 	return value->operator[](std::string(f));
+}
+
+inline Value Value::keys() const
+{
+	return value->keys();
+}
+
+inline size_t Value::erase(const std::string &f)
+{
+	return value->erase(f);
+}
+
+inline size_t Value::erase(const char *f)
+{
+	return value->erase(std::string(f));
 }
 
 inline size_t Value::size() const

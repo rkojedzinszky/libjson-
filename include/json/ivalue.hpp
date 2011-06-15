@@ -40,6 +40,8 @@ public:
 
 	// object
 	virtual Value &operator[](const std::string &f);
+	virtual Value keys() const;
+	virtual size_t erase(const std::string &f);
 
 	// common to array & object
 	virtual size_t size() const;
