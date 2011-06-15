@@ -1,4 +1,4 @@
-#include <json/iarray.hpp>
+#include <json/value.hpp>
 #include <ostream>
 #include <sstream>
 
@@ -23,11 +23,16 @@ void IArray::toStream(std::ostream &o) const
 {
 	o << "[";
 
-	for (std::vector<Value>::const_iterator I = value.begin(); I != value.end(); I++) {
-		if (I != value.begin()) {
-			o << ",";
-		}
+	std::vector<Value>::const_iterator I(value.begin());
+	std::vector<Value>::const_iterator E(value.end());
 
+	if (I != E) {
+		I->toStream(o);
+		++I;
+	}
+
+	for (; I != E; ++I) {
+		o << ",";
 		I->toStream(o);
 	}
 

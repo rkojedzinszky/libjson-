@@ -3,16 +3,18 @@
 
 #include <map>
 #include <string>
-#include <json/value.hpp>
 #include <json/ivalue.hpp>
 
 namespace JSON
 {
 
+class Value;
+
 class IHash : public IValue
 {
 private:
 	std::map<std::string, Value> hash;
+
 public:
 	Value &operator[](const std::string &f) throw ();
 	size_t size() const throw ();

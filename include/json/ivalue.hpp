@@ -48,6 +48,18 @@ public:
 	virtual void fromStream(std::istream &i);
 };
 
+static inline void intrusive_ptr_add_ref(IValue *v)
+{
+	++v->refcnt;
+}
+
+static inline void intrusive_ptr_release(IValue *v)
+{
+	if (--v->refcnt == 0) {
+		delete v;
+	}
+}
+
 }; // namespace JSON
 
 #endif

@@ -1,4 +1,4 @@
-#include <json/ihash.hpp>
+#include <json/value.hpp>
 #include <json/util.hpp>
 #include <sstream>
 

@@ -1,23 +1,23 @@
 #ifndef JSON_VALUE_HPP
 #define JSON_VALUE_HPP
 
-#include <boost/intrusive_ptr.hpp>
 #include <ostream>
 #include <stdexcept>
+#include <boost/intrusive_ptr.hpp>
 
-#include <json/ivalue.hpp>
+#include <json/ibool.hpp>
+#include <json/inumeric.hpp>
+#include <json/istring.hpp>
+#include <json/iarray.hpp>
+#include <json/ihash.hpp>
 
 namespace JSON
 {
 
 class ParserError : public std::runtime_error {
 	public:
-		ParserError(const std::string &token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token) {
-		}
+		ParserError(const std::string &token);
 };
-
-void intrusive_ptr_add_ref(IValue *v);
-void intrusive_ptr_release(IValue *v);
 
 class Value
 {
@@ -26,113 +26,228 @@ private:
 	valueType value;
 
 protected:
-	Value(IValue *v) : value(v) {
-	}
+	Value(IValue *v);
 
 public:
-	Value() : value(new IValue()) {
-	}
-
-	Value(const Value &v) {
-		operator=(v);
-	}
-
+	Value();
+	Value(const Value &v);
 	Value &operator=(const Value &v);
 
 	// scalars
-	bool isNull() const {
-		return value->isNull();
-	}
+	bool isNull() const;
 
 	// boolean
-	Value(bool v) {
-		operator=(v);
-	}
+	Value(bool v);
 	Value &operator=(bool v);
-	operator bool() const {
-		return value->operator bool();
-	}
+	operator bool() const;
 
 	// numeric
-	Value(double v) {
-		operator=(v);
-	}
+	Value(double v);
 	Value &operator=(double v);
-	Value(int v) {
-		operator=((double)v);
-	}
-	Value &operator=(int v) {
-		return operator=((double)v);
-	}
-	operator double() const {
-		return value->operator double();
-	}
+	Value(int v);
+	Value &operator=(int v);
+	operator double() const;
 
 	// string
-	Value(const std::string &s) {
-		operator=(s);
-	}
-	Value(const char *s) {
-		operator=(s);
-	}
+	Value(const std::string &s);
+	Value(const char *s);
 	Value &operator=(const std::string &s);
-	Value &operator=(const char *s) {
-		return operator=(std::string(s));
-	}
-	operator const std::string&() const {
-		return value->operator const std::string&();
-	}
+	Value &operator=(const char *s);
+	operator const std::string&() const;
 
 	// array
-	Value &operator[](int idx) {
-		return value->operator[](idx);
-	}
+	Value &operator[](int idx);
 
 	// hash
-	Value &operator[](const std::string &f) {
-		return value->operator[](f);
-	}
-	Value &operator[](const char *f) {
-		return operator[](std::string(f));
-	}
+	Value &operator[](const std::string &f);
+	Value &operator[](const char *f);
 
 	// common to array & hash
-	size_t size() const {
-		return value->size();
-	}
+	size_t size() const;
 
 	// operators
-	bool operator==(const Value &r) const {
-		return value->operator==(*r.value);
-	}
-	bool operator!=(const Value &r) const {
-		return !operator==(r);
-	}
-	bool operator<(const Value &r) const {
-		return value->operator<(*r.value);
-	}
-	bool operator>(const Value &r) const {
-		return r.operator<(*this);
-	}
-	bool operator<=(const Value &r) const {
-		return value->operator<=(*r.value);
-	}
-	bool operator>=(const Value &r) const {
-		return r.operator<=(*this);
-	}
+	bool operator==(const Value &r) const;
+	bool operator!=(const Value &r) const;
+	bool operator<(const Value &r) const;
+	bool operator>(const Value &r) const;
+	bool operator<=(const Value &r) const;
+	bool operator>=(const Value &r) const;
+
+	// serialization
+	void toStream(std::ostream &o) const;
+	Value &fromStream(std::istream &i);
 
 	friend Value Array();
 	friend Value Hash();
-
-	// serialization
-	void toStream(std::ostream &o) const {
-		value->toStream(o);
-	}
-	Value &fromStream(std::istream &i);
 };
 
-Value Array();
-Value Hash();
+inline ParserError::ParserError(const std::string &token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token)
+{
+}
+
+inline Value::Value(IValue *v) : value(v)
+{
+}
+
+inline Value::Value() : value(new IValue())
+{
+}
+
+inline Value::Value(const Value &v)
+{
+	operator=(v);
+}
+
+inline Value &Value::operator=(const Value &v)
+{
+	IScalar *s = dynamic_cast<IScalar *>(v.value.get());
+	if (s == NULL) {
+		value = v.value;
+	} else {
+		value = s->clone();
+	}
+	return *this;
+}
+
+inline bool Value::isNull() const
+{
+	return value->isNull();
+}
+
+inline Value::Value(bool v) : value(new IBool(v))
+{
+}
+
+inline Value &Value::operator=(bool v)
+{
+	value = new IBool(v);
+
+	return *this;
+}
+
+inline Value::operator bool() const
+{
+	return value->operator bool();
+}
+
+inline Value::Value(double v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::operator=(double v)
+{
+	value = new INumeric(v);
+
+	return *this;
+}
+
+inline Value::Value(int v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::operator=(int v)
+{
+	value = new INumeric(v);
+
+	return *this;
+}
+
+inline Value::operator double() const
+{
+	return value->operator double();
+}
+
+inline Value::Value(const std::string &s) : value(new IString(s))
+{
+}
+
+inline Value::Value(const char *s) : value(new IString(s))
+{
+}
+
+inline Value &Value::operator=(const std::string &s)
+{
+	value = new IString(s);
+
+	return *this;
+}
+
+inline Value &Value::operator=(const char *s)
+{
+	value = new IString(s);
+
+	return *this;
+}
+
+inline Value::operator const std::string&() const
+{
+	return value->operator const std::string&();
+}
+
+inline Value &Value::operator[](int idx)
+{
+	return value->operator[](idx);
+}
+
+inline Value &Value::operator[](const std::string &f)
+{
+	return value->operator[](f);
+}
+
+inline Value &Value::operator[](const char *f)
+{
+	return value->operator[](std::string(f));
+}
+
+inline size_t Value::size() const
+{
+	return value->size();
+}
+
+inline bool Value::operator==(const Value &r) const
+{
+	return value->operator==(*r.value);
+}
+
+inline bool Value::operator!=(const Value &r) const
+{
+	return !operator==(r);
+}
+
+inline bool Value::operator<(const Value &r) const
+{
+	return value->operator<(*r.value);
+}
+
+inline bool Value::operator>(const Value &r) const
+{
+	return r.operator<(*this);
+}
+
+inline bool Value::operator<=(const Value &r) const
+{
+	return value->operator<=(*r.value);
+}
+
+inline bool Value::operator>=(const Value &r) const
+{
+	return r.operator<=(*this);
+}
+
+inline void Value::toStream(std::ostream &o) const
+{
+	value->toStream(o);
+}
+
+inline Value Array()
+{
+	return Value(new IArray());
+}
+
+inline Value Hash()
+{
+	return Value(new IHash());
+}
 
 }; // namespace JSON
 

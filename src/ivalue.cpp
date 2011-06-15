@@ -4,18 +4,6 @@
 namespace JSON
 {
 
-void intrusive_ptr_add_ref(IValue *v)
-{
-	++v->refcnt;
-}
-
-void intrusive_ptr_release(IValue *v)
-{
-	if (--v->refcnt == 0) {
-		delete v;
-	}
-}
-
 IValue::~IValue()
 {
 }
