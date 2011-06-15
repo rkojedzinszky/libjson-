@@ -19,10 +19,18 @@ void IHash::toStream(std::ostream &o) const
 {
 	o << "{";
 
-	for (std::map<std::string, Value>::const_iterator I = hash.begin(); I != hash.end(); I++) {
-		if (I != hash.begin()) {
-			o << ",";
-		}
+	std::map<std::string, Value>::const_iterator I(hash.begin());
+	std::map<std::string, Value>::const_iterator E(hash.end());
+
+	if (I != E) {
+		stringtojsonstream(I->first, o);
+		o << ":";
+		(I->second).toStream(o);
+		++I;
+	}
+
+	for (; I != E; ++I) {
+		o << ",";
 
 		stringtojsonstream(I->first, o);
 		o << ":";
