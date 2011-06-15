@@ -5,16 +5,46 @@
 namespace JSON
 {
 
-Value &IArray::operator[](int idx) throw ()
+Value &IArray::operator[](int idx)
 {
-	if (idx >= value.size()) {
-		value.resize(idx+1);
-	}
-
 	return value[idx];
 }
 
-size_t IArray::size() const throw()
+Value &IArray::front()
+{
+	return value.front();
+}
+
+Value &IArray::back()
+{
+	return value.back();
+}
+
+void IArray::push_front(const Value &v)
+{
+	value.push_front(v);
+}
+
+void IArray::push_back(const Value &v)
+{
+	value.push_back(v);
+}
+
+Value IArray::pop_front()
+{
+	Value v = front();
+	value.pop_front();
+	return v;
+}
+
+Value IArray::pop_back()
+{
+	Value v = back();
+	value.pop_back();
+	return v;
+}
+
+size_t IArray::size() const
 {
 	return value.size();
 }

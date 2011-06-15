@@ -57,6 +57,12 @@ public:
 
 	// array
 	Value &operator[](int idx);
+	Value &front();
+	Value &back();
+	Value &push_front(const Value &v);
+	Value &push_back(const Value &v);
+	Value pop_front();
+	Value pop_back();
 
 	// object
 	Value &operator[](const std::string &f);
@@ -192,6 +198,40 @@ inline Value &Value::operator[](int idx)
 inline Value &Value::operator[](const std::string &f)
 {
 	return value->operator[](f);
+}
+
+inline Value &Value::front()
+{
+	return value->front();
+}
+
+inline Value &Value::back()
+{
+	return value->back();
+}
+
+inline Value &Value::push_front(const Value &v)
+{
+	value->push_front(v);
+
+	return *this;
+}
+
+inline Value &Value::push_back(const Value &v)
+{
+	value->push_back(v);
+
+	return *this;
+}
+
+inline Value Value::pop_front()
+{
+	return value->pop_front();
+}
+
+inline Value Value::pop_back()
+{
+	return value->pop_back();
 }
 
 inline Value &Value::operator[](const char *f)

@@ -15,8 +15,14 @@ private:
 	std::deque<Value> value;
 
 public:
-	Value &operator[](int idx) throw ();
-	size_t size() const throw();
+	Value &operator[](int idx);
+	Value &front();
+	Value &back();
+	void push_front(const Value &v);
+	void push_back(const Value &v);
+	Value pop_front();
+	Value pop_back();
+	size_t size() const;
 
 	void toStream(std::ostream &o) const;
 	void fromStream(std::istream &i);

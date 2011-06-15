@@ -31,6 +31,12 @@ public:
 
 	// array
 	virtual Value &operator[](int idx);
+	virtual Value &front();
+	virtual Value &back();
+	virtual void push_front(const Value &v);
+	virtual void push_back(const Value &v);
+	virtual Value pop_front();
+	virtual Value pop_back();
 
 	// object
 	virtual Value &operator[](const std::string &f);
