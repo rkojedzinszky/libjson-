@@ -28,7 +28,9 @@ public:
 	virtual operator const std::string&() const;
 
 	// array
+	virtual void resize(size_t sz);
 	virtual Value &operator[](int idx);
+	virtual Value &at(int idx);
 	virtual Value &front();
 	virtual Value &back();
 	virtual void push_front(const Value &v);

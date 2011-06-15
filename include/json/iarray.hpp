@@ -15,7 +15,9 @@ private:
 	std::deque<Value> value;
 
 public:
+	void resize(size_t sz);
 	Value &operator[](int idx);
+	Value &at(int idx);
 	Value &front();
 	Value &back();
 	void push_front(const Value &v);

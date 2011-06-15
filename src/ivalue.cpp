@@ -24,7 +24,17 @@ IValue::operator const std::string&() const
 	throw std::bad_cast();
 }
 
+void IValue::resize(size_t sz)
+{
+	throw std::bad_cast();
+}
+
 Value &IValue::operator[](int idx)
+{
+	throw std::bad_cast();
+}
+
+Value &IValue::at(int idx)
 {
 	throw std::bad_cast();
 }

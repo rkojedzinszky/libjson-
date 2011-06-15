@@ -56,7 +56,9 @@ public:
 	operator const std::string&() const;
 
 	// array
+	void resize(size_t sz);
 	Value &operator[](int idx);
+	Value &at(int idx);
 	Value &front();
 	Value &back();
 	Value &push_front(const Value &v);
@@ -190,14 +192,19 @@ inline Value::operator const std::string&() const
 	return value->operator const std::string&();
 }
 
+inline void Value::resize(size_t sz)
+{
+	value->resize(sz);
+}
+
 inline Value &Value::operator[](int idx)
 {
 	return value->operator[](idx);
 }
 
-inline Value &Value::operator[](const std::string &f)
+inline Value &Value::at(int idx)
 {
-	return value->operator[](f);
+	return value->at(idx);
 }
 
 inline Value &Value::front()
@@ -232,6 +239,11 @@ inline Value Value::pop_front()
 inline Value Value::pop_back()
 {
 	return value->pop_back();
+}
+
+inline Value &Value::operator[](const std::string &f)
+{
+	return value->operator[](f);
 }
 
 inline Value &Value::operator[](const char *f)
