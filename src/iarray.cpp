@@ -23,8 +23,8 @@ void IArray::toStream(std::ostream &o) const
 {
 	o << "[";
 
-	std::vector<Value>::const_iterator I(value.begin());
-	std::vector<Value>::const_iterator E(value.end());
+	std::deque<Value>::const_iterator I(value.begin());
+	std::deque<Value>::const_iterator E(value.end());
 
 	if (I != E) {
 		I->toStream(o);
