@@ -9,7 +9,7 @@ INumeric::INumeric(double v) : value(v)
 {
 }
 
-INumeric::operator double() const
+double INumeric::getDouble() const
 {
 	return value;
 }

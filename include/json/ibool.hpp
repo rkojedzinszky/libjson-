@@ -13,7 +13,7 @@ private:
 
 public:
 	IBool(bool v = false);
-	operator bool() const;
+	bool getBool() const;
 
 	bool operator==(const IValue &r) const;
 

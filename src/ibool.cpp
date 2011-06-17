@@ -9,7 +9,7 @@ IBool::IBool(bool v) : value(v)
 {
 }
 
-IBool::operator bool() const
+bool IBool::getBool() const
 {
 	return value;
 }

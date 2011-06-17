@@ -13,17 +13,17 @@ bool IValue::isNull() const
 	return true;
 }
 
-IValue::operator bool() const
+bool IValue::getBool() const
 {
 	return false;
 }
 
-IValue::operator double() const
+double IValue::getDouble() const
 {
 	throw std::bad_cast();
 }
 
-IValue::operator const std::string&() const
+const std::string &IValue::getString() const
 {
 	throw std::bad_cast();
 }

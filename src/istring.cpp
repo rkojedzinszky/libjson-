@@ -8,7 +8,7 @@ IString::IString(const std::string &s) : value(s)
 {
 }
 
-IString::operator const std::string&() const
+const std::string &IString::getString() const
 {
 	return value;
 }

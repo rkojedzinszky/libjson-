@@ -10,6 +10,8 @@
 #include <json/istring.hpp>
 #include <json/iarray.hpp>
 #include <json/iobject.hpp>
+#include <cmath>
+#include <climits>
 
 namespace JSON
 {
@@ -38,22 +40,37 @@ public:
 
 	// boolean
 	Value(bool v);
+	Value &setBool(bool v);
+	bool getBool() const;
 	Value &operator=(bool v);
 	operator bool() const;
 
 	// numeric
 	Value(double v);
+	Value &setDouble(double v);
+	double getDouble() const;
 	Value &operator=(double v);
-	Value(int v);
-	Value &operator=(int v);
 	operator double() const;
+	Value(int v);
+	Value &setInt(int v);
+	int getInt() const;
+	Value &operator=(int v);
+	operator int() const;
+	Value(long long v);
+	Value &setLong(long long v);
+	long long getLong() const;
+	Value &operator=(long long v);
+	operator long long() const;
 
 	// string
 	Value(const std::string &s);
-	Value(const char *s);
+	Value &setString(const std::string &s);
+	const std::string &getString() const;
 	Value &operator=(const std::string &s);
-	Value &operator=(const char *s);
 	operator const std::string&() const;
+	Value(const char *s);
+	Value &setString(const char *s);
+	Value &operator=(const char *s);
 
 	// array
 	Value &operator[](int idx);
@@ -115,63 +132,166 @@ inline Value &Value::operator=(const Value &v)
 	return *this;
 }
 
+// scalars
 inline bool Value::isNull() const
 {
 	return value->isNull();
 }
 
+// boolean
 inline Value::Value(bool v) : value(new IBool(v))
 {
 }
 
-inline Value &Value::operator=(bool v)
+inline Value &Value::setBool(bool v)
 {
 	value = new IBool(v);
 
 	return *this;
 }
 
-inline Value::operator bool() const
+inline bool Value::getBool() const
 {
-	return value->operator bool();
+	return value->getBool();
 }
 
+inline Value &Value::operator=(bool v)
+{
+	return setBool(v);
+}
+
+inline Value::operator bool() const
+{
+	return getBool();
+}
+
+// numeric
 inline Value::Value(double v) : value(new INumeric(v))
 {
 }
 
-inline Value &Value::operator=(double v)
+inline Value &Value::setDouble(double v)
 {
 	value = new INumeric(v);
 
 	return *this;
+}
+
+inline double Value::getDouble() const
+{
+	return value->getDouble();
+}
+
+inline Value &Value::operator=(double v)
+{
+	return setDouble(v);
+}
+
+inline Value::operator double() const
+{
+	return getDouble();
 }
 
 inline Value::Value(int v) : value(new INumeric(v))
 {
 }
 
+inline Value &Value::setInt(int v)
+{
+	return setDouble(v);
+}
+
+inline int Value::getInt() const
+{
+	double v = getDouble();
+
+	if (floor(v) != v) {
+		throw std::domain_error("Value::getInt(): numeric has fractional part");
+	}
+
+	if (v < INT_MIN || v > INT_MAX) {
+		throw std::domain_error("Value::getInt(): numeric does not fit in integer");
+	}
+
+	return v;
+}
+
 inline Value &Value::operator=(int v)
 {
-	value = new INumeric(v);
+	return setInt(v);
+}
+
+inline Value::operator int() const
+{
+	return getInt();
+}
+
+inline Value::Value(long long v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::setLong(long long v)
+{
+	return setDouble(v);
+}
+
+inline long long Value::getLong() const
+{
+	double v = getDouble();
+
+	if (floor(v) != v) {
+		throw std::domain_error("Value::getLong(): numeric has fractional part");
+	}
+
+	if (v < LLONG_MIN || v > LLONG_MAX) {
+		throw std::domain_error("Value::getLong(): numeric does not fit in long long");
+	}
+
+	return v;
+}
+
+inline Value &Value::operator=(long long v)
+{
+	return setLong(v);
+}
+
+inline Value::operator long long() const
+{
+	return getLong();
+}
+
+// string
+inline Value::Value(const std::string &s) : value(new IString(s))
+{
+}
+
+inline Value &Value::setString(const std::string &s)
+{
+	value = new IString(s);
 
 	return *this;
 }
 
-inline Value::operator double() const
+inline const std::string &Value::getString() const
 {
-	return value->operator double();
+	return value->getString();
 }
 
-inline Value::Value(const std::string &s) : value(new IString(s))
+inline Value &Value::operator=(const std::string &s)
 {
+	return setString(s);
+}
+
+inline Value::operator const std::string&() const
+{
+	return getString();
 }
 
 inline Value::Value(const char *s) : value(new IString(s))
 {
 }
 
-inline Value &Value::operator=(const std::string &s)
+inline Value &Value::setString(const char *s)
 {
 	value = new IString(s);
 
@@ -180,24 +300,13 @@ inline Value &Value::operator=(const std::string &s)
 
 inline Value &Value::operator=(const char *s)
 {
-	value = new IString(s);
-
-	return *this;
+	return setString(s);
 }
 
-inline Value::operator const std::string&() const
-{
-	return value->operator const std::string&();
-}
-
+// array
 inline Value &Value::operator[](int idx)
 {
 	return value->operator[](idx);
-}
-
-inline Value &Value::operator[](const std::string &f)
-{
-	return value->operator[](f);
 }
 
 inline Value &Value::front()
@@ -232,6 +341,12 @@ inline Value Value::pop_front()
 inline Value Value::pop_back()
 {
 	return value->pop_back();
+}
+
+// object
+inline Value &Value::operator[](const std::string &f)
+{
+	return value->operator[](f);
 }
 
 inline Value &Value::operator[](const char *f)

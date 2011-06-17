@@ -13,7 +13,7 @@ private:
 
 public:
 	IString(const std::string &s = "");
-	operator const std::string&() const;
+	const std::string &getString() const;
 
 	bool operator==(const IValue &r) const;
 	bool operator<(const IValue &r) const;

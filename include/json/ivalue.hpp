@@ -21,13 +21,13 @@ public:
 	virtual bool isNull() const;
 
 	// boolean
-	virtual operator bool() const;
+	virtual bool getBool() const;
 
 	// numeric
-	virtual operator double() const;
+	virtual double getDouble() const;
 
 	// string
-	virtual operator const std::string&() const;
+	virtual const std::string &getString() const;
 
 	// array
 	virtual Value &operator[](int idx);
