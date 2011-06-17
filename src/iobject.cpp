@@ -10,6 +10,23 @@ Value &IObject::operator[](const std::string &f) throw ()
 	return object[f];
 }
 
+Value IObject::keys() const
+{
+	Value r = Array();
+
+	std::map<std::string, Value>::const_iterator E(object.end());
+	for (std::map<std::string, Value>::const_iterator I = object.begin(); I != E; ++I) {
+		r.push_back(I->first);
+	}
+
+	return r;
+}
+
+size_t IObject::erase(const std::string &f)
+{
+	return object.erase(f);
+}
+
 size_t IObject::size() const throw ()
 {
 	return object.size();

@@ -4,10 +4,6 @@
 namespace JSON
 {
 
-IValue::~IValue()
-{
-}
-
 bool IValue::isNull() const
 {
 	return true;
@@ -28,7 +24,17 @@ const std::string &IValue::getString() const
 	throw std::bad_cast();
 }
 
+void IValue::resize(size_t sz)
+{
+	throw std::bad_cast();
+}
+
 Value &IValue::operator[](int idx)
+{
+	throw std::bad_cast();
+}
+
+Value &IValue::at(int idx)
 {
 	throw std::bad_cast();
 }
@@ -64,6 +70,16 @@ Value IValue::pop_back()
 }
 
 Value &IValue::operator[](const std::string &f)
+{
+	throw std::bad_cast();
+}
+
+Value IValue::keys() const
+{
+	throw std::bad_cast();
+}
+
+size_t IValue::erase(const std::string &f)
 {
 	throw std::bad_cast();
 }

@@ -5,9 +5,19 @@
 namespace JSON
 {
 
+void IArray::resize(size_t sz)
+{
+	value.resize(sz);
+}
+
 Value &IArray::operator[](int idx)
 {
 	return value[idx];
+}
+
+Value &IArray::at(int idx)
+{
+	return value.at(idx);
 }
 
 Value &IArray::front()

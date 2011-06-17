@@ -73,7 +73,9 @@ public:
 	Value &operator=(const char *s);
 
 	// array
+	void resize(size_t sz);
 	Value &operator[](int idx);
+	Value &at(int idx);
 	Value &front();
 	Value &back();
 	Value &push_front(const Value &v);
@@ -84,6 +86,9 @@ public:
 	// object
 	Value &operator[](const std::string &f);
 	Value &operator[](const char *f);
+	Value keys() const;
+	size_t erase(const std::string &f);
+	size_t erase(const char *f);
 
 	// common to array & object
 	size_t size() const;
@@ -304,9 +309,19 @@ inline Value &Value::operator=(const char *s)
 }
 
 // array
+inline void Value::resize(size_t sz)
+{
+	value->resize(sz);
+}
+
 inline Value &Value::operator[](int idx)
 {
 	return value->operator[](idx);
+}
+
+inline Value &Value::at(int idx)
+{
+	return value->at(idx);
 }
 
 inline Value &Value::front()
@@ -352,6 +367,21 @@ inline Value &Value::operator[](const std::string &f)
 inline Value &Value::operator[](const char *f)
 {
 	return value->operator[](std::string(f));
+}
+
+inline Value Value::keys() const
+{
+	return value->keys();
+}
+
+inline size_t Value::erase(const std::string &f)
+{
+	return value->erase(f);
+}
+
+inline size_t Value::erase(const char *f)
+{
+	return value->erase(std::string(f));
 }
 
 inline size_t Value::size() const
