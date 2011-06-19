@@ -5,7 +5,7 @@
 namespace JSON
 {
 
-Value &IObject::operator[](const std::string &f) throw ()
+Value &IObject::operator[](const std::string &f)
 {
 	return object[f];
 }
@@ -27,7 +27,7 @@ size_t IObject::erase(const std::string &f)
 	return object.erase(f);
 }
 
-size_t IObject::size() const throw ()
+size_t IObject::size() const
 {
 	return object.size();
 }
