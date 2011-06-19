@@ -1,21 +1,21 @@
-Source: libjson
+Source: libjson++
 Priority: extra
 Maintainer: Richard Kojedzinszky <krichy@cflinux.hu>
 Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.9.1
 Section: libs
 
-Package: libjson-dev
+Package: libjson++-dev
 Section: libdevel
 Architecture: any
-Depends: libjson0 (= ${binary:Version})
+Depends: libjson++ (= ${binary:Version})
 Description: A small, fast C++ interface for handling JSON structures
  This small and efficient library helps handling with JSON structures
  with its intuitive interface. Serializing to/from STL streams is supported.
  .
  This package containts the development files.
 
-Package: libjson0
+Package: libjson++
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
