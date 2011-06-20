@@ -84,26 +84,29 @@ void IArray::fromStream(std::istream &i)
 	value.clear();
 	char c;
 
-	c = i.get();
+	i >> c;
 	if (c != '[') {
 		std::ostringstream o;
 		o << c;
 		throw ParserError(o.str());
 	}
 
-	for (;;) {
-		JSON::Value v;
+	for (;!i.eof();) {
+		i >> std::ws;
+		if (i.peek() == ']') {
+			break;
+		}
 
+		JSON::Value v;
 		v.fromStream(i);
 		value.push_back(v);
 
-		i >> std::ws;
-		if (i.peek() != ',')
-			break;
-		i.get();
+		if (i.peek() == ',') {
+			i.get();
+		}
 	}
 
-	c = i.get();
+	i >> c;
 	if (c != ']') {
 		std::ostringstream o;
 		o << c;
