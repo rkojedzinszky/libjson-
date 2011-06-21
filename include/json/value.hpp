@@ -197,13 +197,13 @@ inline Value::operator double() const
 	return getDouble();
 }
 
-inline Value::Value(int v) : value(new INumeric(v))
+inline Value::Value(int v) : value(new INumeric(static_cast<double>(v)))
 {
 }
 
 inline Value &Value::setInt(int v)
 {
-	return setDouble(v);
+	value = new INumeric(static_cast<double>(v));
 }
 
 inline int Value::getInt() const
@@ -237,7 +237,7 @@ inline Value::Value(long long v) : value(new INumeric(v))
 
 inline Value &Value::setLong(long long v)
 {
-	return setDouble(v);
+	value = new INumeric(v);
 }
 
 inline long long Value::getLong() const
