@@ -13,7 +13,7 @@ private:
 
 public:
 	INumeric(double v = 0);
-	INumeric(long long v = 0);
+	INumeric(long long v);
 	double getDouble() const;
 
 	bool operator==(const IValue &r) const;
