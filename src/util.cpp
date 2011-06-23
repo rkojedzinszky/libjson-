@@ -43,17 +43,22 @@ void stringtojsonstream(const std::string &s, std::ostream &o)
 
 void jsonstringtostring(std::string &s, std::istream &i)
 {
-	char c;
 	std::ostringstream o;
 
-	c = i.get();
+	int c = i.get();
 	if (c != '\"') {
-		std::ostringstream o;
-		o << c;
-		throw ParserError(o.str());
+		throw ParserError(c);
 	}
 
-	for (;!i.eof() && ((c = i.get()) != '\"');) {
+	for (;;) {
+		if (i.eof()) {
+			throw ParserError("eof detected on stream");
+		}
+		c = i.get();
+		if (c == '\"') {
+			break;
+		}
+
 		if (c == '\\') {
 			c = i.get();
 			switch(c) {
@@ -83,7 +88,7 @@ void jsonstringtostring(std::string &s, std::istream &i)
 				break;
 			}
 		} else {
-			o << c;
+			o << static_cast<char>(c);
 		}
 	}
 

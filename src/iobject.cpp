@@ -60,18 +60,22 @@ void IObject::toStream(std::ostream &o) const
 void IObject::fromStream(std::istream &i)
 {
 	object.clear();
-	char c;
+	int c;
 
-	i >> c;
+	c = i.get();
 	if (c != '{') {
-		std::ostringstream o;
-		o << c;
-		throw ParserError(o.str());
+		throw ParserError(c);
 	}
 
-	for (;!i.eof();) {
+	for (;;) {
 		i >> std::ws;
+
+		if (i.eof()) {
+			throw ParserError("eof detected on stream");
+		}
+
 		if (i.peek() == '}') {
+			i.get();
 			break;
 		}
 
@@ -79,11 +83,11 @@ void IObject::fromStream(std::istream &i)
 		JSON::Value v;
 
 		jsonstringtostring(k, i);
-		i >> std::ws >> c;
+		i >> std::ws;
+
+		c = i.get();
 		if (c != ':') {
-			std::ostringstream o;
-			o << c;
-			throw ParserError(o.str());
+			throw ParserError(c);
 		}
 
 		v.fromStream(i);
@@ -94,13 +98,6 @@ void IObject::fromStream(std::istream &i)
 		if (i.peek() == ',') {
 			i.get();
 		}
-	}
-
-	i >> c;
-	if (c != '}') {
-		std::ostringstream o;
-		o << c;
-		throw ParserError(o.str());
 	}
 }
 

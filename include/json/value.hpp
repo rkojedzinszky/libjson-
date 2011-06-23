@@ -18,7 +18,8 @@ namespace JSON
 
 class ParserError : public std::runtime_error {
 	public:
-		ParserError(const std::string &token);
+		ParserError(char token);
+		ParserError(const std::string &message);
 };
 
 class Value
@@ -109,7 +110,11 @@ public:
 	friend Value Object();
 };
 
-inline ParserError::ParserError(const std::string &token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token)
+inline ParserError::ParserError(char token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token)
+{
+}
+
+inline ParserError::ParserError(const std::string &message) : std::runtime_error(std::string("JSON Parser error: ") + message)
 {
 }
 

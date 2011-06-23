@@ -7,38 +7,32 @@ Value &Value::fromStream(std::istream &i)
 {
 	i >> std::ws;
 
-	IValue *v;
-
 	switch (i.peek()) {
 	case '\"':
-		v = new IString();
+		value = new IString();
 		break;
 	case '-':
 	case '+':
 	case '0' ... '9':
-		v = new INumeric();
+		value = new INumeric();
 		break;
 	case '[':
-		v = new IArray();
+		value = new IArray();
 		break;
 	case '{':
-		v = new IObject();
+		value = new IObject();
 		break;
 	case 't':
 	case 'f':
-		v = new IBool();
+		value = new IBool();
 		break;
 	case 'n':
-		v = new IValue();
+		value = new IValue();
 		break;
 	default:
-		std::string token;
-		token = (char)i.peek();
-		throw ParserError(token);
+		throw ParserError(i.peek());
 		break;
 	}
-
-	value = v;
 
 	value->fromStream(i);
 

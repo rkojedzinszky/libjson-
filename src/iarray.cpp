@@ -82,18 +82,22 @@ void IArray::toStream(std::ostream &o) const
 void IArray::fromStream(std::istream &i)
 {
 	value.clear();
-	char c;
+	int c;
 
-	i >> c;
+	c = i.get();
 	if (c != '[') {
-		std::ostringstream o;
-		o << c;
-		throw ParserError(o.str());
+		throw ParserError(c);
 	}
 
-	for (;!i.eof();) {
+	for (;;) {
 		i >> std::ws;
+
+		if (i.eof()) {
+			throw ParserError("eof detected on stream");
+		}
+
 		if (i.peek() == ']') {
+			i.get();
 			break;
 		}
 
@@ -101,16 +105,11 @@ void IArray::fromStream(std::istream &i)
 		v.fromStream(i);
 		value.push_back(v);
 
+		i >> std::ws;
+
 		if (i.peek() == ',') {
 			i.get();
 		}
-	}
-
-	i >> c;
-	if (c != ']') {
-		std::ostringstream o;
-		o << c;
-		throw ParserError(o.str());
 	}
 }
 
