@@ -29,6 +29,13 @@ public:
 	// string
 	virtual const std::string &getString() const;
 
+	// converter functions
+	virtual bool asBool() const;
+	virtual int asInt() const;
+	virtual long long asLong() const;
+	virtual double asDouble() const;
+	virtual std::string asString() const;
+
 	// array
 	virtual void resize(size_t sz);
 	virtual Value &operator[](int idx);

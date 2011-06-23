@@ -56,6 +56,36 @@ double INumeric::getDouble() const
 	return value;
 }
 
+bool INumeric::asBool() const
+{
+	return value == 0 ? false : true;
+}
+
+int INumeric::asInt() const
+{
+	return getInt();
+}
+
+long long INumeric::asLong() const
+{
+	return getLong();
+}
+
+double INumeric::asDouble() const
+{
+	return value;
+}
+
+std::string INumeric::asString() const
+{
+	std::ostringstream o;
+
+	o.precision(20);
+	o << value;
+
+	return o.str();
+}
+
 bool INumeric::operator==(const IValue &r) const
 {
 	return value == dynamic_cast<const INumeric&>(r).value;

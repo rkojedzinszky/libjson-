@@ -14,6 +14,21 @@ bool IBool::getBool() const
 	return value;
 }
 
+bool IBool::asBool() const
+{
+	return value;
+}
+
+int IBool::asInt() const
+{
+	return value ? 1 : 0;
+}
+
+long long IBool::asLong() const
+{
+	return value ? 1 : 0;
+}
+
 bool IBool::operator==(const IValue &r) const
 {
 	return value == dynamic_cast<const IBool&>(r).value;

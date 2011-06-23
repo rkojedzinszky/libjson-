@@ -71,6 +71,13 @@ public:
 	Value &setString(const char *s);
 	Value &operator=(const char *s);
 
+	// converter functions
+	bool asBool() const;
+	int asInt() const;
+	long long asLong() const;
+	double asDouble() const;
+	std::string asString() const;
+
 	// array
 	void resize(size_t sz);
 	Value &operator[](int idx);
@@ -289,6 +296,32 @@ inline Value &Value::setString(const char *s)
 inline Value &Value::operator=(const char *s)
 {
 	return setString(s);
+}
+
+// converter functions
+inline bool Value::asBool() const
+{
+	return value->asBool();
+}
+
+inline int Value::asInt() const
+{
+	return value->asInt();
+}
+
+inline long long Value::asLong() const
+{
+	return value->asLong();
+}
+
+inline double Value::asDouble() const
+{
+	return value->asDouble();
+}
+
+inline std::string Value::asString() const
+{
+	return value->asString();
 }
 
 // array

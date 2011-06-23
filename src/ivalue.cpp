@@ -11,7 +11,17 @@ bool IValue::isNull() const
 
 bool IValue::getBool() const
 {
-	return false;
+	throw std::bad_cast();
+}
+
+int IValue::getInt() const
+{
+	throw std::bad_cast();
+}
+
+long long IValue::getLong() const
+{
+	throw std::bad_cast();
 }
 
 double IValue::getDouble() const
@@ -20,6 +30,31 @@ double IValue::getDouble() const
 }
 
 const std::string &IValue::getString() const
+{
+	throw std::bad_cast();
+}
+
+bool IValue::asBool() const
+{
+	throw std::bad_cast();
+}
+
+int IValue::asInt() const
+{
+	throw std::bad_cast();
+}
+
+long long IValue::asLong() const
+{
+	throw std::bad_cast();
+}
+
+double IValue::asDouble() const
+{
+	throw std::bad_cast();
+}
+
+std::string IValue::asString() const
 {
 	throw std::bad_cast();
 }

@@ -15,6 +15,13 @@ public:
 	IString(const std::string &s = "");
 	const std::string &getString() const;
 
+	// converter functions
+	bool asBool() const;
+	int asInt() const;
+	long long asLong() const;
+	double asDouble() const;
+	std::string asString() const;
+
 	bool operator==(const IValue &r) const;
 	bool operator<(const IValue &r) const;
 	bool operator<=(const IValue &r) const;

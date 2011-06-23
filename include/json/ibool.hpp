@@ -15,6 +15,11 @@ public:
 	IBool(bool v = false);
 	bool getBool() const;
 
+	// converter functions
+	bool asBool() const;
+	int asInt() const;
+	long long asLong() const;
+
 	bool operator==(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
