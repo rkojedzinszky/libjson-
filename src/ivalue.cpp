@@ -59,17 +59,17 @@ std::string IValue::asString() const
 	throw std::bad_cast();
 }
 
-void IValue::resize(size_t sz)
+void IValue::resize(size_t /* sz */)
 {
 	throw std::bad_cast();
 }
 
-Value &IValue::operator[](int idx)
+Value &IValue::operator[](int /* idx */)
 {
 	throw std::bad_cast();
 }
 
-Value &IValue::at(int idx)
+Value &IValue::at(int /* idx */)
 {
 	throw std::bad_cast();
 }
@@ -84,12 +84,12 @@ Value &IValue::back()
 	throw std::bad_cast();
 }
 
-void IValue::push_front(const Value &v)
+void IValue::push_front(const Value & /* v */)
 {
 	throw std::bad_cast();
 }
 
-void IValue::push_back(const Value &v)
+void IValue::push_back(const Value & /* v */)
 {
 	throw std::bad_cast();
 }
@@ -104,7 +104,7 @@ Value IValue::pop_back()
 	throw std::bad_cast();
 }
 
-Value &IValue::operator[](const std::string &f)
+Value &IValue::operator[](const std::string & /* f */)
 {
 	throw std::bad_cast();
 }
@@ -114,7 +114,7 @@ Value IValue::keys() const
 	throw std::bad_cast();
 }
 
-size_t IValue::erase(const std::string &f)
+size_t IValue::erase(const std::string & /* f */)
 {
 	throw std::bad_cast();
 }
@@ -124,17 +124,17 @@ size_t IValue::size() const
 	throw std::bad_cast();
 }
 
-bool IValue::operator==(const IValue &r) const
+bool IValue::operator==(const IValue & /* r */) const
 {
 	throw std::bad_cast();
 }
 
-bool IValue::operator<(const IValue &r) const
+bool IValue::operator<(const IValue & /* r */) const
 {
 	throw std::bad_cast();
 }
 
-bool IValue::operator<=(const IValue &r) const
+bool IValue::operator<=(const IValue & /* r */) const
 {
 	throw std::bad_cast();
 }
