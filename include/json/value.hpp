@@ -10,8 +10,6 @@
 #include <json/istring.hpp>
 #include <json/iarray.hpp>
 #include <json/iobject.hpp>
-#include <cmath>
-#include <climits>
 
 namespace JSON
 {
@@ -47,11 +45,6 @@ public:
 	operator bool() const;
 
 	// numeric
-	Value(double v);
-	Value &setDouble(double v);
-	double getDouble() const;
-	Value &operator=(double v);
-	operator double() const;
 	Value(int v);
 	Value &setInt(int v);
 	int getInt() const;
@@ -62,6 +55,11 @@ public:
 	long long getLong() const;
 	Value &operator=(long long v);
 	operator long long() const;
+	Value(double v);
+	Value &setDouble(double v);
+	double getDouble() const;
+	Value &operator=(double v);
+	operator double() const;
 
 	// string
 	Value(const std::string &s);
@@ -176,6 +174,54 @@ inline Value::operator bool() const
 }
 
 // numeric
+inline Value::Value(int v) : value(new INumeric(static_cast<double>(v)))
+{
+}
+
+inline Value &Value::setInt(int v)
+{
+	value = new INumeric(static_cast<double>(v));
+}
+
+inline int Value::getInt() const
+{
+	return value->getInt();
+}
+
+inline Value &Value::operator=(int v)
+{
+	return setInt(v);
+}
+
+inline Value::operator int() const
+{
+	return getInt();
+}
+
+inline Value::Value(long long v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::setLong(long long v)
+{
+	value = new INumeric(v);
+}
+
+inline long long Value::getLong() const
+{
+	return value->getLong();
+}
+
+inline Value &Value::operator=(long long v)
+{
+	return setLong(v);
+}
+
+inline Value::operator long long() const
+{
+	return getLong();
+}
+
 inline Value::Value(double v) : value(new INumeric(v))
 {
 }
@@ -200,74 +246,6 @@ inline Value &Value::operator=(double v)
 inline Value::operator double() const
 {
 	return getDouble();
-}
-
-inline Value::Value(int v) : value(new INumeric(static_cast<double>(v)))
-{
-}
-
-inline Value &Value::setInt(int v)
-{
-	value = new INumeric(static_cast<double>(v));
-}
-
-inline int Value::getInt() const
-{
-	double v = getDouble();
-
-	if (floor(v) != v) {
-		throw std::domain_error("Value::getInt(): numeric has fractional part");
-	}
-
-	if (v < INT_MIN || v > INT_MAX) {
-		throw std::domain_error("Value::getInt(): numeric does not fit in integer");
-	}
-
-	return v;
-}
-
-inline Value &Value::operator=(int v)
-{
-	return setInt(v);
-}
-
-inline Value::operator int() const
-{
-	return getInt();
-}
-
-inline Value::Value(long long v) : value(new INumeric(v))
-{
-}
-
-inline Value &Value::setLong(long long v)
-{
-	value = new INumeric(v);
-}
-
-inline long long Value::getLong() const
-{
-	double v = getDouble();
-
-	if (floor(v) != v) {
-		throw std::domain_error("Value::getLong(): numeric has fractional part");
-	}
-
-	if (v < LLONG_MIN || v > LLONG_MAX) {
-		throw std::domain_error("Value::getLong(): numeric does not fit in long long");
-	}
-
-	return v;
-}
-
-inline Value &Value::operator=(long long v)
-{
-	return setLong(v);
-}
-
-inline Value::operator long long() const
-{
-	return getLong();
 }
 
 // string

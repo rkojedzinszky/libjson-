@@ -12,8 +12,10 @@ private:
 	double value;
 
 public:
-	INumeric(double v = 0);
-	INumeric(long long v);
+	INumeric(long long v = 0);
+	INumeric(double v);
+	int getInt() const;
+	long long getLong() const;
 	double getDouble() const;
 
 	bool operator==(const IValue &r) const;

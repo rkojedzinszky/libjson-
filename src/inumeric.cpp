@@ -10,10 +10,6 @@
 namespace JSON
 {
 
-INumeric::INumeric(double v) : value(v)
-{
-}
-
 INumeric::INumeric(long long v) : value(v)
 {
 	if (v < -DOUBLE_LONG_MAX || v > DOUBLE_LONG_MAX) {
@@ -21,6 +17,38 @@ INumeric::INumeric(long long v) : value(v)
 		o << "INumeric::INumeric(): long long value " << v << " could not be stored without loss";
 		throw std::domain_error(o.str());
 	}
+}
+
+INumeric::INumeric(double v) : value(v)
+{
+}
+
+int INumeric::getInt() const
+{
+	int r = value;
+
+	if (static_cast<double>(r) != value) {
+		std::ostringstream o;
+		o.precision(20);
+		o << "JSON::INumeric::getInt(): " << value << " cannot be converted";
+		throw std::domain_error(o.str());
+	}
+
+	return r;
+}
+
+long long INumeric::getLong() const
+{
+	long long r = value;
+
+	if (static_cast<double>(r) != value) {
+		std::ostringstream o;
+		o.precision(20);
+		o << "JSON::INumeric::getLong(): " << value << " cannot be converted";
+		throw std::domain_error(o.str());
+	}
+
+	return r;
 }
 
 double INumeric::getDouble() const

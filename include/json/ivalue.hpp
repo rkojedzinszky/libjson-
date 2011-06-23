@@ -22,6 +22,8 @@ public:
 	virtual bool getBool() const;
 
 	// numeric
+	virtual int getInt() const;
+	virtual long long getLong() const;
 	virtual double getDouble() const;
 
 	// string
