@@ -1,6 +1,7 @@
+#include <sstream>
+
 #include <json/value.hpp>
 #include <json/util.hpp>
-#include <sstream>
 
 namespace JSON
 {

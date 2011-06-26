@@ -1,8 +1,9 @@
 #include <iostream>
 #include <iomanip>
-#include <json/inumeric.hpp>
 #include <stdexcept>
 #include <sstream>
+
+#include <json/inumeric.hpp>
 
 #define DOUBLE_MANTISSA_BITS	52
 #define DOUBLE_LONG_MAX		(1LL << (DOUBLE_MANTISSA_BITS + 1))
