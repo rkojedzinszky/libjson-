@@ -20,6 +20,11 @@ class ParserError : public std::runtime_error {
 		ParserError(const std::string &message);
 };
 
+class ParserEndOfStreamError : public ParserError {
+	public:
+		ParserEndOfStreamError();
+};
+
 class Value
 {
 private:
@@ -120,6 +125,10 @@ inline ParserError::ParserError(char token) : std::runtime_error(std::string("JS
 }
 
 inline ParserError::ParserError(const std::string &message) : std::runtime_error(std::string("JSON Parser error: ") + message)
+{
+}
+
+inline ParserEndOfStreamError::ParserEndOfStreamError() : ParserError("eof detected on stream")
 {
 }
 

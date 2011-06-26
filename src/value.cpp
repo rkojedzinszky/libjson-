@@ -1,4 +1,5 @@
 #include <json/value.hpp>
+#include <json/util.hpp>
 
 namespace JSON
 {
@@ -7,7 +8,7 @@ Value &Value::fromStream(std::istream &i)
 {
 	i >> std::ws;
 
-	switch (i.peek()) {
+	switch (speek(i)) {
 	case '\"':
 		value = new IString();
 		break;

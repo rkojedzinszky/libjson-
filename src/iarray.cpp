@@ -1,6 +1,7 @@
 #include <json/value.hpp>
 #include <ostream>
 #include <sstream>
+#include <json/util.hpp>
 
 namespace JSON
 {
@@ -84,7 +85,7 @@ void IArray::fromStream(std::istream &i)
 	value.clear();
 	int c;
 
-	c = i.get();
+	c = sget(i);
 	if (c != '[') {
 		throw ParserError(c);
 	}
@@ -92,11 +93,7 @@ void IArray::fromStream(std::istream &i)
 	for (;;) {
 		i >> std::ws;
 
-		if (i.eof()) {
-			throw ParserError("eof detected on stream");
-		}
-
-		if (i.peek() == ']') {
+		if (speek(i) == ']') {
 			i.get();
 			break;
 		}
@@ -107,7 +104,7 @@ void IArray::fromStream(std::istream &i)
 
 		i >> std::ws;
 
-		if (i.peek() == ',') {
+		if (speek(i) == ',') {
 			i.get();
 		}
 	}

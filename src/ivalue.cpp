@@ -1,5 +1,7 @@
-#include <json/value.hpp>
 #include <sstream>
+
+#include <json/value.hpp>
+#include <json/util.hpp>
 
 namespace JSON
 {
@@ -146,7 +148,7 @@ void IValue::toStream(std::ostream &o) const
 
 void IValue::fromStream(std::istream &i)
 {
-	if (i.get() != 'n' || i.get() != 'u' || i.get() != 'l' || i.get() != 'l') {
+	if (sget(i) != 'n' || sget(i) != 'u' || sget(i) != 'l' || sget(i) != 'l') {
 		throw ParserError("expecting null");
 	}
 }
