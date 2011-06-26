@@ -34,27 +34,27 @@ size_t IObject::size() const
 
 void IObject::toStream(std::ostream &o) const
 {
-	o << "{";
+	o << '{';
 
 	std::map<std::string, Value>::const_iterator I(object.begin());
 	std::map<std::string, Value>::const_iterator E(object.end());
 
 	if (I != E) {
 		stringtojsonstream(I->first, o);
-		o << ":";
+		o << ':';
 		(I->second).toStream(o);
 		++I;
 	}
 
 	for (; I != E; ++I) {
-		o << ",";
+		o << ',';
 
 		stringtojsonstream(I->first, o);
-		o << ":";
+		o << ':';
 		(I->second).toStream(o);
 	}
 
-	o << "}";
+	o << '}';
 }
 
 void IObject::fromStream(std::istream &i)

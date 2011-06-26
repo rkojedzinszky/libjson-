@@ -62,7 +62,7 @@ size_t IArray::size() const
 
 void IArray::toStream(std::ostream &o) const
 {
-	o << "[";
+	o << '[';
 
 	std::deque<Value>::const_iterator I(value.begin());
 	std::deque<Value>::const_iterator E(value.end());
@@ -73,11 +73,11 @@ void IArray::toStream(std::ostream &o) const
 	}
 
 	for (; I != E; ++I) {
-		o << ",";
+		o << ',';
 		I->toStream(o);
 	}
 
-	o << "]";
+	o << ']';
 }
 
 void IArray::fromStream(std::istream &i)
