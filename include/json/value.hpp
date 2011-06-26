@@ -106,11 +106,31 @@ public:
 
 	// operators
 	bool operator==(const Value &r) const;
-	bool operator!=(const Value &r) const;
 	bool operator<(const Value &r) const;
-	bool operator>(const Value &r) const;
 	bool operator<=(const Value &r) const;
-	bool operator>=(const Value &r) const;
+
+	bool operator==(const bool v) const;
+	bool operator<(const bool v) const;
+	bool operator<=(const bool v) const;
+	bool operator==(const int v) const;
+	bool operator<(const int v) const;
+	bool operator<=(const int v) const;
+	bool operator==(const long long v) const;
+	bool operator<(const long long v) const;
+	bool operator<=(const long long v) const;
+	bool operator==(const double v) const;
+	bool operator<(const double v) const;
+	bool operator<=(const double v) const;
+	bool operator==(const std::string &v) const;
+	bool operator<(const std::string &v) const;
+	bool operator<=(const std::string &v) const;
+	bool operator==(const char *v) const;
+	bool operator<(const char *v) const;
+	bool operator<=(const char *v) const;
+
+	template <typename T> bool operator!=(const T v) const;
+	template <typename T> bool operator>(const T v) const;
+	template <typename T> bool operator>=(const T v) const;
 
 	// serialization
 	void toStream(std::ostream &o) const;
@@ -423,19 +443,9 @@ inline bool Value::operator==(const Value &r) const
 	return value->operator==(*r.value);
 }
 
-inline bool Value::operator!=(const Value &r) const
-{
-	return !operator==(r);
-}
-
 inline bool Value::operator<(const Value &r) const
 {
 	return value->operator<(*r.value);
-}
-
-inline bool Value::operator>(const Value &r) const
-{
-	return r.operator<(*this);
 }
 
 inline bool Value::operator<=(const Value &r) const
@@ -443,9 +453,45 @@ inline bool Value::operator<=(const Value &r) const
 	return value->operator<=(*r.value);
 }
 
-inline bool Value::operator>=(const Value &r) const
+#define VALUE_COMPARE(type, func) \
+	inline bool Value::operator==(const type v) const \
+	{ \
+		return value->func() == v; \
+	} \
+	inline bool Value::operator<(const type v) const \
+	{ \
+		return value->func() < v; \
+	} \
+	inline bool Value::operator<=(const type v) const \
+	{ \
+		return value->func() <= v; \
+	}
+
+VALUE_COMPARE(bool, getBool)
+VALUE_COMPARE(int, getInt)
+VALUE_COMPARE(long long, getLong)
+VALUE_COMPARE(double, getDouble)
+VALUE_COMPARE(std::string &, getString)
+VALUE_COMPARE(char *, getString)
+
+#undef VALUE_COMPARE
+
+template <typename T>
+inline bool Value::operator!=(const T v) const
 {
-	return r.operator<=(*this);
+	return !(*this == v);
+}
+
+template <typename T>
+inline bool Value::operator>(const T v) const
+{
+	return !(*this <= v);
+}
+
+template <typename T>
+inline bool Value::operator>=(const T v) const
+{
+	return !(*this < v);
 }
 
 inline void Value::toStream(std::ostream &o) const
