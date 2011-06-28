@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.68])
+AC_PREREQ([2.61])
 AC_INIT([libjson], [0.1], [krichy@cflinux.hu])
 AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR([include/json/value.hpp])
