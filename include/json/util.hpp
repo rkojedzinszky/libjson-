@@ -1,7 +1,7 @@
 #ifndef JSON_UTIL_HPP
 #define JSON_UTIL_HPP
 
-#include <ostream>
+#include <iostream>
 #include <string>
 #include <json/value.hpp>
 
