@@ -2,6 +2,7 @@
 #include <sstream>
 
 #include <json/value.hpp>
+#include <json/iarray.hpp>
 #include <json/util.hpp>
 
 namespace JSON
