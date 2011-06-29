@@ -7,8 +7,6 @@
 namespace JSON
 {
 
-class Value;
-
 class IArray : public IValue
 {
 private:

@@ -8,8 +8,6 @@
 namespace JSON
 {
 
-class Value;
-
 class IObject : public IValue
 {
 private:
