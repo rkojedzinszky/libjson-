@@ -3,7 +3,8 @@
 
 #include <map>
 #include <string>
-#include <json/ivalue.hpp>
+
+#include <json/value.hpp>
 
 namespace JSON
 {
