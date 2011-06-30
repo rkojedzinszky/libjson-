@@ -5,7 +5,9 @@
 #include <stdexcept>
 #include <boost/intrusive_ptr.hpp>
 
-#include <json/iscalar.hpp>
+#include <json/ibool.hpp>
+#include <json/inumeric.hpp>
+#include <json/istring.hpp>
 
 namespace JSON
 {
@@ -29,6 +31,9 @@ private:
 
 protected:
 	Value(IValue *v);
+
+	static IValue *newArray();
+	static IValue *newObject();
 
 public:
 	Value();
@@ -173,6 +178,17 @@ inline bool Value::isNull() const
 }
 
 // boolean
+inline Value::Value(bool v) : value(new IBool(v))
+{
+}
+
+inline Value &Value::setBool(bool v)
+{
+	value = new IBool(v);
+
+	return *this;
+}
+
 inline bool Value::getBool() const
 {
 	return value->getBool();
@@ -189,6 +205,17 @@ inline Value::operator bool() const
 }
 
 // numeric
+inline Value::Value(int v) : value(new INumeric(static_cast<double>(v)))
+{
+}
+
+inline Value &Value::setInt(int v)
+{
+	value = new INumeric(static_cast<double>(v));
+
+	return *this;
+}
+
 inline int Value::getInt() const
 {
 	return value->getInt();
@@ -204,6 +231,17 @@ inline Value::operator int() const
 	return getInt();
 }
 
+inline Value::Value(long long v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::setLong(long long v)
+{
+	value = new INumeric(v);
+
+	return *this;
+}
+
 inline long long Value::getLong() const
 {
 	return value->getLong();
@@ -217,6 +255,17 @@ inline Value &Value::operator=(long long v)
 inline Value::operator long long() const
 {
 	return getLong();
+}
+
+inline Value::Value(double v) : value(new INumeric(v))
+{
+}
+
+inline Value &Value::setDouble(double v)
+{
+	value = new INumeric(v);
+
+	return *this;
 }
 
 inline double Value::getDouble() const
@@ -235,6 +284,17 @@ inline Value::operator double() const
 }
 
 // string
+inline Value::Value(const std::string &s) : value(new IString(s))
+{
+}
+
+inline Value &Value::setString(const std::string &s)
+{
+	value = new IString(s);
+
+	return *this;
+}
+
 inline const std::string &Value::getString() const
 {
 	return value->getString();
@@ -248,6 +308,17 @@ inline Value &Value::operator=(const std::string &s)
 inline Value::operator const std::string&() const
 {
 	return getString();
+}
+
+inline Value::Value(const char *s) : value(new IString(s))
+{
+}
+
+inline Value &Value::setString(const char *s)
+{
+	value = new IString(s);
+
+	return *this;
 }
 
 inline Value &Value::operator=(const char *s)
@@ -423,8 +494,15 @@ inline void Value::toStream(std::ostream &o) const
 	value->toStream(o);
 }
 
-Value Array();
-Value Object();
+inline Value Array()
+{
+	return Value::newArray();
+}
+
+inline Value Object()
+{
+	return Value::newObject();
+}
 
 }; // namespace JSON
 

@@ -1,8 +1,9 @@
 #ifndef JSON_IARRAY_HPP
 #define JSON_IARRAY_HPP
 
-#include <json/value.hpp>
 #include <deque>
+
+#include <json/ivalue.hpp>
 
 namespace JSON
 {

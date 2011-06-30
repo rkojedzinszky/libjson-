@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-#include <json/value.hpp>
+#include <json/ivalue.hpp>
 
 namespace JSON
 {

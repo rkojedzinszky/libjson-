@@ -1,5 +1,6 @@
 #include <sstream>
 
+#include <json/value.hpp>
 #include <json/iobject.hpp>
 #include <json/util.hpp>
 

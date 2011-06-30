@@ -11,7 +11,7 @@
 namespace JSON
 {
 
-INumeric::INumeric(long long v) : value(static_cast<double>(v))
+INumeric::INumeric(long long v) : value(v)
 {
 	if (v < -DOUBLE_LONG_MAX || v > DOUBLE_LONG_MAX) {
 		std::ostringstream o;
@@ -26,7 +26,7 @@ INumeric::INumeric(double v) : value(v)
 
 int INumeric::getInt() const
 {
-	int r = static_cast<int>(value);
+	int r = value;
 
 	if (static_cast<double>(r) != value) {
 		std::ostringstream o;
@@ -40,7 +40,7 @@ int INumeric::getInt() const
 
 long long INumeric::getLong() const
 {
-	long long r = static_cast<long long>(value);
+	long long r = value;
 
 	if (static_cast<double>(r) != value) {
 		std::ostringstream o;
