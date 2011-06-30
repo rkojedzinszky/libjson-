@@ -5,12 +5,15 @@
 
 #include <json/inumeric.hpp>
 
+#define DOUBLE_MANTISSA_BITS	52
+#define DOUBLE_LONG_MAX		(1LL << (DOUBLE_MANTISSA_BITS + 1))
+
 namespace JSON
 {
 
 INumeric::INumeric(long long v) : value(static_cast<double>(v))
 {
-	if (static_cast<long long>(value) != v) {
+	if (v < -DOUBLE_LONG_MAX || v > DOUBLE_LONG_MAX) {
 		std::ostringstream o;
 		o << "INumeric::INumeric(): long long value " << v << " could not be stored without loss";
 		throw std::domain_error(o.str());
