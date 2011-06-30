@@ -112,9 +112,4 @@ void INumeric::fromStream(std::istream &i)
 	i >> value;
 }
 
-IScalar *INumeric::clone() const
-{
-	return new INumeric(value);
-}
-
 }; // namespace JSON

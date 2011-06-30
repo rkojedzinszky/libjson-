@@ -83,9 +83,4 @@ void IString::fromStream(std::istream &i)
 	jsonstringtostring(value, i);
 }
 
-IScalar *IString::clone() const
-{
-	return new IString(value);
-}
-
 }; // namespace JSON

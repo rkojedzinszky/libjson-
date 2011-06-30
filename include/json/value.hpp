@@ -156,19 +156,13 @@ inline Value::Value() : value(new IValue())
 {
 }
 
-inline Value::Value(const Value &v)
+inline Value::Value(const Value &v) : value(v.value)
 {
-	operator=(v);
 }
 
 inline Value &Value::operator=(const Value &v)
 {
-	IScalar *s = dynamic_cast<IScalar *>(v.value.get());
-	if (s == NULL) {
-		value = v.value;
-	} else {
-		value = s->clone();
-	}
+	value = v.value;
 	return *this;
 }
 

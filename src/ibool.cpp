@@ -45,9 +45,4 @@ void IBool::fromStream(std::istream &i)
 	i >> std::boolalpha >> value;
 }
 
-IScalar *IBool::clone() const
-{
-	return new IBool(value);
-}
-
 }; // namespace JSON

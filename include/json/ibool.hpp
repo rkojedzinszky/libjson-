@@ -24,8 +24,6 @@ public:
 
 	void toStream(std::ostream &o) const;
 	void fromStream(std::istream &i);
-
-	IScalar *clone() const;
 };
 
 }; // namespace JSON
