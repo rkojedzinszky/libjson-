@@ -25,17 +25,10 @@ class ParserEndOfStreamError : public ParserError {
 
 class Value
 {
-private:
-	typedef boost::intrusive_ptr<IValue> valueType;
-	valueType value;
-
-protected:
-	Value(IValue *v);
-
-	static IValue *newArray();
-	static IValue *newObject();
-
 public:
+	typedef IValue::Array Array;
+	typedef IValue::Object Object;
+
 	Value();
 	Value(const Value &v);
 	Value &operator=(const Value &v);
@@ -94,6 +87,7 @@ public:
 	Value &push_back(const Value &v);
 	Value pop_front();
 	Value pop_back();
+	Array &array();
 
 	// object
 	Value &operator[](const std::string &f);
@@ -101,6 +95,7 @@ public:
 	Value keys() const;
 	size_t erase(const std::string &f);
 	size_t erase(const char *f);
+	Object &object();
 
 	// common to array & object
 	size_t size() const;
@@ -139,6 +134,17 @@ public:
 
 	friend Value Array();
 	friend Value Object();
+
+private:
+	typedef boost::intrusive_ptr<IValue> valueType;
+	valueType value;
+
+protected:
+	Value(IValue *v);
+
+	static IValue *newArray();
+	static IValue *newObject();
+
 };
 
 inline ParserError::ParserError(char token) : std::runtime_error(std::string("JSON Parser error: unexpected token: ") + token)
@@ -402,6 +408,11 @@ inline Value Value::pop_back()
 	return value->pop_back();
 }
 
+inline Value::Array &Value::array()
+{
+	return value->array();
+}
+
 // object
 inline Value &Value::operator[](const std::string &f)
 {
@@ -427,6 +438,12 @@ inline size_t Value::erase(const char *f)
 {
 	return value->erase(std::string(f));
 }
+
+inline Value::Object &Value::object()
+{
+	return value->object();
+}
+
 
 inline size_t Value::size() const
 {

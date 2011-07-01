@@ -1,8 +1,9 @@
 #ifndef JSON_IVALUE_HPP
 #define JSON_IVALUE_HPP
 
+#include <map>
+#include <deque>
 #include <string>
-#include <typeinfo>
 #include <ostream>
 
 #include <json/refcounted.hpp>
@@ -15,6 +16,9 @@ class Value;
 class IValue : public refcounted
 {
 public:
+	typedef std::deque<Value> Array;
+	typedef std::map<std::string, Value> Object;
+
 	// scalars
 	virtual bool isNull() const;
 
@@ -46,11 +50,13 @@ public:
 	virtual void push_back(const Value &v);
 	virtual Value pop_front();
 	virtual Value pop_back();
+	virtual Array &array();
 
 	// object
 	virtual Value &operator[](const std::string &f);
 	virtual Value keys() const;
 	virtual size_t erase(const std::string &f);
+	virtual Object &object();
 
 	// common to array & object
 	virtual size_t size() const;

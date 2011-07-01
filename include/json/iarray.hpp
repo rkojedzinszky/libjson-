@@ -11,7 +11,7 @@ namespace JSON
 class IArray : public IValue
 {
 private:
-	std::deque<Value> value;
+	Array value;
 
 public:
 	void resize(size_t sz);
@@ -23,6 +23,7 @@ public:
 	void push_back(const Value &v);
 	Value pop_front();
 	Value pop_back();
+	Array &array();
 	size_t size() const;
 
 	void toStream(std::ostream &o) const;

@@ -1,4 +1,5 @@
 #include <sstream>
+#include <typeinfo>
 
 #include <json/value.hpp>
 #include <json/util.hpp>
@@ -106,6 +107,11 @@ Value IValue::pop_back()
 	throw std::bad_cast();
 }
 
+IValue::Array &IValue::array()
+{
+	throw std::bad_cast();
+}
+
 Value &IValue::operator[](const std::string & /* f */)
 {
 	throw std::bad_cast();
@@ -117,6 +123,11 @@ Value IValue::keys() const
 }
 
 size_t IValue::erase(const std::string & /* f */)
+{
+	throw std::bad_cast();
+}
+
+IValue::Object &IValue::object()
 {
 	throw std::bad_cast();
 }

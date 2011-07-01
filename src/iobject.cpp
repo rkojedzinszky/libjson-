@@ -9,15 +9,15 @@ namespace JSON
 
 Value &IObject::operator[](const std::string &f)
 {
-	return object[f];
+	return value[f];
 }
 
 Value IObject::keys() const
 {
-	Value r = Array();
+	Value r = JSON::Array();
 
-	std::map<std::string, Value>::const_iterator E(object.end());
-	for (std::map<std::string, Value>::const_iterator I = object.begin(); I != E; ++I) {
+	std::map<std::string, Value>::const_iterator E(value.end());
+	for (std::map<std::string, Value>::const_iterator I = value.begin(); I != E; ++I) {
 		r.push_back(I->first);
 	}
 
@@ -26,20 +26,25 @@ Value IObject::keys() const
 
 size_t IObject::erase(const std::string &f)
 {
-	return object.erase(f);
+	return value.erase(f);
+}
+
+IValue::Object &IObject::object()
+{
+	return value;
 }
 
 size_t IObject::size() const
 {
-	return object.size();
+	return value.size();
 }
 
 void IObject::toStream(std::ostream &o) const
 {
 	o << '{';
 
-	std::map<std::string, Value>::const_iterator I(object.begin());
-	std::map<std::string, Value>::const_iterator E(object.end());
+	std::map<std::string, Value>::const_iterator I(value.begin());
+	std::map<std::string, Value>::const_iterator E(value.end());
 
 	if (I != E) {
 		stringtojsonstream(I->first, o);
@@ -61,7 +66,7 @@ void IObject::toStream(std::ostream &o) const
 
 void IObject::fromStream(std::istream &i)
 {
-	object.clear();
+	value.clear();
 	int c;
 
 	c = sget(i);
@@ -89,7 +94,7 @@ void IObject::fromStream(std::istream &i)
 		}
 
 		v.fromStream(i);
-		object[k] = v;
+		value[k] = v;
 
 		i >> std::ws;
 

@@ -57,6 +57,11 @@ Value IArray::pop_back()
 	return v;
 }
 
+IValue::Array &IArray::array()
+{
+	return value;
+}
+
 size_t IArray::size() const
 {
 	return value.size();

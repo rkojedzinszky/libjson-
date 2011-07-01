@@ -1,3 +1,5 @@
+#include <typeinfo>
+
 #include <json/iscalar.hpp>
 
 namespace JSON
