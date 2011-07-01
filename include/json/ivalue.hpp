@@ -41,21 +41,9 @@ public:
 	virtual std::string asString() const;
 
 	// array
-	virtual void resize(size_t sz);
-	virtual Value &operator[](int idx);
-	virtual Value &at(int idx);
-	virtual Value &front();
-	virtual Value &back();
-	virtual void push_front(const Value &v);
-	virtual void push_back(const Value &v);
-	virtual Value pop_front();
-	virtual Value pop_back();
 	virtual Array &array();
 
 	// object
-	virtual Value &operator[](const std::string &f);
-	virtual Value keys() const;
-	virtual size_t erase(const std::string &f);
 	virtual Object &object();
 
 	// common to array & object

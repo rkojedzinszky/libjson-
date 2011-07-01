@@ -62,67 +62,7 @@ std::string IValue::asString() const
 	throw std::bad_cast();
 }
 
-void IValue::resize(size_t /* sz */)
-{
-	throw std::bad_cast();
-}
-
-Value &IValue::operator[](int /* idx */)
-{
-	throw std::bad_cast();
-}
-
-Value &IValue::at(int /* idx */)
-{
-	throw std::bad_cast();
-}
-
-Value &IValue::front()
-{
-	throw std::bad_cast();
-}
-
-Value &IValue::back()
-{
-	throw std::bad_cast();
-}
-
-void IValue::push_front(const Value & /* v */)
-{
-	throw std::bad_cast();
-}
-
-void IValue::push_back(const Value & /* v */)
-{
-	throw std::bad_cast();
-}
-
-Value IValue::pop_front()
-{
-	throw std::bad_cast();
-}
-
-Value IValue::pop_back()
-{
-	throw std::bad_cast();
-}
-
 IValue::Array &IValue::array()
-{
-	throw std::bad_cast();
-}
-
-Value &IValue::operator[](const std::string & /* f */)
-{
-	throw std::bad_cast();
-}
-
-Value IValue::keys() const
-{
-	throw std::bad_cast();
-}
-
-size_t IValue::erase(const std::string & /* f */)
 {
 	throw std::bad_cast();
 }

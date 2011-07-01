@@ -7,28 +7,6 @@
 namespace JSON
 {
 
-Value &IObject::operator[](const std::string &f)
-{
-	return value[f];
-}
-
-Value IObject::keys() const
-{
-	Value r = JSON::Array();
-
-	std::map<std::string, Value>::const_iterator E(value.end());
-	for (std::map<std::string, Value>::const_iterator I = value.begin(); I != E; ++I) {
-		r.push_back(I->first);
-	}
-
-	return r;
-}
-
-size_t IObject::erase(const std::string &f)
-{
-	return value.erase(f);
-}
-
 IValue::Object &IObject::object()
 {
 	return value;

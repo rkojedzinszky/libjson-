@@ -8,55 +8,6 @@
 namespace JSON
 {
 
-void IArray::resize(size_t sz)
-{
-	value.resize(sz);
-}
-
-Value &IArray::operator[](int idx)
-{
-	return value[idx];
-}
-
-Value &IArray::at(int idx)
-{
-	return value.at(idx);
-}
-
-Value &IArray::front()
-{
-	return value.front();
-}
-
-Value &IArray::back()
-{
-	return value.back();
-}
-
-void IArray::push_front(const Value &v)
-{
-	value.push_front(v);
-}
-
-void IArray::push_back(const Value &v)
-{
-	value.push_back(v);
-}
-
-Value IArray::pop_front()
-{
-	Value v = front();
-	value.pop_front();
-	return v;
-}
-
-Value IArray::pop_back()
-{
-	Value v = back();
-	value.pop_back();
-	return v;
-}
-
 IValue::Array &IArray::array()
 {
 	return value;
