@@ -8,10 +8,6 @@
 namespace JSON
 {
 
-IString::IString(const std::string &s) : value(s)
-{
-}
-
 const std::string &IString::getString() const
 {
 	return value;

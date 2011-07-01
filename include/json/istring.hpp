@@ -30,6 +30,10 @@ public:
 	void fromStream(std::istream &i);
 };
 
+inline IString::IString(const std::string &s) : value(s)
+{
+}
+
 }; // namespace JSON
 
 #endif

@@ -6,10 +6,6 @@
 namespace JSON
 {
 
-IBool::IBool(bool v) : value(v)
-{
-}
-
 bool IBool::getBool() const
 {
 	return value;

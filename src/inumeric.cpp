@@ -1,55 +1,31 @@
-#include <iostream>
-#include <iomanip>
-#include <stdexcept>
-#include <sstream>
-
 #include <json/inumeric.hpp>
-
-#define DOUBLE_MANTISSA_BITS	52
-#define DOUBLE_LONG_MAX		(1LL << (DOUBLE_MANTISSA_BITS + 1))
 
 namespace JSON
 {
 
-INumeric::INumeric(long long v) : value(static_cast<double>(v))
+template <typename T>
+T INumeric::get() const
 {
-	if (v < -DOUBLE_LONG_MAX || v > DOUBLE_LONG_MAX) {
+	T r = static_cast<T>(value);
+
+	if (!numbers_equal(r, value)) {
 		std::ostringstream o;
-		o << "INumeric::INumeric(): long long value " << v << " could not be stored without loss";
+		o.precision(20);
+		o << __PRETTY_FUNCTION__ << ": " << value << " cannot be stored without loss";
 		throw std::domain_error(o.str());
 	}
-}
 
-INumeric::INumeric(double v) : value(v)
-{
+	return r;
 }
 
 int INumeric::getInt() const
 {
-	int r = static_cast<int>(value);
-
-	if (static_cast<double>(r) != value) {
-		std::ostringstream o;
-		o.precision(20);
-		o << "JSON::INumeric::getInt(): " << value << " cannot be converted";
-		throw std::domain_error(o.str());
-	}
-
-	return r;
+	return get<int>();
 }
 
 long long INumeric::getLong() const
 {
-	long long r = static_cast<long long>(value);
-
-	if (static_cast<double>(r) != value) {
-		std::ostringstream o;
-		o.precision(20);
-		o << "JSON::INumeric::getLong(): " << value << " cannot be converted";
-		throw std::domain_error(o.str());
-	}
-
-	return r;
+	return get<long long>();
 }
 
 double INumeric::getDouble() const

@@ -225,13 +225,13 @@ inline Value::operator bool() const
 }
 
 // numeric
-inline Value::Value(int v) : value(new INumeric(static_cast<double>(v)))
+inline Value::Value(int v) : value(new INumeric(v))
 {
 }
 
 inline Value &Value::setInt(int v)
 {
-	value = new INumeric(static_cast<double>(v));
+	value = new INumeric(v);
 
 	return *this;
 }

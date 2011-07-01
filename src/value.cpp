@@ -26,7 +26,7 @@ Value &Value::fromStream(std::istream &i)
 	case '7':
 	case '8':
 	case '9':
-		value = new INumeric();
+		value = new INumeric(0);
 		break;
 	case '[':
 		value = new IArray(0);

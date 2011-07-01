@@ -26,6 +26,10 @@ public:
 	void fromStream(std::istream &i);
 };
 
+inline IBool::IBool(bool v) : value(v)
+{
+}
+
 }; // namespace JSON
 
 #endif
