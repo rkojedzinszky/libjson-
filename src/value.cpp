@@ -29,7 +29,7 @@ Value &Value::fromStream(std::istream &i)
 		value = new INumeric();
 		break;
 	case '[':
-		value = new IArray();
+		value = new IArray(0);
 		break;
 	case '{':
 		value = new IObject();
@@ -51,9 +51,9 @@ Value &Value::fromStream(std::istream &i)
 	return *this;
 }
 
-IValue *Value::newArray()
+IValue *Value::newArray(size_t n)
 {
-	return new IArray();
+	return new IArray(n);
 }
 
 IValue *Value::newObject()

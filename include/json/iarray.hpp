@@ -14,6 +14,7 @@ private:
 	Array value;
 
 public:
+	explicit IArray(size_t n);
 	void resize(size_t sz);
 	Value &operator[](int idx);
 	Value &at(int idx);
@@ -29,6 +30,10 @@ public:
 	void toStream(std::ostream &o) const;
 	void fromStream(std::istream &i);
 };
+
+inline IArray::IArray(size_t n) : value(n)
+{
+}
 
 }; // namespace JSON
 

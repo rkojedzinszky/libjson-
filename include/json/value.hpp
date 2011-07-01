@@ -1,6 +1,11 @@
 #ifndef JSON_VALUE_HPP
 #define JSON_VALUE_HPP
 
+#include <vector>
+#include <deque>
+#include <list>
+#include <map>
+
 #include <ostream>
 #include <stdexcept>
 #include <boost/intrusive_ptr.hpp>
@@ -78,6 +83,11 @@ public:
 	std::string asString() const;
 
 	// array
+	template <typename T>
+	Value(const T &v);
+	template <typename T>
+	Value &operator=(const T &v);
+
 	void resize(size_t sz);
 	Value &operator[](int idx);
 	Value &at(int idx);
@@ -90,6 +100,11 @@ public:
 	Array &array();
 
 	// object
+	template <typename T>
+	Value(const std::map<std::string, T> &v);
+	template <typename T>
+	Value &operator=(const std::map<std::string, T> &v);
+
 	Value &operator[](const std::string &f);
 	Value &operator[](const char *f);
 	Value keys() const;
@@ -132,7 +147,7 @@ public:
 	void toStream(std::ostream &o) const;
 	Value &fromStream(std::istream &i);
 
-	friend Value Array();
+	friend Value Array(size_t n);
 	friend Value Object();
 
 private:
@@ -142,7 +157,7 @@ private:
 protected:
 	Value(IValue *v);
 
-	static IValue *newArray();
+	static IValue *newArray(size_t n);
 	static IValue *newObject();
 
 };
@@ -359,6 +374,21 @@ inline std::string Value::asString() const
 }
 
 // array
+template <typename T>
+inline Value::Value(const T &v) : value(newArray(v.size()))
+{
+	std::copy(v.begin(), v.end(), array().begin());
+}
+
+template <typename T>
+inline Value &Value::operator=(const T &v)
+{
+	value = newArray(v.size());
+	std::copy(v.begin(), v.end(), array().begin());
+
+	return *this;
+}
+
 inline void Value::resize(size_t sz)
 {
 	value->resize(sz);
@@ -414,6 +444,29 @@ inline Value::Array &Value::array()
 }
 
 // object
+template <typename T>
+inline Value::Value(const std::map<std::string, T> &v) : value(newObject())
+{
+	Object &o = object();
+
+	for (typename std::map<std::string, T>::const_iterator I = v.begin(); I != v.end(); ++I) {
+		o.insert(std::make_pair(I->first, I->second));
+	}
+}
+
+template <typename T>
+inline Value &Value::operator=(const std::map<std::string, T> &v)
+{
+	value = newObject();
+	Object &o = object();
+
+	for (typename std::map<std::string, T>::const_iterator I = v.begin(); I != v.end(); ++I) {
+		o.insert(std::make_pair(I->first, I->second));
+	}
+
+	return *this;
+}
+
 inline Value &Value::operator[](const std::string &f)
 {
 	return value->operator[](f);
@@ -511,9 +564,9 @@ inline void Value::toStream(std::ostream &o) const
 	value->toStream(o);
 }
 
-inline Value Array()
+inline Value Array(size_t n = 0)
 {
-	return Value::newArray();
+	return Value::newArray(n);
 }
 
 inline Value Object()
