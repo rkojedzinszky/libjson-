@@ -21,7 +21,17 @@ int IBool::asInt() const
 	return value ? 1 : 0;
 }
 
+unsigned IBool::asUInt() const
+{
+	return value ? 1 : 0;
+}
+
 long long IBool::asLong() const
+{
+	return value ? 1 : 0;
+}
+
+unsigned long long IBool::asULong() const
 {
 	return value ? 1 : 0;
 }

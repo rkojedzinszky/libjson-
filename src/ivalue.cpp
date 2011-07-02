@@ -22,7 +22,17 @@ int IValue::getInt() const
 	throw std::bad_cast();
 }
 
+unsigned IValue::getUInt() const
+{
+	throw std::bad_cast();
+}
+
 long long IValue::getLong() const
+{
+	throw std::bad_cast();
+}
+
+unsigned long long IValue::getULong() const
 {
 	throw std::bad_cast();
 }
@@ -47,7 +57,17 @@ int IValue::asInt() const
 	throw std::bad_cast();
 }
 
+unsigned IValue::asUInt() const
+{
+	throw std::bad_cast();
+}
+
 long long IValue::asLong() const
+{
+	throw std::bad_cast();
+}
+
+unsigned long long IValue::asULong() const
 {
 	throw std::bad_cast();
 }

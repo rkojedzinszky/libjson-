@@ -18,7 +18,9 @@ public:
 	// converter functions
 	bool asBool() const;
 	int asInt() const;
+	unsigned asUInt() const;
 	long long asLong() const;
+	unsigned long long asULong() const;
 
 	bool operator==(const IValue &r) const;
 

@@ -27,7 +27,9 @@ public:
 
 	// numeric
 	virtual int getInt() const;
+	virtual unsigned getUInt() const;
 	virtual long long getLong() const;
+	virtual unsigned long long getULong() const;
 	virtual double getDouble() const;
 
 	// string
@@ -36,7 +38,9 @@ public:
 	// converter functions
 	virtual bool asBool() const;
 	virtual int asInt() const;
+	virtual unsigned asUInt() const;
 	virtual long long asLong() const;
+	virtual unsigned long long asULong() const;
 	virtual double asDouble() const;
 	virtual std::string asString() const;
 

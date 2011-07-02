@@ -23,9 +23,19 @@ int INumeric::getInt() const
 	return get<int>();
 }
 
+unsigned INumeric::getUInt() const
+{
+	return get<unsigned>();
+}
+
 long long INumeric::getLong() const
 {
 	return get<long long>();
+}
+
+unsigned long long INumeric::getULong() const
+{
+	return get<unsigned long long>();
 }
 
 double INumeric::getDouble() const
@@ -40,12 +50,22 @@ bool INumeric::asBool() const
 
 int INumeric::asInt() const
 {
-	return getInt();
+	return get<int>();
+}
+
+unsigned INumeric::asUInt() const
+{
+	return get<unsigned>();
 }
 
 long long INumeric::asLong() const
 {
-	return getLong();
+	return get<long long>();
+}
+
+unsigned long long INumeric::asULong() const
+{
+	return get<unsigned long long>();
 }
 
 double INumeric::asDouble() const

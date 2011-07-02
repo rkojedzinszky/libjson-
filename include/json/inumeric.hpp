@@ -25,13 +25,17 @@ public:
 	template <typename T>
 	INumeric(T v);
 	int getInt() const;
+	unsigned getUInt() const;
 	long long getLong() const;
+	unsigned long long getULong() const;
 	double getDouble() const;
 
 	// converter functions
 	bool asBool() const;
 	int asInt() const;
+	unsigned asUInt() const;
 	long long asLong() const;
+	unsigned long long asULong() const;
 	double asDouble() const;
 	std::string asString() const;
 

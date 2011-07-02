@@ -54,11 +54,21 @@ public:
 	int getInt() const;
 	Value &operator=(int v);
 	operator int() const;
+	Value(unsigned v);
+	Value &setUInt(unsigned v);
+	unsigned getUInt() const;
+	Value &operator=(unsigned v);
+	operator unsigned() const;
 	Value(long long v);
 	Value &setLong(long long v);
 	long long getLong() const;
 	Value &operator=(long long v);
 	operator long long() const;
+	Value(unsigned long long v);
+	Value &setULong(unsigned long long v);
+	unsigned long long getULong() const;
+	Value &operator=(unsigned long long v);
+	operator unsigned long long() const;
 	Value(double v);
 	Value &setDouble(double v);
 	double getDouble() const;
@@ -78,7 +88,9 @@ public:
 	// converter functions
 	bool asBool() const;
 	int asInt() const;
+	unsigned asUInt() const;
 	long long asLong() const;
+	unsigned long long asULong() const;
 	double asDouble() const;
 	std::string asString() const;
 
@@ -125,9 +137,15 @@ public:
 	bool operator==(const int v) const;
 	bool operator<(const int v) const;
 	bool operator<=(const int v) const;
+	bool operator==(const unsigned v) const;
+	bool operator<(const unsigned v) const;
+	bool operator<=(const unsigned v) const;
 	bool operator==(const long long v) const;
 	bool operator<(const long long v) const;
 	bool operator<=(const long long v) const;
+	bool operator==(const unsigned long long v) const;
+	bool operator<(const unsigned long long v) const;
+	bool operator<=(const unsigned long long v) const;
 	bool operator==(const double v) const;
 	bool operator<(const double v) const;
 	bool operator<=(const double v) const;
@@ -225,7 +243,8 @@ inline Value::operator bool() const
 }
 
 // numeric
-inline Value::Value(int v) : value(new INumeric(v))
+
+inline Value::Value(int v) : value(new INumeric(v))/*{{{*/
 {
 }
 
@@ -249,9 +268,35 @@ inline Value &Value::operator=(int v)
 inline Value::operator int() const
 {
 	return getInt();
+}/*}}}*/
+
+inline Value::Value(unsigned v) : value(new INumeric(v))/*{{{*/
+{
 }
 
-inline Value::Value(long long v) : value(new INumeric(v))
+inline Value &Value::setUInt(unsigned v)
+{
+	value = new INumeric(v);
+
+	return *this;
+}
+
+inline unsigned Value::getUInt() const
+{
+	return value->getUInt();
+}
+
+inline Value &Value::operator=(unsigned v)
+{
+	return setUInt(v);
+}
+
+inline Value::operator unsigned() const
+{
+	return getUInt();
+}/*}}}*/
+
+inline Value::Value(long long v) : value(new INumeric(v))/*{{{*/
 {
 }
 
@@ -275,9 +320,35 @@ inline Value &Value::operator=(long long v)
 inline Value::operator long long() const
 {
 	return getLong();
+}/*}}}*/
+
+inline Value::Value(unsigned long long v) : value(new INumeric(v))/*{{{*/
+{
 }
 
-inline Value::Value(double v) : value(new INumeric(v))
+inline Value &Value::setULong(unsigned long long v)
+{
+	value = new INumeric(v);
+
+	return *this;
+}
+
+inline unsigned long long Value::getULong() const
+{
+	return value->getULong();
+}
+
+inline Value &Value::operator=(unsigned long long v)
+{
+	return setULong(v);
+}
+
+inline Value::operator unsigned long long() const
+{
+	return getULong();
+}/*}}}*/
+
+inline Value::Value(double v) : value(new INumeric(v))/*{{{*/
 {
 }
 
@@ -301,7 +372,7 @@ inline Value &Value::operator=(double v)
 inline Value::operator double() const
 {
 	return getDouble();
-}
+}/*}}}*/
 
 // string
 inline Value::Value(const std::string &s) : value(new IString(s))
@@ -357,9 +428,19 @@ inline int Value::asInt() const
 	return value->asInt();
 }
 
+inline unsigned Value::asUInt() const
+{
+	return value->asUInt();
+}
+
 inline long long Value::asLong() const
 {
 	return value->asLong();
+}
+
+inline unsigned long long Value::asULong() const
+{
+	return value->asULong();
 }
 
 inline double Value::asDouble() const
@@ -531,7 +612,9 @@ inline bool Value::operator<=(const Value &r) const
 
 VALUE_COMPARE(bool, getBool)
 VALUE_COMPARE(int, getInt)
+VALUE_COMPARE(unsigned, getUInt)
 VALUE_COMPARE(long long, getLong)
+VALUE_COMPARE(unsigned long long, getULong)
 VALUE_COMPARE(double, getDouble)
 VALUE_COMPARE(std::string &, getString)
 VALUE_COMPARE(char *, getString)
