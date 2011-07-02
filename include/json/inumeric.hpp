@@ -3,6 +3,7 @@
 
 #include <sstream>
 #include <stdexcept>
+#include <typeinfo>
 
 #include <json/iscalar.hpp>
 
@@ -63,7 +64,7 @@ INumeric::INumeric(T v) : value(static_cast<double>(v))
 	if (!numbers_equal(value, v)) {
 		std::ostringstream o;
 		o.precision(20);
-		o << __PRETTY_FUNCTION__ << ": " << v << " cannot be stored without loss";
+		o << "INumeric::INumeric<" << typeid(T).name() << ">(): " << v << " cannot be stored without loss";
 		throw std::domain_error(o.str());
 	}
 }

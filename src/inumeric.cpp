@@ -11,7 +11,7 @@ T INumeric::get() const
 	if (!numbers_equal(r, value)) {
 		std::ostringstream o;
 		o.precision(20);
-		o << __PRETTY_FUNCTION__ << ": " << value << " cannot be stored without loss";
+		o << "INumeric::get<" << typeid(T).name() << ">(): " << value << " cannot be stored without loss";
 		throw std::domain_error(o.str());
 	}
 
