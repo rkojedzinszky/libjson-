@@ -38,7 +38,7 @@ unsigned long long IBool::asULong() const
 
 bool IBool::operator==(const IValue &r) const
 {
-	return value == dynamic_cast<const IBool&>(r).value;
+	return value == r.getBool();
 }
 
 void IBool::toStream(std::ostream &o) const

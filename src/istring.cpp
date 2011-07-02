@@ -67,17 +67,17 @@ std::string IString::asString() const
 
 bool IString::operator==(const IValue &r) const
 {
-	return value == dynamic_cast<const IString&>(r).value;
+	return value == r.getString();
 }
 
 bool IString::operator<(const IValue &r) const
 {
-	return value < dynamic_cast<const IString&>(r).value;
+	return value < r.getString();
 }
 
 bool IString::operator<=(const IValue &r) const
 {
-	return value <= dynamic_cast<const IString&>(r).value;
+	return value <= r.getString();
 }
 
 void IString::toStream(std::ostream &o) const

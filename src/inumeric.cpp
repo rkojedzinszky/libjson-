@@ -85,17 +85,17 @@ std::string INumeric::asString() const
 
 bool INumeric::operator==(const IValue &r) const
 {
-	return value == dynamic_cast<const INumeric&>(r).value;
+	return value == r.getDouble();
 }
 
 bool INumeric::operator<(const IValue &r) const
 {
-	return value < dynamic_cast<const INumeric&>(r).value;
+	return value < r.getDouble();
 }
 
 bool INumeric::operator<=(const IValue &r) const
 {
-	return value <= dynamic_cast<const INumeric&>(r).value;
+	return value <= r.getDouble();
 }
 
 void INumeric::toStream(std::ostream &o) const
