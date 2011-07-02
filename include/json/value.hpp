@@ -96,9 +96,17 @@ public:
 
 	// array
 	template <typename T>
-	Value(const T &v);
+	Value(const std::vector<T> &v);
 	template <typename T>
-	Value &operator=(const T &v);
+	Value(const std::deque<T> &v);
+	template <typename T>
+	Value(const std::list<T> &v);
+	template <typename T>
+	Value &operator=(const std::vector<T> &v);
+	template <typename T>
+	Value &operator=(const std::deque<T> &v);
+	template <typename T>
+	Value &operator=(const std::list<T> &v);
 
 	Array &array();
 	void resize(size_t sz);
@@ -455,13 +463,41 @@ inline std::string Value::asString() const
 
 // array
 template <typename T>
-inline Value::Value(const T &v) : value(newArray(v.size()))
+inline Value::Value(const std::vector<T> &v) : value(newArray(v.size()))
+{
+	std::copy(v.begin(), v.end(), array().begin());
+}
+template <typename T>
+inline Value::Value(const std::deque<T> &v) : value(newArray(v.size()))
+{
+	std::copy(v.begin(), v.end(), array().begin());
+}
+template <typename T>
+inline Value::Value(const std::list<T> &v) : value(newArray(v.size()))
 {
 	std::copy(v.begin(), v.end(), array().begin());
 }
 
 template <typename T>
-inline Value &Value::operator=(const T &v)
+inline Value &Value::operator=(const std::vector<T> &v)
+{
+	value = newArray(v.size());
+	std::copy(v.begin(), v.end(), array().begin());
+
+	return *this;
+}
+
+template <typename T>
+inline Value &Value::operator=(const std::deque<T> &v)
+{
+	value = newArray(v.size());
+	std::copy(v.begin(), v.end(), array().begin());
+
+	return *this;
+}
+
+template <typename T>
+inline Value &Value::operator=(const std::list<T> &v)
 {
 	value = newArray(v.size());
 	std::copy(v.begin(), v.end(), array().begin());
