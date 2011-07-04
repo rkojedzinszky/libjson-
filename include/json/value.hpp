@@ -8,7 +8,6 @@
 
 #include <ostream>
 #include <stdexcept>
-#include <boost/intrusive_ptr.hpp>
 
 #include <json/ibool.hpp>
 #include <json/inumeric.hpp>
@@ -176,7 +175,7 @@ public:
 	friend Value Object();
 
 private:
-	typedef boost::intrusive_ptr<IValue> valueType;
+	typedef refcounted_ptr<IValue> valueType;
 	valueType value;
 
 protected:
