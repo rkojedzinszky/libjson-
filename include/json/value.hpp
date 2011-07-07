@@ -107,16 +107,16 @@ public:
 	template <typename T>
 	Value &operator=(const std::list<T> &v);
 
-	Array &array();
-	void resize(size_t sz);
-	Value &operator[](int idx);
-	Value &at(int idx);
-	Value &front();
-	Value &back();
-	Value &push_front(const Value &v);
-	Value &push_back(const Value &v);
-	Value pop_front();
-	Value pop_back();
+	Array &array() const;
+	void resize(size_t sz) const;
+	Value &operator[](int idx) const;
+	Value &at(int idx) const;
+	Value &front() const;
+	Value &back() const;
+	const Value &push_front(const Value &v) const;
+	const Value &push_back(const Value &v) const;
+	Value pop_front() const;
+	Value pop_back() const;
 
 	// object
 	template <typename T>
@@ -124,11 +124,11 @@ public:
 	template <typename T>
 	Value &operator=(const std::map<std::string, T> &v);
 
-	Object &object();
-	Value &operator[](const std::string &f);
-	Value &operator[](const char *f);
-	size_t erase(const std::string &f);
-	size_t erase(const char *f);
+	Object &object() const;
+	Value &operator[](const std::string &f) const;
+	Value &operator[](const char *f) const;
+	size_t erase(const std::string &f) const;
+	size_t erase(const char *f) const;
 
 	// common to array & object
 	size_t size() const;
@@ -504,62 +504,62 @@ inline Value &Value::operator=(const std::list<T> &v)
 	return *this;
 }
 
-inline void Value::resize(size_t sz)
+inline Value::Array &Value::array() const
+{
+	return value->array();
+}
+
+inline void Value::resize(size_t sz) const
 {
 	array().resize(sz);
 }
 
-inline Value &Value::operator[](int idx)
+inline Value &Value::operator[](int idx) const
 {
 	return array()[idx];
 }
 
-inline Value &Value::at(int idx)
+inline Value &Value::at(int idx) const
 {
 	return array().at(idx);
 }
 
-inline Value &Value::front()
+inline Value &Value::front() const
 {
 	return array().front();
 }
 
-inline Value &Value::back()
+inline Value &Value::back() const
 {
 	return array().back();
 }
 
-inline Value &Value::push_front(const Value &v)
+inline const Value &Value::push_front(const Value &v) const
 {
 	array().push_front(v);
 
 	return *this;
 }
 
-inline Value &Value::push_back(const Value &v)
+inline const Value &Value::push_back(const Value &v) const
 {
 	array().push_back(v);
 
 	return *this;
 }
 
-inline Value Value::pop_front()
+inline Value Value::pop_front() const
 {
 	Value r = front();
 	array().pop_front();
 	return r;
 }
 
-inline Value Value::pop_back()
+inline Value Value::pop_back() const
 {
 	Value r = back();
 	array().pop_back();
 	return r;
-}
-
-inline Value::Array &Value::array()
-{
-	return value->array();
 }
 
 // object
@@ -586,29 +586,29 @@ inline Value &Value::operator=(const std::map<std::string, T> &v)
 	return *this;
 }
 
-inline Value &Value::operator[](const std::string &f)
+inline Value::Object &Value::object() const
+{
+	return value->object();
+}
+
+inline Value &Value::operator[](const std::string &f) const
 {
 	return object()[f];
 }
 
-inline Value &Value::operator[](const char *f)
+inline Value &Value::operator[](const char *f) const
 {
 	return object()[std::string(f)];
 }
 
-inline size_t Value::erase(const std::string &f)
+inline size_t Value::erase(const std::string &f) const
 {
 	return object().erase(f);
 }
 
-inline size_t Value::erase(const char *f)
+inline size_t Value::erase(const char *f) const
 {
 	return object().erase(std::string(f));
-}
-
-inline Value::Object &Value::object()
-{
-	return value->object();
 }
 
 inline size_t Value::size() const
