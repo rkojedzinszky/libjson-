@@ -27,64 +27,207 @@ class ParserEndOfStreamError : public ParserError {
 		ParserEndOfStreamError();
 };
 
+/// The main JSON container
+
+/// This can hold data types as specified in JSON:
+/// - null value
+/// - boolean
+/// - number
+/// - string
+/// - array
+/// - object (hash)
 class Value
 {
 public:
 	typedef IValue::Array Array;
 	typedef IValue::Object Object;
 
+	/// @name NULL value
+	//@{
+
+	/// Constructs a null value
 	Value();
+
+	//@}
+
+	/// Initializes with the value of v (not deep copy)
 	Value(const Value &v);
+
+	/// Copies the value of v (not deep copy)
 	Value &operator=(const Value &v);
 
-	// scalars
+	/** Tests whether a value is NULL
+	 * Returns TRUE for NULL, Array and Object */
 	bool isNull() const;
 
-	// boolean
+	///@name Boolean values
+	//@{
+
+	/// Construct from bool
 	Value(bool v);
+
+	/// Set as bool
 	Value &setBool(bool v);
+
+	/** Returns boolean value
+	 * \exception std::bad_cast
+	 */
 	bool getBool() const;
+
+	/// Assign value
 	Value &operator=(bool v);
+
+	/** Cast to bool
+	 * \exception std::bad_cast
+	 */
 	operator bool() const;
 
-	// numeric
+	//@}
+
+	/// @name Numeric values
+	//@{
+
+	/// Construct from int
 	Value(int v);
+
+	/// Set from int
 	Value &setInt(int v);
+
+	/** Return int value
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	int getInt() const;
+
+	/// Assign an int
 	Value &operator=(int v);
+
+	/** Cast to int
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	operator int() const;
+
+	/// Construct from unsigned
 	Value(unsigned v);
+
+	/// Set from unsigned
 	Value &setUInt(unsigned v);
+
+	/** Return unsigned value
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	unsigned getUInt() const;
+
+	/// Assign an unsigned
 	Value &operator=(unsigned v);
+
+	/** Cast to unsigned
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	operator unsigned() const;
+
+	/// Construct from long long
 	Value(long long v);
+
+	/// Set from long long
 	Value &setLong(long long v);
+
+	/** Return long long value
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	long long getLong() const;
+
+	/// Assign a long long
 	Value &operator=(long long v);
+
+	/** Cast to long long
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	operator long long() const;
+
+	/// Construct from unsigned long long
 	Value(unsigned long long v);
+
+	/// Set from unsigned long long
 	Value &setULong(unsigned long long v);
+
+	/** Return unsigned long long value
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	unsigned long long getULong() const;
+
+	/// Assign an unsigned long long
 	Value &operator=(unsigned long long v);
+
+	/** Cast to unsigned long long
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	operator unsigned long long() const;
+
+	/// Construct from double
 	Value(double v);
+
+	/// Set from double
 	Value &setDouble(double v);
+
+	/** Return double Value
+	 * \exception std::bad_cast
+	 * \exception std::domain_error
+	 */
 	double getDouble() const;
+
+	/// Assig a double
 	Value &operator=(double v);
+
+	/** Cast to double
+	 * \exception std::bad_cast
+	 */
 	operator double() const;
 
-	// string
+	//@}
+
+	/// @name String values
+	//@{
+
+	/// Construct from std::string
 	Value(const std::string &s);
+
+	/// Set from std::string
 	Value &setString(const std::string &s);
+
+	/** Return std::string value
+	 * \exception std::bad_cast
+	 */
 	const std::string &getString() const;
+
+	/// Assign an std::string
 	Value &operator=(const std::string &s);
+
+	/** Cast to std::string
+	 * \exception std::bad_cast
+	 */
 	operator const std::string&() const;
+
+	/// Construct from const char *
 	Value(const char *s);
+
+	/// Set from const char *
 	Value &setString(const char *s);
+
+	/// Assig a const char *
 	Value &operator=(const char *s);
 
-	// converter functions
+	//@}
+
+	/// @name Type conversion functions
+	//@{
 	bool asBool() const;
 	int asInt() const;
 	unsigned asUInt() const;
@@ -92,21 +235,30 @@ public:
 	unsigned long long asULong() const;
 	double asDouble() const;
 	std::string asString() const;
+	//@}
 
-	// array
+	/// @name Array values
+	//@{
+	/// Construct from std::vector
 	template <typename T>
 	Value(const std::vector<T> &v);
+	/// Construct from std::deque
 	template <typename T>
 	Value(const std::deque<T> &v);
+	/// Construct from std::list
 	template <typename T>
 	Value(const std::list<T> &v);
+	/// Assign an std::vector
 	template <typename T>
 	Value &operator=(const std::vector<T> &v);
+	/// Assign an std::deque
 	template <typename T>
 	Value &operator=(const std::deque<T> &v);
+	/// Assign an std::list
 	template <typename T>
 	Value &operator=(const std::list<T> &v);
 
+	/// Return real STL Array container
 	Array &array() const;
 	void resize(size_t sz) const;
 	Value &operator[](int idx) const;
@@ -117,23 +269,30 @@ public:
 	const Value &push_back(const Value &v) const;
 	Value pop_front() const;
 	Value pop_back() const;
+	//@}
 
-	// object
+	/// @name Object Value
+	//@{
+	/// Construct from std::map<string, T>
 	template <typename T>
 	Value(const std::map<std::string, T> &v);
+	/// Assign an std::map<string, T>
 	template <typename T>
 	Value &operator=(const std::map<std::string, T> &v);
 
+	/// Return real STL Object container
 	Object &object() const;
 	Value &operator[](const std::string &f) const;
 	Value &operator[](const char *f) const;
 	size_t erase(const std::string &f) const;
 	size_t erase(const char *f) const;
+	//@}
 
-	// common to array & object
+	/// Returns the size od an Array or Object
 	size_t size() const;
 
-	// operators
+	/// @name Comparison operators
+	//@{
 	bool operator==(const Value &r) const;
 	bool operator<(const Value &r) const;
 	bool operator<=(const Value &r) const;
@@ -166,10 +325,15 @@ public:
 	template <typename T> bool operator!=(const T v) const;
 	template <typename T> bool operator>(const T v) const;
 	template <typename T> bool operator>=(const T v) const;
+	//@}
 
-	// serialization
+	/// @name Serialization functions
+	//@{
+	/// Serialize to std::ostream
 	void toStream(std::ostream &o) const;
+	/// Deserialize from std::istream
 	Value &fromStream(std::istream &i);
+	//@}
 
 	friend Value Array(size_t n);
 	friend Value Object();
