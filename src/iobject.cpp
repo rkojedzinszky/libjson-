@@ -7,6 +7,11 @@
 namespace JSON
 {
 
+bool IObject::isNull() const
+{
+	return false;
+}
+
 IValue::Object &IObject::object()
 {
 	return value;

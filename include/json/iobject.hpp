@@ -17,6 +17,8 @@ private:
 public:
 	Object &object();
 
+	bool isNull() const;
+
 	size_t size() const;
 
 	void toStream(std::ostream &o) const;

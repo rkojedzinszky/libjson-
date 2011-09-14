@@ -57,7 +57,7 @@ public:
 	Value &operator=(const Value &v);
 
 	/** Tests whether a value is NULL
-	 * Returns TRUE for NULL, Array and Object */
+	 * Returns TRUE for NULL, false for any other values */
 	bool isNull() const;
 
 	///@name Boolean values

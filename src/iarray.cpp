@@ -8,6 +8,11 @@
 namespace JSON
 {
 
+bool IArray::isNull() const
+{
+	return false;
+}
+
 IValue::Array &IArray::array()
 {
 	return value;
