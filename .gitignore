@@ -8,9 +8,6 @@ Makefile.in
 *.so*
 aclocal.m4
 config*
-debian/libjson++*
-debian/tmp
-debian/files
 install-sh
 libtool
 ltmain.sh
