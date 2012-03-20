@@ -12,9 +12,6 @@ public:
 	// scalars
 	bool isNull() const;
 
-	// common to array & hash
-	size_t size() const;
-
 	// serialization
 	virtual void toStream(std::ostream &o) const = 0;
 	virtual void fromStream(std::istream &i) = 0;
