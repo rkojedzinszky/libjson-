@@ -16,7 +16,8 @@ private:
 public:
 	explicit IArray(size_t n);
 
-	bool isNull() const;
+	// return type info
+	Type type() const;
 
 	Array &array();
 

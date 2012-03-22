@@ -7,9 +7,9 @@
 namespace JSON
 {
 
-bool IObject::isNull() const
+IValue::Type IObject::type() const
 {
-	return false;
+	return JSON_OBJECT;
 }
 
 IValue::Object &IObject::object()

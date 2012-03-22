@@ -8,9 +8,9 @@
 namespace JSON
 {
 
-bool IArray::isNull() const
+IValue::Type IArray::type() const
 {
-	return false;
+	return JSON_ARRAY;
 }
 
 IValue::Array &IArray::array()

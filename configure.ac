@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
-AC_INIT([libjson], [0.2], [krichy@cflinux.hu])
+AC_INIT([libjson], [0.3], [krichy@cflinux.hu])
 AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR([include/json/value.hpp])
 AC_CONFIG_HEADERS([config.h])

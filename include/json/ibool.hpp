@@ -15,6 +15,9 @@ public:
 	IBool(bool v = false);
 	bool getBool() const;
 
+	// return type info
+	Type type() const;
+
 	// converter functions
 	bool asBool() const;
 	int asInt() const;

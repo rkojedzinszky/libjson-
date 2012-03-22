@@ -6,6 +6,11 @@
 namespace JSON
 {
 
+IValue::Type IBool::type() const
+{
+	return JSON_BOOL;
+}
+
 bool IBool::getBool() const
 {
 	return value;

@@ -7,9 +7,9 @@
 namespace JSON
 {
 
-bool IValue::isNull() const
+IValue::Type IValue::type() const
 {
-	return true;
+	return JSON_NULL;
 }
 
 bool IValue::getBool() const

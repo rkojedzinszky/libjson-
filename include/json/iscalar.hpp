@@ -9,8 +9,8 @@ namespace JSON
 class IScalar : public IValue
 {
 public:
-	// scalars
-	bool isNull() const;
+	// return type info
+	Type type() const = 0;
 
 	// serialization
 	virtual void toStream(std::ostream &o) const = 0;

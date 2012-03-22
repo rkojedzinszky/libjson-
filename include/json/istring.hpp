@@ -15,6 +15,9 @@ public:
 	IString(const std::string &s = "");
 	const std::string &getString() const;
 
+	// return type info
+	Type type() const;
+
 	// converter functions
 	bool asBool() const;
 	int asInt() const;

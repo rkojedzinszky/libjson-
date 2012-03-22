@@ -15,9 +15,10 @@ private:
 	Object value;
 
 public:
-	Object &object();
+	// return type info
+	Type type() const;
 
-	bool isNull() const;
+	Object &object();
 
 	size_t size() const;
 

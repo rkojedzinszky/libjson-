@@ -22,6 +22,9 @@ private:
 	T get() const;
 
 public:
+	// return type info
+	Type type() const;
+
 	INumeric(double v);
 	template <typename T>
 	INumeric(T v);

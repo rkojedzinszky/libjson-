@@ -39,6 +39,10 @@ class ParserEndOfStreamError : public ParserError {
 class Value
 {
 public:
+	typedef IValue::Type Type;
+
+	Type type() const;
+
 	typedef IValue::Array Array;
 	typedef IValue::Object Object;
 
@@ -362,6 +366,11 @@ inline ParserEndOfStreamError::ParserEndOfStreamError() : ParserError("eof detec
 {
 }
 
+inline Value::Type Value::type() const
+{
+	return value->type();
+}
+
 inline Value::Value(IValue *v) : value(v)
 {
 }
@@ -383,7 +392,7 @@ inline Value &Value::operator=(const Value &v)
 // scalars
 inline bool Value::isNull() const
 {
-	return value->isNull();
+	return value->type() == IValue::JSON_NULL;
 }
 
 // boolean

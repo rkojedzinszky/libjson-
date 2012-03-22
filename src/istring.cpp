@@ -8,6 +8,11 @@
 namespace JSON
 {
 
+IValue::Type IString::type() const
+{
+	return JSON_STRING;
+}
+
 const std::string &IString::getString() const
 {
 	return value;

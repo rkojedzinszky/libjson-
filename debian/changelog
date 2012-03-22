@@ -1,3 +1,9 @@
+libjson++ (0.3) unstable; urgency=low
+
+* New upstream release
+
+ -- Richard Kojedzinszky <krichy@cflinux.hu>  Thu, 22 Mar 2012 23:45:44 +0100
+
 libjson++ (0.2) unstable; urgency=low
 
   * New upstream release

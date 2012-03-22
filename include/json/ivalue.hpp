@@ -16,11 +16,22 @@ class Value;
 class IValue : public refcounted
 {
 public:
+	enum Type {
+		JSON_NULL,
+		JSON_BOOL,
+		JSON_NUMBER,
+		JSON_STRING,
+		JSON_ARRAY,
+		JSON_OBJECT
+	};
+
+	// return type info
+	virtual Type type() const;
+
 	typedef std::deque<Value> Array;
 	typedef std::map<std::string, Value> Object;
 
 	// scalars
-	virtual bool isNull() const;
 
 	// boolean
 	virtual bool getBool() const;

@@ -3,6 +3,11 @@
 namespace JSON
 {
 
+IValue::Type INumeric::type() const
+{
+	return JSON_NUMBER;
+}
+
 template <typename T>
 T INumeric::get() const
 {
