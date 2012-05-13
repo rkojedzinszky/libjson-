@@ -3,13 +3,13 @@ cmake_minimum_required (VERSION 2.8)
 project (libjson++)
 
 execute_process(
-		COMMAND sh -c "git describe --tags HEAD | sed -e 's/\\..*//'"
+		COMMAND sh -c "git describe --tags --abbrev=0 HEAD | sed -e 's/\\..*//'"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 		OUTPUT_VARIABLE libjson++_VERSION_MAJOR
 		OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 execute_process(
-		COMMAND sh -c "git describe --tags HEAD | sed -e 's/-.*//'"
+		COMMAND sh -c "git describe --tags --abbrev=0 HEAD"
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 		OUTPUT_VARIABLE libjson++_VERSION_FULL
 		OUTPUT_STRIP_TRAILING_WHITESPACE
