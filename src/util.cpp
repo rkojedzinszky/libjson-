@@ -45,7 +45,7 @@ void jsonstringtostring(std::string &s, std::istream &i)
 {
 	std::ostringstream o;
 
-	int c = i.get();
+	char c = i.get();
 	if (c != '\"') {
 		throw ParserError(c);
 	}
@@ -88,7 +88,7 @@ void jsonstringtostring(std::string &s, std::istream &i)
 				break;
 			}
 		} else {
-			o << static_cast<char>(c);
+			o << c;
 		}
 	}
 
