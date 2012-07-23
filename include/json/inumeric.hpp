@@ -48,7 +48,7 @@ public:
 	bool operator<=(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	static INumeric * fromStream(std::istream &i);
 };
 
 template <typename F, typename T>

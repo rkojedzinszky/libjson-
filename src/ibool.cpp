@@ -51,9 +51,13 @@ void IBool::toStream(std::ostream &o) const
 	o << std::boolalpha << value;
 }
 
-void IBool::fromStream(std::istream &i)
+IBool * IBool::fromStream(std::istream &i)
 {
-	i >> std::boolalpha >> value;
+	bool v;
+
+	i >> std::boolalpha >> v;
+
+	return new IBool(v);
 }
 
 }; // namespace JSON

@@ -108,9 +108,13 @@ void INumeric::toStream(std::ostream &o) const
 	o << value;
 }
 
-void INumeric::fromStream(std::istream &i)
+INumeric * INumeric::fromStream(std::istream &i)
 {
-	i >> value;
+	double v;
+
+	i >> v;
+
+	return new INumeric(v);
 }
 
 }; // namespace JSON

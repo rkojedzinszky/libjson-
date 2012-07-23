@@ -24,7 +24,7 @@ public:
 	size_t size() const;
 
 	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	static IArray * fromStream(std::istream &i);
 };
 
 inline IArray::IArray(size_t n) : value(n)

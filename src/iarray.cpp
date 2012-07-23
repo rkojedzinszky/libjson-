@@ -43,9 +43,9 @@ void IArray::toStream(std::ostream &o) const
 	o << ']';
 }
 
-void IArray::fromStream(std::istream &i)
+IArray * IArray::fromStream(std::istream &i)
 {
-	value.clear();
+	IArray * r = new IArray(0);
 	int c;
 
 	c = sget(i);
@@ -63,7 +63,7 @@ void IArray::fromStream(std::istream &i)
 
 		JSON::Value v;
 		v.fromStream(i);
-		value.push_back(v);
+		r->value.push_back(v);
 
 		i >> std::ws;
 
@@ -71,6 +71,8 @@ void IArray::fromStream(std::istream &i)
 			i.get();
 		}
 	}
+
+	return r;
 }
 
 }; // namespace JSON

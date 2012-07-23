@@ -12,7 +12,7 @@ private:
 	bool value;
 
 public:
-	IBool(bool v = false);
+	IBool(bool v);
 	bool getBool() const;
 
 	// return type info
@@ -28,7 +28,7 @@ public:
 	bool operator==(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	static IBool * fromStream(std::istream &i);
 };
 
 inline IBool::IBool(bool v) : value(v)

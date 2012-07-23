@@ -12,10 +12,9 @@ Value &Value::fromStream(std::istream &i)
 
 	switch (speek(i)) {
 	case '\"':
-		value = new IString();
+		value = IString::fromStream(i);
 		break;
 	case '-':
-	case '+':
 	case '0':
 	case '1':
 	case '2':
@@ -26,27 +25,25 @@ Value &Value::fromStream(std::istream &i)
 	case '7':
 	case '8':
 	case '9':
-		value = new INumeric(0);
+		value = INumeric::fromStream(i);
 		break;
 	case '[':
-		value = new IArray(0);
+		value = IArray::fromStream(i);
 		break;
 	case '{':
-		value = new IObject();
+		value = IObject::fromStream(i);
 		break;
 	case 't':
 	case 'f':
-		value = new IBool();
+		value = IBool::fromStream(i);
 		break;
 	case 'n':
-		value = new IValue();
+		value = IValue::fromStream(i);
 		break;
 	default:
 		throw ParserError(i.peek());
 		break;
 	}
-
-	value->fromStream(i);
 
 	return *this;
 }

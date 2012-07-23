@@ -32,7 +32,7 @@ public:
 	bool operator<=(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	static IString * fromStream(std::istream &i);
 };
 
 inline IString::IString(const std::string &s) : value(s)

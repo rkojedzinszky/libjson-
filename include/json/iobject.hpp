@@ -23,7 +23,7 @@ public:
 	size_t size() const;
 
 	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	static IObject * fromStream(std::istream &i);
 };
 
 }; // namespace JSON

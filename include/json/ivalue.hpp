@@ -71,7 +71,7 @@ public:
 
 	// serialization
 	virtual void toStream(std::ostream &o) const;
-	virtual void fromStream(std::istream &i);
+	static IValue * fromStream(std::istream &i);
 };
 
 }; // namespace JSON
