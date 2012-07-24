@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 #include <json/ibool.hpp>
-#include <json/inumeric.hpp>
+#include <json/ifixed.hpp>
+#include <json/ifloat.hpp>
 #include <json/istring.hpp>
 
 namespace JSON
@@ -424,13 +425,13 @@ inline Value::operator bool() const
 
 // numeric
 
-inline Value::Value(int v) : value(new INumeric(v))/*{{{*/
+inline Value::Value(int v) : value(new IFixed(v))/*{{{*/
 {
 }
 
 inline Value &Value::setInt(int v)
 {
-	value = new INumeric(v);
+	value = new IFixed(v);
 
 	return *this;
 }
@@ -450,13 +451,13 @@ inline Value::operator int() const
 	return getInt();
 }/*}}}*/
 
-inline Value::Value(unsigned v) : value(new INumeric(v))/*{{{*/
+inline Value::Value(unsigned v) : value(new IFixed(v))/*{{{*/
 {
 }
 
 inline Value &Value::setUInt(unsigned v)
 {
-	value = new INumeric(v);
+	value = new IFixed(v);
 
 	return *this;
 }
@@ -476,13 +477,13 @@ inline Value::operator unsigned() const
 	return getUInt();
 }/*}}}*/
 
-inline Value::Value(long long v) : value(new INumeric(v))/*{{{*/
+inline Value::Value(long long v) : value(new IFixed(v))/*{{{*/
 {
 }
 
 inline Value &Value::setLong(long long v)
 {
-	value = new INumeric(v);
+	value = new IFixed(v);
 
 	return *this;
 }
@@ -502,13 +503,13 @@ inline Value::operator long long() const
 	return getLong();
 }/*}}}*/
 
-inline Value::Value(unsigned long long v) : value(new INumeric(v))/*{{{*/
+inline Value::Value(unsigned long long v) : value(new IFixed(v))/*{{{*/
 {
 }
 
 inline Value &Value::setULong(unsigned long long v)
 {
-	value = new INumeric(v);
+	value = new IFixed(v);
 
 	return *this;
 }
@@ -528,13 +529,13 @@ inline Value::operator unsigned long long() const
 	return getULong();
 }/*}}}*/
 
-inline Value::Value(double v) : value(new INumeric(v))/*{{{*/
+inline Value::Value(double v) : value(new IFloat(v))/*{{{*/
 {
 }
 
 inline Value &Value::setDouble(double v)
 {
-	value = new INumeric(v);
+	value = new IFloat(v);
 
 	return *this;
 }

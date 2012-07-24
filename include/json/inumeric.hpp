@@ -12,43 +12,38 @@ namespace JSON
 
 class INumeric : public IScalar
 {
-private:
-	double value;
-
+protected:
 	template <typename F, typename T>
 	static bool numbers_equal(volatile F &f, T t);
 
-	template <typename T>
-	T get() const;
+	template <typename T, typename S>
+	static T get(const S s);
 
 public:
 	// return type info
 	Type type() const;
 
-	INumeric(double v);
-	template <typename T>
-	INumeric(T v);
-	int getInt() const;
-	unsigned getUInt() const;
-	long long getLong() const;
-	unsigned long long getULong() const;
-	double getDouble() const;
+	int getInt() const = 0;
+	unsigned getUInt() const = 0;
+	long long getLong() const = 0;
+	unsigned long long getULong() const = 0;
+	double getDouble() const = 0;
 
 	// converter functions
-	bool asBool() const;
-	int asInt() const;
-	unsigned asUInt() const;
-	long long asLong() const;
-	unsigned long long asULong() const;
-	double asDouble() const;
-	std::string asString() const;
+	bool asBool() const = 0;
+	int asInt() const = 0;
+	unsigned asUInt() const = 0;
+	long long asLong() const = 0;
+	unsigned long long asULong() const = 0;
+	double asDouble() const = 0;
+	std::string asString() const = 0;
 
-	bool operator==(const IValue &r) const;
-	bool operator<(const IValue &r) const;
-	bool operator<=(const IValue &r) const;
+	bool operator==(const IValue &r) const = 0;
+	bool operator<(const IValue &r) const = 0;
+	bool operator<=(const IValue &r) const = 0;
 
-	void toStream(std::ostream &o) const;
-	static INumeric * fromStream(std::istream &i);
+	void toStream(std::ostream &o) const = 0;
+	static INumeric * fromStream(std::istream &is);
 };
 
 template <typename F, typename T>
@@ -57,20 +52,21 @@ inline bool INumeric::numbers_equal(volatile F &f, T t)
 	return static_cast<T>(f) == t;
 }
 
-inline INumeric::INumeric(double v) : value(v)
+template <typename T, typename S>
+T INumeric::get(const S s)
 {
-}
+	T r = static_cast<T>(s);
 
-template <typename T>
-INumeric::INumeric(T v) : value(static_cast<double>(v))
-{
-	if (!numbers_equal(value, v)) {
+	if (!numbers_equal(r, s)) {
 		std::ostringstream o;
 		o.precision(20);
-		o << "INumeric::INumeric<" << typeid(T).name() << ">(): " << v << " cannot be stored without loss";
+		o << "INumeric::get<" << typeid(T).name() << "," << typeid(S).name() << ">(): " << s << " cannot be stored without loss";
 		throw std::domain_error(o.str());
 	}
+
+	return r;
 }
+
 
 }; // namespace JSON
 
