@@ -134,6 +134,18 @@ public:
 	 */
 	operator unsigned() const;
 
+	/// Construct from long
+	Value(long v);
+
+	/// Assign a long
+	Value &operator=(long v);
+
+	/// Construct from unsigned long
+	Value(unsigned long v);
+
+	/// Assign an unsigned long
+	Value &operator=(unsigned long v);
+
 	/// Construct from long long
 	Value(long long v);
 
@@ -476,6 +488,28 @@ inline Value::operator unsigned() const
 {
 	return getUInt();
 }/*}}}*/
+
+inline Value::Value(long v): value(new IFixed(v))
+{
+}
+
+inline Value &Value::operator=(long v)
+{
+	value = new IFixed(v);
+
+	return *this;
+}
+
+inline Value::Value(unsigned long v): value(new IFixed(v))
+{
+}
+
+inline Value &Value::operator=(unsigned long v)
+{
+	value = new IFixed(v);
+
+	return *this;
+}
 
 inline Value::Value(long long v) : value(new IFixed(v))/*{{{*/
 {
