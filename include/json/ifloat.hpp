@@ -37,7 +37,6 @@ public:
 	bool operator<=(const IValue &r) const;
 
 	void toStream(std::ostream &o) const;
-	static INumeric * fromStream(std::istream &i);
 };
 
 inline IFloat::IFloat(double v) : value(v)
