@@ -41,6 +41,11 @@ unsigned long long IBool::asULong() const
 	return value ? 1 : 0;
 }
 
+std::string IBool::asString() const
+{
+	return value ? "true" : "false";
+}
+
 bool IBool::operator==(const IValue &r) const
 {
 	return value == r.getBool();

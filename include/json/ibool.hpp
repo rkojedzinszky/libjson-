@@ -24,6 +24,7 @@ public:
 	unsigned asUInt() const;
 	long long asLong() const;
 	unsigned long long asULong() const;
+	std::string asString() const;
 
 	bool operator==(const IValue &r) const;
 
