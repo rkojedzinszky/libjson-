@@ -90,9 +90,9 @@ void IString::toStream(std::ostream &o) const
 	stringtojsonstream(value, o);
 }
 
-IString * IString::fromStream(std::istream &i)
+void IString::fromStream(std::istream &i)
 {
-	return new IString(jsonstringtostring(i));
+	jsonstringtostring(value, i);
 }
 
 }; // namespace JSON

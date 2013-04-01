@@ -2,8 +2,6 @@ install(FILES
 	iarray.hpp
 	ibool.hpp
 	inumeric.hpp
-	ifixed.hpp
-	ifloat.hpp
 	iobject.hpp
 	iscalar.hpp
 	istring.hpp

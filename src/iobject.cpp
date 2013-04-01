@@ -47,9 +47,9 @@ void IObject::toStream(std::ostream &o) const
 	o << '}';
 }
 
-IObject * IObject::fromStream(std::istream &i)
+void IObject::fromStream(std::istream &i)
 {
-	IObject * r = new IObject();
+	value.clear();
 	int c;
 
 	c = sget(i);
@@ -65,9 +65,10 @@ IObject * IObject::fromStream(std::istream &i)
 			break;
 		}
 
-		std::string k = jsonstringtostring(i);
+		std::string k;
 		JSON::Value v;
 
+		jsonstringtostring(k, i);
 		i >> std::ws;
 
 		c = sget(i);
@@ -76,7 +77,7 @@ IObject * IObject::fromStream(std::istream &i)
 		}
 
 		v.fromStream(i);
-		r->value[k] = v;
+		value[k] = v;
 
 		i >> std::ws;
 
@@ -84,8 +85,6 @@ IObject * IObject::fromStream(std::istream &i)
 			i.get();
 		}
 	}
-
-	return r;
 }
 
 }; // namespace JSON

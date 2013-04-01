@@ -2,8 +2,6 @@ set(json_SOURCES
 		iarray
 		ibool
 		inumeric
-		ifixed
-		ifloat
 		iobject
 		istring
 		ivalue

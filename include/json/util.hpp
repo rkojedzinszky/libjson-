@@ -9,7 +9,7 @@ namespace JSON
 {
 
 void stringtojsonstream(const std::string &s, std::ostream &o);
-std::string jsonstringtostring(std::istream &i);
+void jsonstringtostring(std::string &s, std::istream &i);
 
 inline int sget(std::istream &i)
 {

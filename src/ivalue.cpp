@@ -117,13 +117,11 @@ void IValue::toStream(std::ostream &o) const
 	o << "null";
 }
 
-IValue * IValue::fromStream(std::istream &i)
+void IValue::fromStream(std::istream &i)
 {
 	if (sget(i) != 'n' || sget(i) != 'u' || sget(i) != 'l' || sget(i) != 'l') {
 		throw ParserError("expecting null");
 	}
-
-	return new IValue();
 }
 
 }; // namespace JSON

@@ -41,7 +41,7 @@ void stringtojsonstream(const std::string &s, std::ostream &o)
 	o << "\"";
 }
 
-std::string jsonstringtostring(std::istream &i)
+void jsonstringtostring(std::string &s, std::istream &i)
 {
 	std::ostringstream o;
 
@@ -92,7 +92,7 @@ std::string jsonstringtostring(std::istream &i)
 		}
 	}
 
-	return o.str();
+	s = o.str();
 }
 
 };
