@@ -14,102 +14,102 @@ IValue::Type IValue::type() const
 
 bool IValue::getBool() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 int IValue::getInt() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 unsigned IValue::getUInt() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 long long IValue::getLong() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 unsigned long long IValue::getULong() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 double IValue::getDouble() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 const std::string &IValue::getString() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 bool IValue::asBool() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 int IValue::asInt() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 unsigned IValue::asUInt() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 long long IValue::asLong() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 unsigned long long IValue::asULong() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 double IValue::asDouble() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 std::string IValue::asString() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 IValue::Array &IValue::array()
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 IValue::Object &IValue::object()
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 size_t IValue::size() const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 bool IValue::operator==(const IValue & /* r */) const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 bool IValue::operator<(const IValue & /* r */) const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 bool IValue::operator<=(const IValue & /* r */) const
 {
-	throw std::bad_cast();
+	throw bad_cast();
 }
 
 void IValue::toStream(std::ostream &o) const

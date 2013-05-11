@@ -27,6 +27,9 @@ class ParserEndOfStreamError : public ParserError {
 		ParserEndOfStreamError();
 };
 
+class bad_cast : public std::bad_cast {
+};
+
 /// The main JSON container
 
 /// This can hold data types as specified in JSON:
