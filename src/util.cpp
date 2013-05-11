@@ -9,7 +9,7 @@ void stringtojsonstream(const std::string &s, std::ostream &o)
 {
 	o << "\"";
 
-	for (std::string::const_iterator I = s.begin(); I != s.end(); I++) {
+	for (std::string::const_iterator I = s.begin(); I != s.end(); ++I) {
 		switch(*I) {
 		case '\"':
 			o << "\\\"";
