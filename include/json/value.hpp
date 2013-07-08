@@ -901,7 +901,7 @@ inline Value Object()
 
 }; // namespace JSON
 
-static inline std::ostream &operator<<(std::ostream &o, JSON::Value &v)
+inline std::ostream &operator<<(std::ostream &o, const JSON::Value &v)
 {
 	v.toStream(o);
 	return o;
