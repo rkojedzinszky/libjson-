@@ -13,6 +13,17 @@ IValue::Type IArray::type() const
 	return JSON_ARRAY;
 }
 
+IArray* IArray::clone() const
+{
+	IArray* ret = new IArray(value.size());
+
+	for (size_t i = 0; i < value.size(); ++i) {
+		ret->value[i] = value[i].clone();
+	}
+
+	return ret;
+}
+
 IValue::Array &IArray::array()
 {
 	return value;

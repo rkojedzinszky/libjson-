@@ -8,6 +8,11 @@ IValue::Type INumeric::type() const
 	return JSON_NUMBER;
 }
 
+INumeric* INumeric::clone() const
+{
+	return new INumeric(value);
+}
+
 template <typename T>
 T INumeric::get() const
 {

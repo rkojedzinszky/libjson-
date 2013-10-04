@@ -63,6 +63,9 @@ public:
 	/// Copies the value of v (not deep copy)
 	Value &operator=(const Value &v);
 
+	/// Clone the object - recursion not detected, will loop forever
+	Value clone() const;
+
 	/** Tests whether a value is NULL
 	 * Returns TRUE for NULL, false for any other values */
 	bool isNull() const;
@@ -402,6 +405,11 @@ inline Value &Value::operator=(const Value &v)
 {
 	value = v.value;
 	return *this;
+}
+
+inline Value Value::clone() const
+{
+	return Value(value->clone());
 }
 
 // scalars

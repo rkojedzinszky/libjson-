@@ -13,6 +13,11 @@ IValue::Type IString::type() const
 	return JSON_STRING;
 }
 
+IString* IString::clone() const
+{
+	return new IString(value);
+}
+
 const std::string &IString::getString() const
 {
 	return value;

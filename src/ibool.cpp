@@ -11,6 +11,11 @@ IValue::Type IBool::type() const
 	return JSON_BOOL;
 }
 
+IBool* IBool::clone() const
+{
+	return new IBool(value);
+}
+
 bool IBool::getBool() const
 {
 	return value;

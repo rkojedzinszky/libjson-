@@ -18,6 +18,9 @@ public:
 	// return type info
 	Type type() const;
 
+	// clone
+	IBool* clone() const;
+
 	// converter functions
 	bool asBool() const;
 	int asInt() const;

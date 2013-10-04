@@ -12,6 +12,17 @@ IValue::Type IObject::type() const
 	return JSON_OBJECT;
 }
 
+IObject* IObject::clone() const
+{
+	IObject* ret = new IObject();
+
+	for (std::map<std::string, Value>::const_iterator I = value.begin(); I != value.end(); ++I) {
+		ret->value.insert(std::make_pair(I->first, I->second.clone()));
+	}
+
+	return ret;
+}
+
 IValue::Object &IObject::object()
 {
 	return value;

@@ -25,6 +25,9 @@ public:
 	// return type info
 	Type type() const;
 
+	// clone
+	INumeric* clone() const;
+
 	INumeric(double v);
 	template <typename T>
 	INumeric(T v);

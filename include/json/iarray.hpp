@@ -19,6 +19,9 @@ public:
 	// return type info
 	Type type() const;
 
+	// clone
+	IArray* clone() const;
+
 	Array &array();
 
 	size_t size() const;

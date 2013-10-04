@@ -18,6 +18,9 @@ public:
 	// return type info
 	Type type() const;
 
+	// clone
+	IObject* clone() const;
+
 	Object &object();
 
 	size_t size() const;

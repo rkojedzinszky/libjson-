@@ -12,6 +12,11 @@ IValue::Type IValue::type() const
 	return JSON_NULL;
 }
 
+IValue* IValue::clone() const
+{
+	return new IValue();
+}
+
 bool IValue::getBool() const
 {
 	throw bad_cast();

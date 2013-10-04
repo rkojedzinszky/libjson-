@@ -28,6 +28,9 @@ public:
 	// return type info
 	virtual Type type() const;
 
+	// clone
+	virtual IValue* clone() const;
+
 	typedef std::deque<Value> Array;
 	typedef std::map<std::string, Value> Object;
 
