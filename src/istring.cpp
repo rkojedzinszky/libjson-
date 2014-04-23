@@ -18,7 +18,7 @@ IString* IString::clone() const
 	return new IString(value);
 }
 
-const std::string &IString::getString() const
+const std::string& IString::getString() const
 {
 	return value;
 }
@@ -29,7 +29,7 @@ bool IString::asBool() const
 }
 
 template <typename T>
-inline T _parse(const std::string &s)
+inline T _parse(const std::string& s)
 {
 	T ret;
 	std::istringstream is(s);
@@ -75,27 +75,27 @@ std::string IString::asString() const
 	return value;
 }
 
-bool IString::operator==(const IValue &r) const
+bool IString::operator==(const IValue& r) const
 {
 	return value == r.getString();
 }
 
-bool IString::operator<(const IValue &r) const
+bool IString::operator<(const IValue& r) const
 {
 	return value < r.getString();
 }
 
-bool IString::operator<=(const IValue &r) const
+bool IString::operator<=(const IValue& r) const
 {
 	return value <= r.getString();
 }
 
-void IString::toStream(std::ostream &o) const
+void IString::toStream(std::ostream& o) const
 {
 	stringtojsonstream(value, o);
 }
 
-void IString::fromStream(std::istream &i)
+void IString::fromStream(std::istream& i)
 {
 	jsonstringtostring(value, i);
 }

@@ -23,7 +23,7 @@ IObject* IObject::clone() const
 	return ret;
 }
 
-IValue::Object &IObject::object()
+IValue::Object& IObject::object()
 {
 	return value;
 }
@@ -33,7 +33,7 @@ size_t IObject::size() const
 	return value.size();
 }
 
-void IObject::toStream(std::ostream &o) const
+void IObject::toStream(std::ostream& o) const
 {
 	o << '{';
 
@@ -58,7 +58,7 @@ void IObject::toStream(std::ostream &o) const
 	o << '}';
 }
 
-void IObject::fromStream(std::istream &i)
+void IObject::fromStream(std::istream& i)
 {
 	value.clear();
 	int c;

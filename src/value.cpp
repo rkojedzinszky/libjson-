@@ -6,7 +6,7 @@
 namespace JSON
 {
 
-Value &Value::fromStream(std::istream &i)
+Value& Value::fromStream(std::istream& i)
 {
 	i >> std::ws;
 
@@ -51,12 +51,12 @@ Value &Value::fromStream(std::istream &i)
 	return *this;
 }
 
-IValue *Value::newArray(size_t n)
+IValue* Value::newArray(size_t n)
 {
 	return new IArray(n);
 }
 
-IValue *Value::newObject()
+IValue* Value::newObject()
 {
 	return new IObject();
 }

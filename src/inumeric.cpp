@@ -93,27 +93,27 @@ std::string INumeric::asString() const
 	return o.str();
 }
 
-bool INumeric::operator==(const IValue &r) const
+bool INumeric::operator==(const IValue& r) const
 {
 	return value == r.getDouble();
 }
 
-bool INumeric::operator<(const IValue &r) const
+bool INumeric::operator<(const IValue& r) const
 {
 	return value < r.getDouble();
 }
 
-bool INumeric::operator<=(const IValue &r) const
+bool INumeric::operator<=(const IValue& r) const
 {
 	return value <= r.getDouble();
 }
 
-void INumeric::toStream(std::ostream &o) const
+void INumeric::toStream(std::ostream& o) const
 {
 	o << value;
 }
 
-void INumeric::fromStream(std::istream &i)
+void INumeric::fromStream(std::istream& i)
 {
 	i >> value;
 }

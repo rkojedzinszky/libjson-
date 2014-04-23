@@ -16,7 +16,7 @@ private:
 	double value;
 
 	template <typename F, typename T>
-	static bool numbers_equal(volatile F &f, T t);
+	static bool numbers_equal(volatile F& f, T t);
 
 	template <typename T>
 	T get() const;
@@ -46,16 +46,16 @@ public:
 	double asDouble() const;
 	std::string asString() const;
 
-	bool operator==(const IValue &r) const;
-	bool operator<(const IValue &r) const;
-	bool operator<=(const IValue &r) const;
+	bool operator==(const IValue& r) const;
+	bool operator<(const IValue& r) const;
+	bool operator<=(const IValue& r) const;
 
-	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	void toStream(std::ostream& o) const;
+	void fromStream(std::istream& i);
 };
 
 template <typename F, typename T>
-inline bool INumeric::numbers_equal(volatile F &f, T t)
+inline bool INumeric::numbers_equal(volatile F& f, T t)
 {
 	return static_cast<T>(f) == t;
 }

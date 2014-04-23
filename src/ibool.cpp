@@ -51,17 +51,17 @@ std::string IBool::asString() const
 	return value ? "true" : "false";
 }
 
-bool IBool::operator==(const IValue &r) const
+bool IBool::operator==(const IValue& r) const
 {
 	return value == r.getBool();
 }
 
-void IBool::toStream(std::ostream &o) const
+void IBool::toStream(std::ostream& o) const
 {
 	o << std::boolalpha << value;
 }
 
-void IBool::fromStream(std::istream &i)
+void IBool::fromStream(std::istream& i)
 {
 	i >> std::boolalpha >> value;
 }

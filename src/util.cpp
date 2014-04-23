@@ -5,12 +5,12 @@
 namespace JSON
 {
 
-void stringtojsonstream(const std::string &s, std::ostream &o)
+void stringtojsonstream(const std::string& s, std::ostream& o)
 {
 	o << "\"";
 
 	for (std::string::const_iterator I = s.begin(); I != s.end(); ++I) {
-		switch(*I) {
+		switch (*I) {
 		case '\"':
 			o << "\\\"";
 			break;
@@ -41,7 +41,7 @@ void stringtojsonstream(const std::string &s, std::ostream &o)
 	o << "\"";
 }
 
-void jsonstringtostring(std::string &s, std::istream &i)
+void jsonstringtostring(std::string& s, std::istream& i)
 {
 	std::ostringstream o;
 
@@ -61,7 +61,7 @@ void jsonstringtostring(std::string &s, std::istream &i)
 
 		if (c == '\\') {
 			c = i.get();
-			switch(c) {
+			switch (c) {
 			case '\"':
 				o << '\"';
 				break;

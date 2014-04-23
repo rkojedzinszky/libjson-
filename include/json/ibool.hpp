@@ -29,10 +29,10 @@ public:
 	unsigned long long asULong() const;
 	std::string asString() const;
 
-	bool operator==(const IValue &r) const;
+	bool operator==(const IValue& r) const;
 
-	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	void toStream(std::ostream& o) const;
+	void fromStream(std::istream& i);
 };
 
 inline IBool::IBool(bool v) : value(v)

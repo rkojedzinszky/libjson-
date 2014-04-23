@@ -21,12 +21,12 @@ public:
 	// clone
 	IObject* clone() const;
 
-	Object &object();
+	Object& object();
 
 	size_t size() const;
 
-	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	void toStream(std::ostream& o) const;
+	void fromStream(std::istream& i);
 };
 
 }; // namespace JSON

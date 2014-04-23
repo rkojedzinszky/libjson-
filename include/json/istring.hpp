@@ -12,8 +12,8 @@ private:
 	std::string value;
 
 public:
-	IString(const std::string &s = "");
-	const std::string &getString() const;
+	IString(const std::string& s = "");
+	const std::string& getString() const;
 
 	// return type info
 	Type type() const;
@@ -30,15 +30,15 @@ public:
 	double asDouble() const;
 	std::string asString() const;
 
-	bool operator==(const IValue &r) const;
-	bool operator<(const IValue &r) const;
-	bool operator<=(const IValue &r) const;
+	bool operator==(const IValue& r) const;
+	bool operator<(const IValue& r) const;
+	bool operator<=(const IValue& r) const;
 
-	void toStream(std::ostream &o) const;
-	void fromStream(std::istream &i);
+	void toStream(std::ostream& o) const;
+	void fromStream(std::istream& i);
 };
 
-inline IString::IString(const std::string &s) : value(s)
+inline IString::IString(const std::string& s) : value(s)
 {
 }
 

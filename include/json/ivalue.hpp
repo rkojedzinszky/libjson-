@@ -17,12 +17,12 @@ class IValue : public refcounted
 {
 public:
 	enum Type {
-		JSON_NULL,
-		JSON_BOOL,
-		JSON_NUMBER,
-		JSON_STRING,
-		JSON_ARRAY,
-		JSON_OBJECT
+	        JSON_NULL,
+	        JSON_BOOL,
+	        JSON_NUMBER,
+	        JSON_STRING,
+	        JSON_ARRAY,
+	        JSON_OBJECT
 	};
 
 	// return type info
@@ -47,7 +47,7 @@ public:
 	virtual double getDouble() const;
 
 	// string
-	virtual const std::string &getString() const;
+	virtual const std::string& getString() const;
 
 	// converter functions
 	virtual bool asBool() const;
@@ -59,22 +59,22 @@ public:
 	virtual std::string asString() const;
 
 	// array
-	virtual Array &array();
+	virtual Array& array();
 
 	// object
-	virtual Object &object();
+	virtual Object& object();
 
 	// common to array & object
 	virtual size_t size() const;
 
 	// operators
-	virtual bool operator==(const IValue &r) const;
-	virtual bool operator<(const IValue &r) const;
-	virtual bool operator<=(const IValue &r) const;
+	virtual bool operator==(const IValue& r) const;
+	virtual bool operator<(const IValue& r) const;
+	virtual bool operator<=(const IValue& r) const;
 
 	// serialization
-	virtual void toStream(std::ostream &o) const;
-	virtual void fromStream(std::istream &i);
+	virtual void toStream(std::ostream& o) const;
+	virtual void fromStream(std::istream& i);
 };
 
 }; // namespace JSON

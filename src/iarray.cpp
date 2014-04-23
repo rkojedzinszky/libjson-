@@ -24,7 +24,7 @@ IArray* IArray::clone() const
 	return ret;
 }
 
-IValue::Array &IArray::array()
+IValue::Array& IArray::array()
 {
 	return value;
 }
@@ -34,7 +34,7 @@ size_t IArray::size() const
 	return value.size();
 }
 
-void IArray::toStream(std::ostream &o) const
+void IArray::toStream(std::ostream& o) const
 {
 	o << '[';
 
@@ -54,7 +54,7 @@ void IArray::toStream(std::ostream &o) const
 	o << ']';
 }
 
-void IArray::fromStream(std::istream &i)
+void IArray::fromStream(std::istream& i)
 {
 	value.clear();
 	int c;

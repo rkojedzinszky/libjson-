@@ -4,32 +4,34 @@
 namespace JSON
 {
 
-class refcounted {
+class refcounted
+{
 protected:
 	int refcnt;
 	refcounted();
 public:
 	virtual ~refcounted();
 
-	friend void intrusive_ptr_add_ref(refcounted *v);
-	friend void intrusive_ptr_release(refcounted *v);
+	friend void intrusive_ptr_add_ref(refcounted* v);
+	friend void intrusive_ptr_release(refcounted* v);
 };
 
 template <typename T>
-class refcounted_ptr {
+class refcounted_ptr
+{
 public:
 	refcounted_ptr();
-	refcounted_ptr(T *p);
-	refcounted_ptr(const refcounted_ptr<T> &p);
-	refcounted_ptr &operator=(T *p);
-	refcounted_ptr &operator=(const refcounted_ptr<T> &p);
+	refcounted_ptr(T* p);
+	refcounted_ptr(const refcounted_ptr<T>& p);
+	refcounted_ptr& operator=(T* p);
+	refcounted_ptr& operator=(const refcounted_ptr<T>& p);
 	~refcounted_ptr();
 
-	T *operator->() const;
-	T &operator*() const;
+	T* operator->() const;
+	T& operator*() const;
 
 private:
-	T *p_;
+	T* p_;
 };
 
 inline refcounted::refcounted() : refcnt(0)
@@ -40,12 +42,12 @@ inline refcounted::~refcounted()
 {
 }
 
-inline void intrusive_ptr_add_ref(refcounted *v)
+inline void intrusive_ptr_add_ref(refcounted* v)
 {
 	++v->refcnt;
 }
 
-inline void intrusive_ptr_release(refcounted *v)
+inline void intrusive_ptr_release(refcounted* v)
 {
 	if (--v->refcnt == 0) {
 		delete v;
@@ -58,7 +60,7 @@ refcounted_ptr<T>::refcounted_ptr() : p_(0)
 }
 
 template <typename T>
-refcounted_ptr<T>::refcounted_ptr(T *p) : p_(p)
+refcounted_ptr<T>::refcounted_ptr(T* p) : p_(p)
 {
 	if (p_ != 0) {
 		intrusive_ptr_add_ref(p_);
@@ -66,7 +68,7 @@ refcounted_ptr<T>::refcounted_ptr(T *p) : p_(p)
 }
 
 template <typename T>
-refcounted_ptr<T>::refcounted_ptr(const refcounted_ptr<T> &p) : p_(p.p_)
+refcounted_ptr<T>::refcounted_ptr(const refcounted_ptr<T>& p) : p_(p.p_)
 {
 	if (p_ != 0) {
 		intrusive_ptr_add_ref(p_);
@@ -74,7 +76,7 @@ refcounted_ptr<T>::refcounted_ptr(const refcounted_ptr<T> &p) : p_(p.p_)
 }
 
 template <typename T>
-refcounted_ptr<T> &refcounted_ptr<T>::operator=(T *p)
+refcounted_ptr<T>& refcounted_ptr<T>::operator=(T* p)
 {
 	if (p_ != p) {
 		if (p_ != 0) {
@@ -90,7 +92,7 @@ refcounted_ptr<T> &refcounted_ptr<T>::operator=(T *p)
 }
 
 template <typename T>
-refcounted_ptr<T> &refcounted_ptr<T>::operator=(const refcounted_ptr<T> &p)
+refcounted_ptr<T>& refcounted_ptr<T>::operator=(const refcounted_ptr<T>& p)
 {
 	return operator=(p.p_);
 }
@@ -104,13 +106,13 @@ refcounted_ptr<T>::~refcounted_ptr()
 }
 
 template <typename T>
-T *refcounted_ptr<T>::operator->() const
+T* refcounted_ptr<T>::operator->() const
 {
 	return p_;
 }
 
 template <typename T>
-T &refcounted_ptr<T>::operator*() const
+T& refcounted_ptr<T>::operator*() const
 {
 	return *p_;
 }

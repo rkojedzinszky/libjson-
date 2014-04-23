@@ -16,18 +16,21 @@
 namespace JSON
 {
 
-class ParserError : public std::runtime_error {
-	public:
-		ParserError(char token);
-		ParserError(const std::string &message);
+class ParserError : public std::runtime_error
+{
+public:
+	ParserError(char token);
+	ParserError(const std::string& message);
 };
 
-class ParserEndOfStreamError : public ParserError {
-	public:
-		ParserEndOfStreamError();
+class ParserEndOfStreamError : public ParserError
+{
+public:
+	ParserEndOfStreamError();
 };
 
-class bad_cast : public std::bad_cast {
+class bad_cast : public std::bad_cast
+{
 };
 
 /// The main JSON container
@@ -58,10 +61,10 @@ public:
 	//@}
 
 	/// Initializes with the value of v (not deep copy)
-	Value(const Value &v);
+	Value(const Value& v);
 
 	/// Copies the value of v (not deep copy)
-	Value &operator=(const Value &v);
+	Value& operator=(const Value& v);
 
 	/// Clone the object - recursion not detected, will loop forever
 	Value clone() const;
@@ -77,7 +80,7 @@ public:
 	Value(bool v);
 
 	/// Set as bool
-	Value &setBool(bool v);
+	Value& setBool(bool v);
 
 	/** Returns boolean value
 	 * \exception std::bad_cast
@@ -85,7 +88,7 @@ public:
 	bool getBool() const;
 
 	/// Assign value
-	Value &operator=(bool v);
+	Value& operator=(bool v);
 
 	/** Cast to bool
 	 * \exception std::bad_cast
@@ -101,7 +104,7 @@ public:
 	Value(int v);
 
 	/// Set from int
-	Value &setInt(int v);
+	Value& setInt(int v);
 
 	/** Return int value
 	 * \exception std::bad_cast
@@ -110,7 +113,7 @@ public:
 	int getInt() const;
 
 	/// Assign an int
-	Value &operator=(int v);
+	Value& operator=(int v);
 
 	/** Cast to int
 	 * \exception std::bad_cast
@@ -122,7 +125,7 @@ public:
 	Value(unsigned v);
 
 	/// Set from unsigned
-	Value &setUInt(unsigned v);
+	Value& setUInt(unsigned v);
 
 	/** Return unsigned value
 	 * \exception std::bad_cast
@@ -131,7 +134,7 @@ public:
 	unsigned getUInt() const;
 
 	/// Assign an unsigned
-	Value &operator=(unsigned v);
+	Value& operator=(unsigned v);
 
 	/** Cast to unsigned
 	 * \exception std::bad_cast
@@ -143,19 +146,19 @@ public:
 	Value(long v);
 
 	/// Assign a long
-	Value &operator=(long v);
+	Value& operator=(long v);
 
 	/// Construct from unsigned long
 	Value(unsigned long v);
 
 	/// Assign an unsigned long
-	Value &operator=(unsigned long v);
+	Value& operator=(unsigned long v);
 
 	/// Construct from long long
 	Value(long long v);
 
 	/// Set from long long
-	Value &setLong(long long v);
+	Value& setLong(long long v);
 
 	/** Return long long value
 	 * \exception std::bad_cast
@@ -164,7 +167,7 @@ public:
 	long long getLong() const;
 
 	/// Assign a long long
-	Value &operator=(long long v);
+	Value& operator=(long long v);
 
 	/** Cast to long long
 	 * \exception std::bad_cast
@@ -176,7 +179,7 @@ public:
 	Value(unsigned long long v);
 
 	/// Set from unsigned long long
-	Value &setULong(unsigned long long v);
+	Value& setULong(unsigned long long v);
 
 	/** Return unsigned long long value
 	 * \exception std::bad_cast
@@ -185,7 +188,7 @@ public:
 	unsigned long long getULong() const;
 
 	/// Assign an unsigned long long
-	Value &operator=(unsigned long long v);
+	Value& operator=(unsigned long long v);
 
 	/** Cast to unsigned long long
 	 * \exception std::bad_cast
@@ -197,7 +200,7 @@ public:
 	Value(double v);
 
 	/// Set from double
-	Value &setDouble(double v);
+	Value& setDouble(double v);
 
 	/** Return double Value
 	 * \exception std::bad_cast
@@ -206,7 +209,7 @@ public:
 	double getDouble() const;
 
 	/// Assig a double
-	Value &operator=(double v);
+	Value& operator=(double v);
 
 	/** Cast to double
 	 * \exception std::bad_cast
@@ -219,32 +222,32 @@ public:
 	//@{
 
 	/// Construct from std::string
-	Value(const std::string &s);
+	Value(const std::string& s);
 
 	/// Set from std::string
-	Value &setString(const std::string &s);
+	Value& setString(const std::string& s);
 
 	/** Return std::string value
 	 * \exception std::bad_cast
 	 */
-	const std::string &getString() const;
+	const std::string& getString() const;
 
 	/// Assign an std::string
-	Value &operator=(const std::string &s);
+	Value& operator=(const std::string& s);
 
 	/** Cast to std::string
 	 * \exception std::bad_cast
 	 */
-	operator const std::string&() const;
+	operator const std::string& () const;
 
 	/// Construct from const char *
-	Value(const char *s);
+	Value(const char* s);
 
 	/// Set from const char *
-	Value &setString(const char *s);
+	Value& setString(const char* s);
 
 	/// Assig a const char *
-	Value &operator=(const char *s);
+	Value& operator=(const char* s);
 
 	//@}
 
@@ -263,32 +266,32 @@ public:
 	//@{
 	/// Construct from std::vector
 	template <typename T>
-	Value(const std::vector<T> &v);
+	Value(const std::vector<T>& v);
 	/// Construct from std::deque
 	template <typename T>
-	Value(const std::deque<T> &v);
+	Value(const std::deque<T>& v);
 	/// Construct from std::list
 	template <typename T>
-	Value(const std::list<T> &v);
+	Value(const std::list<T>& v);
 	/// Assign an std::vector
 	template <typename T>
-	Value &operator=(const std::vector<T> &v);
+	Value& operator=(const std::vector<T>& v);
 	/// Assign an std::deque
 	template <typename T>
-	Value &operator=(const std::deque<T> &v);
+	Value& operator=(const std::deque<T>& v);
 	/// Assign an std::list
 	template <typename T>
-	Value &operator=(const std::list<T> &v);
+	Value& operator=(const std::list<T>& v);
 
 	/// Return real STL Array container
-	Array &array() const;
+	Array& array() const;
 	void resize(size_t sz) const;
-	Value &operator[](int idx) const;
-	Value &at(int idx) const;
-	Value &front() const;
-	Value &back() const;
-	const Value &push_front(const Value &v) const;
-	const Value &push_back(const Value &v) const;
+	Value& operator[](int idx) const;
+	Value& at(int idx) const;
+	Value& front() const;
+	Value& back() const;
+	const Value& push_front(const Value& v) const;
+	const Value& push_back(const Value& v) const;
 	Value pop_front() const;
 	Value pop_back() const;
 	//@}
@@ -297,17 +300,17 @@ public:
 	//@{
 	/// Construct from std::map<string, T>
 	template <typename T>
-	Value(const std::map<std::string, T> &v);
+	Value(const std::map<std::string, T>& v);
 	/// Assign an std::map<string, T>
 	template <typename T>
-	Value &operator=(const std::map<std::string, T> &v);
+	Value& operator=(const std::map<std::string, T>& v);
 
 	/// Return real STL Object container
-	Object &object() const;
-	Value &operator[](const std::string &f) const;
-	Value &operator[](const char *f) const;
-	size_t erase(const std::string &f) const;
-	size_t erase(const char *f) const;
+	Object& object() const;
+	Value& operator[](const std::string& f) const;
+	Value& operator[](const char* f) const;
+	size_t erase(const std::string& f) const;
+	size_t erase(const char* f) const;
 	//@}
 
 	/// Returns the size od an Array or Object
@@ -315,9 +318,9 @@ public:
 
 	/// @name Comparison operators
 	//@{
-	bool operator==(const Value &r) const;
-	bool operator<(const Value &r) const;
-	bool operator<=(const Value &r) const;
+	bool operator==(const Value& r) const;
+	bool operator<(const Value& r) const;
+	bool operator<=(const Value& r) const;
 
 	bool operator==(const bool v) const;
 	bool operator<(const bool v) const;
@@ -337,12 +340,12 @@ public:
 	bool operator==(const double v) const;
 	bool operator<(const double v) const;
 	bool operator<=(const double v) const;
-	bool operator==(const std::string &v) const;
-	bool operator<(const std::string &v) const;
-	bool operator<=(const std::string &v) const;
-	bool operator==(const char *v) const;
-	bool operator<(const char *v) const;
-	bool operator<=(const char *v) const;
+	bool operator==(const std::string& v) const;
+	bool operator<(const std::string& v) const;
+	bool operator<=(const std::string& v) const;
+	bool operator==(const char* v) const;
+	bool operator<(const char* v) const;
+	bool operator<=(const char* v) const;
 
 	template <typename T> bool operator!=(const T v) const;
 	template <typename T> bool operator>(const T v) const;
@@ -352,9 +355,9 @@ public:
 	/// @name Serialization functions
 	//@{
 	/// Serialize to std::ostream
-	void toStream(std::ostream &o) const;
+	void toStream(std::ostream& o) const;
 	/// Deserialize from std::istream
-	Value &fromStream(std::istream &i);
+	Value& fromStream(std::istream& i);
 	//@}
 
 	friend Value Array(size_t n);
@@ -365,10 +368,10 @@ private:
 	valueType value;
 
 protected:
-	Value(IValue *v);
+	Value(IValue* v);
 
-	static IValue *newArray(size_t n);
-	static IValue *newObject();
+	static IValue* newArray(size_t n);
+	static IValue* newObject();
 
 };
 
@@ -376,7 +379,7 @@ inline ParserError::ParserError(char token) : std::runtime_error(std::string("JS
 {
 }
 
-inline ParserError::ParserError(const std::string &message) : std::runtime_error(std::string("JSON Parser error: ") + message)
+inline ParserError::ParserError(const std::string& message) : std::runtime_error(std::string("JSON Parser error: ") + message)
 {
 }
 
@@ -389,7 +392,7 @@ inline Value::Type Value::type() const
 	return value->type();
 }
 
-inline Value::Value(IValue *v) : value(v)
+inline Value::Value(IValue* v) : value(v)
 {
 }
 
@@ -397,11 +400,11 @@ inline Value::Value() : value(new IValue())
 {
 }
 
-inline Value::Value(const Value &v) : value(v.value)
+inline Value::Value(const Value& v) : value(v.value)
 {
 }
 
-inline Value &Value::operator=(const Value &v)
+inline Value& Value::operator=(const Value& v)
 {
 	value = v.value;
 	return *this;
@@ -423,7 +426,7 @@ inline Value::Value(bool v) : value(new IBool(v))
 {
 }
 
-inline Value &Value::setBool(bool v)
+inline Value& Value::setBool(bool v)
 {
 	value = new IBool(v);
 
@@ -435,7 +438,7 @@ inline bool Value::getBool() const
 	return value->getBool();
 }
 
-inline Value &Value::operator=(bool v)
+inline Value& Value::operator=(bool v)
 {
 	return setBool(v);
 }
@@ -451,7 +454,7 @@ inline Value::Value(int v) : value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::setInt(int v)
+inline Value& Value::setInt(int v)
 {
 	value = new INumeric(v);
 
@@ -463,7 +466,7 @@ inline int Value::getInt() const
 	return value->getInt();
 }
 
-inline Value &Value::operator=(int v)
+inline Value& Value::operator=(int v)
 {
 	return setInt(v);
 }
@@ -477,7 +480,7 @@ inline Value::Value(unsigned v) : value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::setUInt(unsigned v)
+inline Value& Value::setUInt(unsigned v)
 {
 	value = new INumeric(v);
 
@@ -489,7 +492,7 @@ inline unsigned Value::getUInt() const
 	return value->getUInt();
 }
 
-inline Value &Value::operator=(unsigned v)
+inline Value& Value::operator=(unsigned v)
 {
 	return setUInt(v);
 }
@@ -503,7 +506,7 @@ inline Value::Value(long v): value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::operator=(long v)
+inline Value& Value::operator=(long v)
 {
 	value = new INumeric(v);
 
@@ -514,7 +517,7 @@ inline Value::Value(unsigned long v): value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::operator=(unsigned long v)
+inline Value& Value::operator=(unsigned long v)
 {
 	value = new INumeric(v);
 
@@ -525,7 +528,7 @@ inline Value::Value(long long v) : value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::setLong(long long v)
+inline Value& Value::setLong(long long v)
 {
 	value = new INumeric(v);
 
@@ -537,7 +540,7 @@ inline long long Value::getLong() const
 	return value->getLong();
 }
 
-inline Value &Value::operator=(long long v)
+inline Value& Value::operator=(long long v)
 {
 	return setLong(v);
 }
@@ -551,7 +554,7 @@ inline Value::Value(unsigned long long v) : value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::setULong(unsigned long long v)
+inline Value& Value::setULong(unsigned long long v)
 {
 	value = new INumeric(v);
 
@@ -563,7 +566,7 @@ inline unsigned long long Value::getULong() const
 	return value->getULong();
 }
 
-inline Value &Value::operator=(unsigned long long v)
+inline Value& Value::operator=(unsigned long long v)
 {
 	return setULong(v);
 }
@@ -577,7 +580,7 @@ inline Value::Value(double v) : value(new INumeric(v))/*{{{*/
 {
 }
 
-inline Value &Value::setDouble(double v)
+inline Value& Value::setDouble(double v)
 {
 	value = new INumeric(v);
 
@@ -589,7 +592,7 @@ inline double Value::getDouble() const
 	return value->getDouble();
 }
 
-inline Value &Value::operator=(double v)
+inline Value& Value::operator=(double v)
 {
 	return setDouble(v);
 }
@@ -600,44 +603,44 @@ inline Value::operator double() const
 }/*}}}*/
 
 // string
-inline Value::Value(const std::string &s) : value(new IString(s))
+inline Value::Value(const std::string& s) : value(new IString(s))
 {
 }
 
-inline Value &Value::setString(const std::string &s)
+inline Value& Value::setString(const std::string& s)
 {
 	value = new IString(s);
 
 	return *this;
 }
 
-inline const std::string &Value::getString() const
+inline const std::string& Value::getString() const
 {
 	return value->getString();
 }
 
-inline Value &Value::operator=(const std::string &s)
+inline Value& Value::operator=(const std::string& s)
 {
 	return setString(s);
 }
 
-inline Value::operator const std::string&() const
+inline Value::operator const std::string& () const
 {
 	return getString();
 }
 
-inline Value::Value(const char *s) : value(new IString(s))
+inline Value::Value(const char* s) : value(new IString(s))
 {
 }
 
-inline Value &Value::setString(const char *s)
+inline Value& Value::setString(const char* s)
 {
 	value = new IString(s);
 
 	return *this;
 }
 
-inline Value &Value::operator=(const char *s)
+inline Value& Value::operator=(const char* s)
 {
 	return setString(s);
 }
@@ -680,23 +683,23 @@ inline std::string Value::asString() const
 
 // array
 template <typename T>
-inline Value::Value(const std::vector<T> &v) : value(newArray(v.size()))
+inline Value::Value(const std::vector<T>& v) : value(newArray(v.size()))
 {
 	std::copy(v.begin(), v.end(), array().begin());
 }
 template <typename T>
-inline Value::Value(const std::deque<T> &v) : value(newArray(v.size()))
+inline Value::Value(const std::deque<T>& v) : value(newArray(v.size()))
 {
 	std::copy(v.begin(), v.end(), array().begin());
 }
 template <typename T>
-inline Value::Value(const std::list<T> &v) : value(newArray(v.size()))
+inline Value::Value(const std::list<T>& v) : value(newArray(v.size()))
 {
 	std::copy(v.begin(), v.end(), array().begin());
 }
 
 template <typename T>
-inline Value &Value::operator=(const std::vector<T> &v)
+inline Value& Value::operator=(const std::vector<T>& v)
 {
 	value = newArray(v.size());
 	std::copy(v.begin(), v.end(), array().begin());
@@ -705,7 +708,7 @@ inline Value &Value::operator=(const std::vector<T> &v)
 }
 
 template <typename T>
-inline Value &Value::operator=(const std::deque<T> &v)
+inline Value& Value::operator=(const std::deque<T>& v)
 {
 	value = newArray(v.size());
 	std::copy(v.begin(), v.end(), array().begin());
@@ -714,7 +717,7 @@ inline Value &Value::operator=(const std::deque<T> &v)
 }
 
 template <typename T>
-inline Value &Value::operator=(const std::list<T> &v)
+inline Value& Value::operator=(const std::list<T>& v)
 {
 	value = newArray(v.size());
 	std::copy(v.begin(), v.end(), array().begin());
@@ -722,7 +725,7 @@ inline Value &Value::operator=(const std::list<T> &v)
 	return *this;
 }
 
-inline Value::Array &Value::array() const
+inline Value::Array& Value::array() const
 {
 	return value->array();
 }
@@ -732,34 +735,34 @@ inline void Value::resize(size_t sz) const
 	array().resize(sz);
 }
 
-inline Value &Value::operator[](int idx) const
+inline Value& Value::operator[](int idx) const
 {
 	return array()[idx];
 }
 
-inline Value &Value::at(int idx) const
+inline Value& Value::at(int idx) const
 {
 	return array().at(idx);
 }
 
-inline Value &Value::front() const
+inline Value& Value::front() const
 {
 	return array().front();
 }
 
-inline Value &Value::back() const
+inline Value& Value::back() const
 {
 	return array().back();
 }
 
-inline const Value &Value::push_front(const Value &v) const
+inline const Value& Value::push_front(const Value& v) const
 {
 	array().push_front(v);
 
 	return *this;
 }
 
-inline const Value &Value::push_back(const Value &v) const
+inline const Value& Value::push_back(const Value& v) const
 {
 	array().push_back(v);
 
@@ -782,9 +785,9 @@ inline Value Value::pop_back() const
 
 // object
 template <typename T>
-inline Value::Value(const std::map<std::string, T> &v) : value(newObject())
+inline Value::Value(const std::map<std::string, T>& v) : value(newObject())
 {
-	Object &o = object();
+	Object& o = object();
 
 	for (typename std::map<std::string, T>::const_iterator I = v.begin(); I != v.end(); ++I) {
 		o.insert(std::make_pair(I->first, I->second));
@@ -792,10 +795,10 @@ inline Value::Value(const std::map<std::string, T> &v) : value(newObject())
 }
 
 template <typename T>
-inline Value &Value::operator=(const std::map<std::string, T> &v)
+inline Value& Value::operator=(const std::map<std::string, T>& v)
 {
 	value = newObject();
-	Object &o = object();
+	Object& o = object();
 
 	for (typename std::map<std::string, T>::const_iterator I = v.begin(); I != v.end(); ++I) {
 		o.insert(std::make_pair(I->first, I->second));
@@ -804,27 +807,27 @@ inline Value &Value::operator=(const std::map<std::string, T> &v)
 	return *this;
 }
 
-inline Value::Object &Value::object() const
+inline Value::Object& Value::object() const
 {
 	return value->object();
 }
 
-inline Value &Value::operator[](const std::string &f) const
+inline Value& Value::operator[](const std::string& f) const
 {
 	return object()[f];
 }
 
-inline Value &Value::operator[](const char *f) const
+inline Value& Value::operator[](const char* f) const
 {
 	return object()[std::string(f)];
 }
 
-inline size_t Value::erase(const std::string &f) const
+inline size_t Value::erase(const std::string& f) const
 {
 	return object().erase(f);
 }
 
-inline size_t Value::erase(const char *f) const
+inline size_t Value::erase(const char* f) const
 {
 	return object().erase(std::string(f));
 }
@@ -834,34 +837,34 @@ inline size_t Value::size() const
 	return value->size();
 }
 
-inline bool Value::operator==(const Value &r) const
+inline bool Value::operator==(const Value& r) const
 {
 	return value->operator==(*r.value);
 }
 
-inline bool Value::operator<(const Value &r) const
+inline bool Value::operator<(const Value& r) const
 {
 	return value->operator<(*r.value);
 }
 
-inline bool Value::operator<=(const Value &r) const
+inline bool Value::operator<=(const Value& r) const
 {
 	return value->operator<=(*r.value);
 }
 
 #define VALUE_COMPARE(type, func) \
-	inline bool Value::operator==(const type v) const \
-	{ \
-		return value->func() == v; \
-	} \
-	inline bool Value::operator<(const type v) const \
-	{ \
-		return value->func() < v; \
-	} \
-	inline bool Value::operator<=(const type v) const \
-	{ \
-		return value->func() <= v; \
-	}
+        inline bool Value::operator==(const type v) const \
+        { \
+                return value->func() == v; \
+        } \
+        inline bool Value::operator<(const type v) const \
+        { \
+                return value->func() < v; \
+        } \
+        inline bool Value::operator<=(const type v) const \
+        { \
+                return value->func() <= v; \
+        }
 
 VALUE_COMPARE(bool, getBool)
 VALUE_COMPARE(int, getInt)
@@ -869,8 +872,8 @@ VALUE_COMPARE(unsigned, getUInt)
 VALUE_COMPARE(long long, getLong)
 VALUE_COMPARE(unsigned long long, getULong)
 VALUE_COMPARE(double, getDouble)
-VALUE_COMPARE(std::string &, getString)
-VALUE_COMPARE(char *, getString)
+VALUE_COMPARE(std::string&, getString)
+VALUE_COMPARE(char*, getString)
 
 #undef VALUE_COMPARE
 
@@ -892,7 +895,7 @@ inline bool Value::operator>=(const T v) const
 	return !(*this < v);
 }
 
-inline void Value::toStream(std::ostream &o) const
+inline void Value::toStream(std::ostream& o) const
 {
 	value->toStream(o);
 }
@@ -909,7 +912,7 @@ inline Value Object()
 
 }; // namespace JSON
 
-inline std::ostream &operator<<(std::ostream &o, const JSON::Value &v)
+inline std::ostream& operator<<(std::ostream& o, const JSON::Value& v)
 {
 	v.toStream(o);
 	return o;
