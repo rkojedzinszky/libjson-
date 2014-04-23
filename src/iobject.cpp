@@ -28,6 +28,11 @@ IValue::Object& IObject::object()
 	return value;
 }
 
+const IValue::Object& IObject::object() const
+{
+	return value;
+}
+
 size_t IObject::size() const
 {
 	return value.size();

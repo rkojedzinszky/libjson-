@@ -29,6 +29,11 @@ IValue::Array& IArray::array()
 	return value;
 }
 
+const IValue::Array& IArray::array() const
+{
+	return value;
+}
+
 size_t IArray::size() const
 {
 	return value.size();

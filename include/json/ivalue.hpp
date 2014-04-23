@@ -60,9 +60,11 @@ public:
 
 	// array
 	virtual Array& array();
+	virtual const Array& array() const;
 
 	// object
 	virtual Object& object();
+	virtual const Object& object() const;
 
 	// common to array & object
 	virtual size_t size() const;

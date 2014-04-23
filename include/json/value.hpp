@@ -44,6 +44,8 @@ class bad_cast : public std::bad_cast
 /// - object (hash)
 class Value
 {
+	static const Value null_;
+
 public:
 	typedef IValue::Type Type;
 
@@ -284,16 +286,21 @@ public:
 	Value& operator=(const std::list<T>& v);
 
 	/// Return real STL Array container
-	Array& array() const;
-	void resize(size_t sz) const;
-	Value& operator[](int idx) const;
-	Value& at(int idx) const;
-	Value& front() const;
-	Value& back() const;
-	const Value& push_front(const Value& v) const;
-	const Value& push_back(const Value& v) const;
-	Value pop_front() const;
-	Value pop_back() const;
+	Array& array();
+	const Array& array() const;
+	void resize(size_t sz);
+	Value& operator[](int idx);
+	const Value& operator[](int idx) const;
+	Value& at(int idx);
+	const Value& at(int idx) const;
+	Value& front();
+	const Value& front() const;
+	Value& back();
+	const Value& back() const;
+	Value& push_front(const Value& v);
+	Value& push_back(const Value& v);
+	Value pop_front();
+	Value pop_back();
 	//@}
 
 	/// @name Object Value
@@ -306,11 +313,14 @@ public:
 	Value& operator=(const std::map<std::string, T>& v);
 
 	/// Return real STL Object container
-	Object& object() const;
-	Value& operator[](const std::string& f) const;
-	Value& operator[](const char* f) const;
-	size_t erase(const std::string& f) const;
-	size_t erase(const char* f) const;
+	Object& object();
+	const Object& object() const;
+	Value& operator[](const std::string& f);
+	const Value& operator[](const std::string& f) const;
+	Value& operator[](const char* f);
+	const Value& operator[](const char* f) const;
+	size_t erase(const std::string& f);
+	size_t erase(const char* f);
 	//@}
 
 	/// Returns the size od an Array or Object
@@ -725,58 +735,83 @@ inline Value& Value::operator=(const std::list<T>& v)
 	return *this;
 }
 
-inline Value::Array& Value::array() const
+inline Value::Array& Value::array()
 {
 	return value->array();
 }
 
-inline void Value::resize(size_t sz) const
+inline const Value::Array& Value::array() const
+{
+	return value->array();
+}
+
+inline void Value::resize(size_t sz)
 {
 	array().resize(sz);
 }
 
-inline Value& Value::operator[](int idx) const
+inline Value& Value::operator[](int idx)
 {
 	return array()[idx];
 }
 
-inline Value& Value::at(int idx) const
+inline const Value& Value::operator[](int idx) const
+{
+	return array()[idx];
+}
+
+inline Value& Value::at(int idx)
 {
 	return array().at(idx);
 }
 
-inline Value& Value::front() const
+inline const Value& Value::at(int idx) const
+{
+	return array().at(idx);
+}
+
+inline Value& Value::front()
 {
 	return array().front();
 }
 
-inline Value& Value::back() const
+inline const Value& Value::front() const
+{
+	return array().front();
+}
+
+inline Value& Value::back()
 {
 	return array().back();
 }
 
-inline const Value& Value::push_front(const Value& v) const
+inline const Value& Value::back() const
+{
+	return array().back();
+}
+
+inline Value& Value::push_front(const Value& v)
 {
 	array().push_front(v);
 
 	return *this;
 }
 
-inline const Value& Value::push_back(const Value& v) const
+inline Value& Value::push_back(const Value& v)
 {
 	array().push_back(v);
 
 	return *this;
 }
 
-inline Value Value::pop_front() const
+inline Value Value::pop_front()
 {
 	Value r = front();
 	array().pop_front();
 	return r;
 }
 
-inline Value Value::pop_back() const
+inline Value Value::pop_back()
 {
 	Value r = back();
 	array().pop_back();
@@ -807,27 +842,48 @@ inline Value& Value::operator=(const std::map<std::string, T>& v)
 	return *this;
 }
 
-inline Value::Object& Value::object() const
+inline Value::Object& Value::object()
 {
 	return value->object();
 }
 
-inline Value& Value::operator[](const std::string& f) const
+inline const Value::Object& Value::object() const
+{
+	return value->object();
+}
+
+inline Value& Value::operator[](const std::string& f)
 {
 	return object()[f];
 }
 
-inline Value& Value::operator[](const char* f) const
+inline const Value& Value::operator[](const std::string& f) const
+{
+	const Value::Object& o(object());
+	Value::Object::const_iterator I = o.find(f);
+	if (I == o.end()) {
+		return null_;
+	} else {
+		return I->second;
+	}
+}
+
+inline Value& Value::operator[](const char* f)
 {
 	return object()[std::string(f)];
 }
 
-inline size_t Value::erase(const std::string& f) const
+inline const Value& Value::operator[](const char* f) const
+{
+	return operator[](std::string(f));
+}
+
+inline size_t Value::erase(const std::string& f)
 {
 	return object().erase(f);
 }
 
-inline size_t Value::erase(const char* f) const
+inline size_t Value::erase(const char* f)
 {
 	return object().erase(std::string(f));
 }

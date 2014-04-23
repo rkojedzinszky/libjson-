@@ -23,6 +23,7 @@ public:
 	IArray* clone() const;
 
 	Array& array();
+	const Array& array() const;
 
 	size_t size() const;
 

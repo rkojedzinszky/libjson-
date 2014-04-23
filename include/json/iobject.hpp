@@ -22,6 +22,7 @@ public:
 	IObject* clone() const;
 
 	Object& object();
+	const Object& object() const;
 
 	size_t size() const;
 
