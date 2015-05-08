@@ -1,5 +1,4 @@
-# libjson++
-[![Build Status](https://travis-ci.org/rkojedzinszky/libjson-.svg?branch=master)](https://travis-ci.org/rkojedzinszky/libjson-)
+# libjson++ [![Build Status](https://travis-ci.org/rkojedzinszky/libjson-.svg?branch=master)](https://travis-ci.org/rkojedzinszky/libjson-)
 
 A simple and intuitive easy-to use C++ class to read/write JSON structures
 
