@@ -6,6 +6,8 @@
 namespace JSON
 {
 
+const Value Value::null_;
+
 Value& Value::fromStream(std::istream& i)
 {
 	i >> std::ws;
