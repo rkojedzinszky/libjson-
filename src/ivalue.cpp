@@ -92,7 +92,17 @@ IValue::Array& IValue::array()
 	throw bad_cast();
 }
 
+const IValue::Array& IValue::array() const
+{
+	throw bad_cast();
+}
+
 IValue::Object& IValue::object()
+{
+	throw bad_cast();
+}
+
+const IValue::Object& IValue::object() const
 {
 	throw bad_cast();
 }
