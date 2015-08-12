@@ -35,12 +35,6 @@ inline T _parse(const std::string& s)
 	std::istringstream is(s);
 	is >> ret;
 
-	if (!is.eof()) {
-		std::ostringstream e;
-		e << "IString::_parse<" << typeid(T).name() << ">(): " << s << " cannot be converted";
-		throw std::domain_error(e.str());
-	}
-
 	return ret;
 }
 
