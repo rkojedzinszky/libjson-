@@ -25,7 +25,7 @@ const std::string& IString::getString() const
 
 bool IString::asBool() const
 {
-	return value != "" && value != "0";
+	return value != "" && value != "0" && value != "f";
 }
 
 template <typename T>
