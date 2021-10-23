@@ -1,3 +1,9 @@
+libjson++ (1.1.0) stable; urgency=medium
+
+  * Debian buster release (1.1.0).
+
+   -- Neszt Tibor <tibor@neszt.hu>  Sat 23 Oct 2021 19:38:19 +0200
+
 libjson++ (1.1.0.buster) stable; urgency=medium
 
   * New upstream release (1.1.0).
