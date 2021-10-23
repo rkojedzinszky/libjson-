@@ -1,0 +1,17 @@
+libjson++ (1.1.0.buster) stable; urgency=medium
+
+  * New upstream release (1.1.0).
+
+ -- Richard Kojedzinszky <krichy@tvnetwork.hu>  Thu, 09 Jun 2016 10:10:25 +0200
+
+libjson++ (1.0.2-1) testing; urgency=medium
+
+  * New upstream release.
+
+ -- Richard Kojedzinszky <krichy@tvnetwork.hu>  Wed, 12 Aug 2015 16:54:25 +0200
+
+libjson++ (1.0.1-1) testing; urgency=low
+
+  * Initial debian release.
+
+ -- Richard Kojedzinszky <krichy@tvnetwork.hu>  Wed, 12 Aug 2015 14:45:21 +0200

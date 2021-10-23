@@ -1,0 +1,22 @@
+Source: libjson++
+Priority: optional
+Maintainer: Richard Kojedzinszky <krichy@tvnetwork.hu>
+Build-Depends: debhelper (>= 9), cmake
+Standards-Version: 3.9.6
+Section: libs
+Homepage: https://github.com/rkojedzinszky/libjson-
+
+Package: libjson++-dev
+Section: libdevel
+Architecture: any
+Depends: libjson++1 (= ${binary:Version}), ${misc:Depends}
+Description: Simple C++ class to handle JSON serialized data
+ Simple, intuitive C++ class to handle JSON serialized data.
+ .
+ Development files.
+
+Package: libjson++1
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple C++ class to handle JSON serialized data
+ Simple, intuitive C++ class to handle JSON serialized data.
